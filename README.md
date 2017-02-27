@@ -1,2 +1,2 @@
 # CICE
-Community Ice CoDE
+Los Alamos Sea Ice Model
