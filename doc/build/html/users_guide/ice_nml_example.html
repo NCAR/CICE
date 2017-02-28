@@ -1,0 +1,266 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. CICE Namelist Examples &#8212; cicedoc  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. CICE Input Data" href="ice_input_data.html" />
+    <link rel="prev" title="3. CICE Namelists" href="ice_nml_var.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_input_data.html" title="5. CICE Input Data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. CICE Namelist Examples</a><ul>
+<li><a class="reference internal" href="#example-1-cesm-fully-coupled">4.1. Example 1: CESM Fully Coupled</a></li>
+<li><a class="reference internal" href="#example-2-history-file-namelist">4.2. Example 2: History File Namelist</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ice_nml_var.html"
+                        title="previous chapter">3. CICE Namelists</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ice_input_data.html"
+                        title="next chapter">5. CICE Input Data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_nml_example.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cice-namelist-examples">
+<span id="id1"></span><h1>4. CICE Namelist Examples<a class="headerlink" href="#cice-namelist-examples" title="Permalink to this headline">¶</a></h1>
+<p>This section shows several examples of namelists from the coupled ice
+model. These examples are taken directly from <strong>cice.buildnml.csh</strong> for
+the coupled model. Most of the variables in the namelist are determined
+from environment variables set elsewhere in the scripts. Since the
+namelists from the coupled model are “resolved” by the scripts, meaning
+that the values of most of the shell script variables are put directly
+into the namelist, examples are shown for the most commonly used
+configurations. Variables that are commonly changed directly in the
+namelist are the timestep dt and the number of subcycles per timestep in
+the ice dynamics ndte.</p>
+<div class="section" id="example-1-cesm-fully-coupled">
+<h2>4.1. Example 1: CESM Fully Coupled<a class="headerlink" href="#example-1-cesm-fully-coupled" title="Permalink to this headline">¶</a></h2>
+<p>The following example is the namelist used for CESM fully coupled, or
+the B configuration. The variables that are still set to shell script
+variables have been set at the top of <strong>cice.buildnml.csh</strong> or in other
+scripts. A completely resolved version of the namelist will be written
+to <strong>ice_in</strong> in the executable directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">setup_nml</span>
+ <span class="n">diagfreq</span>               <span class="o">=</span>  <span class="mi">24</span>
+ <span class="n">hist_avg</span>               <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+ <span class="n">histfreq</span>               <span class="o">=</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span>
+ <span class="n">histfreq_n</span>             <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+ <span class="n">ice_ic</span>         <span class="o">=</span> <span class="s1">&#39;b40.1850.track1.1deg.006.cice.r.0301-01-01-00000.nc&#39;</span>
+ <span class="n">lcdf64</span>         <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+ <span class="n">pointer_file</span>           <span class="o">=</span> <span class="s1">&#39;rpointer.ice&#39;</span>
+ <span class="n">xndt_dyn</span>               <span class="o">=</span>  <span class="mf">1.0</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">grid_nml</span>
+ <span class="n">grid_file</span>              <span class="o">=</span> <span class="s1">&#39;/fis/cgd/cseg/csm/inputdata/ice/cice/global_gx1v6_200</span>
+<span class="mf">10402.</span><span class="n">grid</span><span class="s1">&#39;</span>
+ <span class="n">grid_format</span>            <span class="o">=</span> <span class="s1">&#39;bin&#39;</span>
+ <span class="n">grid_type</span>              <span class="o">=</span> <span class="s1">&#39;displaced_pole&#39;</span>
+ <span class="n">kcatbound</span>              <span class="o">=</span>  <span class="mi">0</span>
+ <span class="n">kmt_file</span>               <span class="o">=</span> <span class="s1">&#39;/fis/cgd/cseg/csm/inputdata/ice/cice/global_gx1v6_200</span>
+<span class="mf">90204.</span><span class="n">kmt</span><span class="s1">&#39;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">ice_nml</span>
+ <span class="n">advection</span>              <span class="o">=</span> <span class="s1">&#39;remap&#39;</span>
+ <span class="n">albedo_type</span>            <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
+ <span class="n">albicei</span>                <span class="o">=</span> <span class="mf">0.45</span>
+ <span class="n">albicev</span>                <span class="o">=</span> <span class="mf">0.75</span>
+ <span class="n">albsnowi</span>               <span class="o">=</span> <span class="mf">0.73</span>
+ <span class="n">albsnowv</span>               <span class="o">=</span> <span class="mf">0.98</span>
+ <span class="n">evp_damping</span>            <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+ <span class="n">kdyn</span>           <span class="o">=</span>  <span class="mi">1</span>
+ <span class="n">kitd</span>           <span class="o">=</span>  <span class="mi">1</span>
+ <span class="n">krdg_partic</span>            <span class="o">=</span> <span class="mi">1</span>
+ <span class="n">krdg_redist</span>            <span class="o">=</span> <span class="mi">1</span>
+ <span class="n">kstrength</span>              <span class="o">=</span>  <span class="mi">1</span>
+ <span class="n">ndte</span>           <span class="o">=</span>  <span class="mi">120</span>
+ <span class="n">r_snw</span>          <span class="o">=</span>  <span class="mf">1.5</span>
+ <span class="n">shortwave</span>              <span class="o">=</span> <span class="s1">&#39;dEdd&#39;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">tracer_nml</span>
+ <span class="n">tr_aero</span>        <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+ <span class="n">tr_FY</span>          <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+ <span class="n">tr_iage</span>        <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+ <span class="n">tr_pond</span>        <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">domain_nml</span>
+ <span class="n">distribution_type</span>              <span class="o">=</span> <span class="s1">&#39;cartesian&#39;</span>
+ <span class="n">ew_boundary_type</span>               <span class="o">=</span> <span class="s1">&#39;cyclic&#39;</span>
+ <span class="n">ns_boundary_type</span>               <span class="o">=</span> <span class="s1">&#39;open&#39;</span>
+ <span class="n">processor_shape</span>                <span class="o">=</span> <span class="s1">&#39;square-pop&#39;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">ice_prescribed_nml</span>
+ <span class="n">prescribed_ice</span>         <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-2-history-file-namelist">
+<h2>4.2. Example 2: History File Namelist<a class="headerlink" href="#example-2-history-file-namelist" title="Permalink to this headline">¶</a></h2>
+<p>The second namelist controls what variables are written to the history
+file. By default, all files are written to the history file. Variables
+that are not output are set in the namelist icefields_nml. Some of the
+following fields are not written to the history file since they can be
+retrieved from the ocean history files. The melt and freeze onset fields
+are not used, since the information they contain may not be correct if
+the model is restarted mid-year. The ice areas and volumes for
+categories six through ten are not used, since the default thickness
+distribution consists of five ice categories.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">f_aero</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_aicen</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_aisnap</span>               <span class="o">=</span> <span class="s1">&#39;mdxxx&#39;</span>
+ <span class="n">f_apondn</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_congel</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_daidtd</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_daidtt</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_divu</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_dvidtd</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_dvidtt</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_faero_atm</span>            <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_faero_ocn</span>            <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fhocn</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fhocn_ai</span>             <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_frazil</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fresh</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fresh_ai</span>             <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_frz_onset</span>            <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_frzmlt</span>               <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_fsalt</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fsalt_ai</span>             <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_fy</span>           <span class="o">=</span> <span class="s1">&#39;mdxxx&#39;</span>
+ <span class="n">f_hisnap</span>               <span class="o">=</span> <span class="s1">&#39;mdxxx&#39;</span>
+ <span class="n">f_icepresent</span>           <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_meltb</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_meltl</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_meltt</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_mlt_onset</span>            <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_opening</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_shear</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_sig1</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_sig2</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_snoice</span>               <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_sss</span>          <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_sst</span>          <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_strairx</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strairy</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strcorx</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strcory</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strength</span>             <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strintx</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strinty</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strocnx</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strocny</span>              <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_strtltx</span>              <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_strtlty</span>              <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_uocn</span>         <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_uvel</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_vicen</span>                <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+ <span class="n">f_vocn</span>         <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span>
+ <span class="n">f_vvel</span>         <span class="o">=</span> <span class="s1">&#39;mxxxx&#39;</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_input_data.html" title="5. CICE Input Data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, David Bailey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

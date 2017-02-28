@@ -1,0 +1,217 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11. Troubleshooting &#8212; cicedoc  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="10. Stdout Output" href="ice_stdout.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_stdout.html" title="10. Stdout Output"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">11. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#code-does-not-compile-or-run">11.1. Code does not Compile or Run</a></li>
+<li><a class="reference internal" href="#negative-ice-area-in-horizontal-remapping">11.2. Negative Ice Area in Horizontal Remapping</a></li>
+<li><a class="reference internal" href="#thermodynamic-iteration-error">11.3. Thermodynamic Iteration Error</a></li>
+<li><a class="reference internal" href="#conservation-error">11.4. Conservation Error</a></li>
+<li><a class="reference internal" href="#nx-does-not-divide-evenly-into-grid">11.5. NX does not divide evenly into grid</a></li>
+<li><a class="reference internal" href="#enabling-the-debugger">11.6. Enabling the Debugger</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ice_stdout.html"
+                        title="previous chapter">10. Stdout Output</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_troubleshoot.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="troubleshooting">
+<span id="id1"></span><h1>11. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="code-does-not-compile-or-run">
+<h2>11.1. Code does not Compile or Run<a class="headerlink" href="#code-does-not-compile-or-run" title="Permalink to this headline">¶</a></h2>
+<p>Check the <strong>ice.log.*</strong> or <strong>ice.bldlog.*</strong> files in the executable
+directory, or the standard output and error files for information. Also,
+try the following:</p>
+<ul class="simple">
+<li>Delete the executable directory and rebuild the model.</li>
+<li>Make sure that there is a <strong>Macros.:math:`&lt;`OS:math:`&gt;`</strong> file
+for your platform. Modify the directory paths for the libraries.</li>
+<li>Make sure all paths and file names are set correctly in the scripts.</li>
+<li>If changes were made to the <strong>ice_model_size.F90</strong> file in the
+source code directory, they will be overwritten by the file in
+<strong>input_templates</strong>.</li>
+</ul>
+</div>
+<div class="section" id="negative-ice-area-in-horizontal-remapping">
+<h2>11.2. Negative Ice Area in Horizontal Remapping<a class="headerlink" href="#negative-ice-area-in-horizontal-remapping" title="Permalink to this headline">¶</a></h2>
+<p>This error is written from <strong>ice_transport_remap.F90</strong> when the ice
+model is checking for negative ice areas. If it happens well into a
+model integration, it can be indicative of a CFL violation. The output
+looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">60</span><span class="p">:</span> <span class="n">New</span> <span class="n">area</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">istep</span> <span class="o">=</span> <span class="mi">119588</span>
+<span class="mi">60</span><span class="p">:</span> <span class="p">(</span><span class="n">my_task</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span> <span class="mi">21</span> <span class="mi">380</span> <span class="mi">1</span>
+<span class="mi">60</span><span class="p">:</span> <span class="n">Old</span> <span class="n">area</span> <span class="o">=</span> <span class="mf">0.960675000975677174E-05</span>
+<span class="mi">60</span><span class="p">:</span> <span class="n">New</span> <span class="n">area</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.161808948357841311E-06</span>
+<span class="mi">60</span><span class="p">:</span> <span class="n">Net</span> <span class="n">flux</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.976855895811461324E-05</span>
+<span class="mi">60</span><span class="p">:(</span><span class="n">shr_sys_abort</span><span class="p">)</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">remap</span> <span class="n">transport</span><span class="p">:</span> <span class="n">negative</span> <span class="n">area</span>
+<span class="mi">60</span><span class="p">:(</span><span class="n">shr_sys_abort</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="n">calling</span> <span class="n">shr_mpi_abort</span><span class="p">()</span> <span class="ow">and</span> <span class="n">stopping</span>
+<span class="mi">60</span><span class="p">:(</span><span class="n">shr_mpi_abort</span><span class="p">):</span><span class="n">remap</span> <span class="n">transport</span><span class="p">:</span> <span class="n">negative</span> <span class="n">area</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The dynamics timestep should be reduced to integrate past this problem.
+Set</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">,</span> <span class="n">xndt_dyn</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>in the namelist and restart the model. When the job completes set the
+value back to 1.</p>
+</div>
+<div class="section" id="thermodynamic-iteration-error">
+<h2>11.3. Thermodynamic Iteration Error<a class="headerlink" href="#thermodynamic-iteration-error" title="Permalink to this headline">¶</a></h2>
+<p>This error is written from <strong>ice_therm_vertical.F90</strong> when the ice
+model temperature iteration is not converging in the thermodynamics.
+This is usually a problem with the forcing, but sometimes can be
+indicative of a timestep problem in the ice.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Thermo</span> <span class="n">iteration</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">converge</span>
+<span class="n">istep1</span><span class="p">,</span> <span class="n">my_task</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conservation-error">
+<h2>11.4. Conservation Error<a class="headerlink" href="#conservation-error" title="Permalink to this headline">¶</a></h2>
+<p>This error is written from <strong>ice_itd.F</strong> when the ice model is checking
+that initial and final values of a conserved field are equal to within a
+small value. The output looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Conservation</span> <span class="n">error</span><span class="p">:</span> <span class="n">vice</span><span class="p">,</span> <span class="n">add_new_ice</span>
+<span class="mi">11</span>  <span class="p">:</span>  <span class="mi">14</span>  <span class="mi">185</span>
+<span class="n">Initial</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">1362442.600400560</span>
+<span class="n">Final</span> <span class="n">value</span> <span class="o">=</span>  <span class="mf">1362442.600400561</span>
+<span class="n">Difference</span> <span class="o">=</span>  <span class="mf">2.328306436538696</span><span class="n">D</span><span class="o">-</span><span class="mi">10</span>
+<span class="p">(</span><span class="n">shr_sys_abort</span><span class="p">)</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">ice</span><span class="p">:</span> <span class="n">Conservation</span> <span class="n">error</span>
+<span class="p">(</span><span class="n">shr_sys_abort</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="n">calling</span> <span class="n">shr_mpi_abort</span><span class="p">()</span> <span class="ow">and</span> <span class="n">stopping</span>
+<span class="p">(</span><span class="n">shr_mpi_abort</span><span class="p">):</span><span class="n">ice</span><span class="p">:</span> <span class="n">Conservation</span> <span class="n">error</span>  <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Non-conservation can occur if the ice model is receiving very bad
+forcing, and is not able to deal with it. This has occurred after a CFL
+violation in the ocean. The timestep in the ocean may be decreased to
+get around the problem.</p>
+</div>
+<div class="section" id="nx-does-not-divide-evenly-into-grid">
+<h2>11.5. NX does not divide evenly into grid<a class="headerlink" href="#nx-does-not-divide-evenly-into-grid" title="Permalink to this headline">¶</a></h2>
+<p>If you modify the number of tasks used by the ice model, the model may
+stop with this error written to the log file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;ERROR: NX must divide evenly into grid,100,8&#39;</span>
+</pre></div>
+</div>
+<p>The number of MPI processors used by the ice model must divide evenly
+into the grid dimensions. For example, running the ice model with 8
+tasks on the gx3v7 grid will result in an error, since 8 does not divide
+evenly into the 100 longitude points. To fix this error, change the
+value of $NTASKS for the uncoupled ice model in the main script. In this
+case, a value of 4 would work, and the task geometry would also have to
+be changed.</p>
+</div>
+<div class="section" id="enabling-the-debugger">
+<h2>11.6. Enabling the Debugger<a class="headerlink" href="#enabling-the-debugger" title="Permalink to this headline">¶</a></h2>
+<p>This section explains how to set some compiler options for debugging.
+For the coupled model, set DEBUG to TRUE in the <strong>env_run.xml</strong> script.
+Before running the model, be sure to delete the object files so that the
+source code will be recompiled. If a core file is created, it will be in
+the executable directory. Use dbx to look at the core file. Useful
+information may also appear in the standard error and output files.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_stdout.html" title="10. Stdout Output"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, David Bailey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

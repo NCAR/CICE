@@ -1,0 +1,135 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. CICE Input Data &#8212; cicedoc  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. CICE Thickness Categories" href="ice_change_ncat.html" />
+    <link rel="prev" title="4. CICE Namelist Examples" href="ice_nml_example.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_change_ncat.html" title="6. CICE Thickness Categories"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_example.html" title="4. CICE Namelist Examples"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ice_nml_example.html"
+                        title="previous chapter">4. CICE Namelist Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ice_change_ncat.html"
+                        title="next chapter">6. CICE Thickness Categories</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_input_data.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cice-input-data">
+<span id="id1"></span><h1>5. CICE Input Data<a class="headerlink" href="#cice-input-data" title="Permalink to this headline">¶</a></h1>
+<p>The coupled CICE model requires a minimum of three files to run:</p>
+<ul class="simple">
+<li><strong>global_${ICE_GRID}.grid</strong> is a binary file containing grid information</li>
+<li><strong>global_${ICE_GRID}.kmt</strong> is a binary file containing land mask information</li>
+<li><strong>iced.0001-01-01.${ICE_GRID}.20lay</strong> are binary files containing
+initial condition information for the gx1v6 and gx3v7 grids,
+respectively. The thickness distribution in this restart file
+contains 5 categories, each with 4 layers.</li>
+</ul>
+<p>Depending on the grid selected in the scripts, the appropriate
+<strong>global*</strong> and <strong>iced*</strong> files will be used in the executable
+directory. These files are read directory from the system input data
+directory and not copied to the executable directory. Currently, only
+gx3v7, gx1v6, tx1v1, and tx0.1v2 grids are supported for the ice and
+ocean models. Note that these files can now be used in netCDF format.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_change_ncat.html" title="6. CICE Thickness Categories"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_example.html" title="4. CICE Namelist Examples"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, David Bailey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

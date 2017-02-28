@@ -1,0 +1,211 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. What is CICE5 &#8212; cicedoc  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Configuring and Building CICE" href="ice_setup.html" />
+    <link rel="prev" title="CICE User’s Guide" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_setup.html" title="2. Configuring and Building CICE"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="CICE User’s Guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. What is CICE5</a><ul>
+<li><a class="reference internal" href="#whats-new-in-cice5">1.1. What’s new in CICE5?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">CICE User&#8217;s Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ice_setup.html"
+                        title="next chapter">2. Configuring and Building CICE</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_what_is_cice5.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-is-cice5">
+<span id="overview"></span><h1>1. What is CICE5<a class="headerlink" href="#what-is-cice5" title="Permalink to this headline">¶</a></h1>
+<p>This User’s Guide accompanies the CESM2.0 User’s Guide, and is
+intended for those who would like to run CICE coupled, on a supported
+platform, and “out of the box”.  It includes a quick start guide for
+downloading the CESM1 source code and input datasets, and information
+on how to configure, build and run the model. The supported
+configurations and scripts for building the fully coupled model are
+also described in the CESM1 User’s Guide.  The CICE User’s Guide is
+intended for users interested in making modifications to the ice model
+scripts or namelists or running the uncoupled ice model.  Users
+interested in modifying the source code should see the CICE Code
+Reference/ Developer’s Guide.</p>
+<p>CICE4 is the latest version of the Los Alamos Sea Ice Model, sometimes
+referred to as the Community Ice CodE. It is the result of a community
+effort to develop a portable, efficient sea ice model that can be run
+coupled in a global climate model or uncoupled as a stand-alone ice
+model. It has been released as the sea ice component of the Community
+Earth System Model (CESM), a fully-coupled global climate model that
+provides simulations of the earths past, present and future climate
+states. CICE4 is supported on high- and low-resolution Greenland Pole
+and tripole grids, which are identical to those used by the Parallel
+Ocean Program (POP) ocean model. The high resolution version is best
+suited for simulating present-day and future climate scenarios while
+the low resolution option is used for paleoclimate simulations and
+debugging. An uncoupled version of CICE is available separately from
+Los Alamos National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
+<p>It provides a means of running the sea ice model independent of the
+other CESM components. It reads in atmospheric and ocean forcing,
+which eliminates the need for the flux coupler, and the atmosphere,
+land and ocean data models. It can be run on a reduced number of
+processors, or without MPI (Message Passing Interface) for researchers
+without access to these computer resources.</p>
+<p>The physics in the uncoupled ice model are identical to those in the
+ice model used in the fully coupled system.  CICE is a
+dynamic-thermodynamic model that includes a subgrid-scale ice
+thickness distribution (; ). It uses the energy conserving
+thermodynamics of , has multiple layers in each thickness category,
+and accounts for the influences of brine pockets within the ice
+cover. The ice dynamics utilizes the elastic-viscous-plastic (EVP)
+rheology of. Sea ice ridging follows and. A slab ocean mixed layer
+model is included. A Scientific Reference is available that contains
+more detailed information on the model physics.</p>
+<p>An attempt has been made throughout this document to provide the
+following text convention. Variable names used in the code are
+typewritten. Subroutine names are given in <em>italic</em>, and file names
+are in <strong>boldface</strong>.</p>
+<div class="section" id="whats-new-in-cice5">
+<h2>1.1. What’s new in CICE5?<a class="headerlink" href="#whats-new-in-cice5" title="Permalink to this headline">¶</a></h2>
+<p>CICE4 is an upgraded version of the Community Sea Ice Model, CSIM5,
+which was based on CICE3, and was released in June 2004. The model
+physics are similar to that of CSIM5, but it was decided to move to
+CICE, the LANL sea ice model for practical reasons. The major changes
+are:</p>
+<ul class="simple">
+<li>The incremental remapping transport scheme is now the default and is
+available in the modules called <strong>ice_transport_driver.F90</strong> and
+<strong>ice_transport_remap.F90</strong>. The MPDATA transport scheme, is no
+longer supported in CICE4. The upwind advection scheme is the only
+additional option and is contained in <strong>ice_transport_driver.F90</strong>.</li>
+<li>The standalone ice model is now only available through Los Alamos
+National Laboratory.</li>
+<li>Several physics options have been shifted around into other or new
+modules. For example, most of <strong>ice_albedo.F90</strong> is now in
+<strong>ice_shortwave.F90</strong>. The new module contains all of the shortwave
+radiative transfer plus the basic albedo calculations.</li>
+<li>The mechanical redistribution scheme has been changed significantly
+and is available in <strong>ice_mechred.F90</strong>.</li>
+<li>A new drivers area has been created for modules that are specific to
+the CESM as opposed to the standalone CICE model. The new CESM
+drivers are contained in the cpl_mct and cpl_share subdirectories.
+The ESMF driver (cpl_esmf) is still under development. The source
+subdirectory now contains driver independent source code for the most
+part.</li>
+<li>A new bld subdirectory has been introduced which contains CESM
+specific build and configure scripts. These scripts handle the
+namelist generation, defaults, and configuration details.</li>
+</ul>
+<p>The CICE source code is based on the Los Alamos sea ice model CICE
+model version 4. The main source code is very similar in both
+versions, but the drivers are significantly different. If there are
+some topics that are not covered in the CICE documentation, users are
+encouraged to look at the CICE documentation . It is available at Los
+Alamos National Laboratory at: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_setup.html" title="2. Configuring and Building CICE"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="CICE User’s Guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, David Bailey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>

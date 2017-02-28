@@ -1,0 +1,247 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Configuring and Building CICE &#8212; cicedoc  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. CICE Namelists" href="ice_nml_var.html" />
+    <link rel="prev" title="1. What is CICE5" href="ice_what_is_cice5.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ice_what_is_cice5.html" title="1. What is CICE5"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Configuring and Building CICE</a><ul>
+<li><a class="reference internal" href="#overview">2.1. Overview</a></li>
+<li><a class="reference internal" href="#building-the-cice-library">2.2. Building the CICE library</a><ul>
+<li><a class="reference internal" href="#the-build-environment">2.2.1. The Build Environment</a></li>
+<li><a class="reference internal" href="#cice-preprocessor-flags">2.2.2. CICE Preprocessor Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ice_what_is_cice5.html"
+                        title="previous chapter">1. What is CICE5</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ice_nml_var.html"
+                        title="next chapter">3. CICE Namelists</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_setup.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuring-and-building-cice">
+<span id="ice-setup"></span><h1>2. Configuring and Building CICE<a class="headerlink" href="#configuring-and-building-cice" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>2.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The setup scripts for the coupled model are located in <strong>cesm1/scripts</strong>.</p>
+<p>The directory structure of CICE4 within CESM is shown below.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>                             <span class="n">cesm1</span>         <span class="p">(</span><span class="n">main</span> <span class="n">directory</span><span class="p">)</span>
+                               <span class="o">|</span>
+                               <span class="o">|</span>
+                 <span class="n">models</span><span class="o">--------+---------</span> <span class="n">scripts</span>
+                    <span class="o">|</span>                        <span class="o">|</span>
+                    <span class="o">|</span>               <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*|*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span>
+           <span class="n">bld</span><span class="o">------+------</span><span class="n">ice</span>      <span class="o">*</span><span class="n">build</span> <span class="n">scripts</span> <span class="k">for</span><span class="o">*</span>
+            <span class="o">|</span>               <span class="o">|</span>       <span class="o">*</span>  <span class="n">coupled</span> <span class="n">model</span>  <span class="o">*</span>
+        <span class="p">(</span><span class="n">Makefile</span>           <span class="o">|</span>       <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span>
+         <span class="n">macros</span><span class="p">)</span>            <span class="o">|</span>
+                          <span class="n">cice</span>         <span class="p">(</span><span class="n">active</span> <span class="n">ice</span> <span class="n">component</span><span class="p">)</span>
+                            <span class="o">|</span>
+ <span class="n">bld</span> <span class="o">----------</span> <span class="n">docs</span> <span class="o">-------+-------</span> <span class="n">src</span>
+                 <span class="o">|</span>                    <span class="o">|</span>
+               <span class="p">(</span><span class="n">CICE</span>                  <span class="o">|</span>
+            <span class="n">documentation</span><span class="p">)</span>            <span class="o">|</span>
+                                      <span class="o">|</span>
+                                      <span class="o">|</span>
+                   <span class="n">drivers</span> <span class="o">---</span> <span class="n">mpi</span> <span class="o">---+---</span> <span class="n">serial</span> <span class="o">---</span> <span class="n">source</span>
+                      <span class="o">|</span>
+                      <span class="o">|</span>
+                      <span class="o">|</span>
+<span class="n">cice4</span> <span class="o">----</span> <span class="n">cpl_esmf</span> <span class="o">--+--</span> <span class="n">cpl_mct</span> <span class="o">----</span> <span class="n">cpl_share</span>
+</pre></div>
+</div>
+<p>The CIME scripts generate a set of “resolved scripts” for a specific configuration
+determined by the user. The configuration includes components,
+resolution, run type, and machine. The run and setup scripts that were
+previously in the <strong>/scripts</strong> directory for CCSM3 are now generated
+automatically. See the CESM1 User’s Guide for information on how to
+use the new scripts: <a class="reference external" href="http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html">http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html</a>.</p>
+<p>The file that contains the ice model namelist is now located in
+<strong>$CASE/Buildconf</strong>. The script containing the environment variables
+used for building the executable file for the ice model is also in
+<strong>$CASE/Buildconf</strong>. The contents of the ice model namelist are
+described in section [namelist].</p>
+</div>
+<div class="section" id="building-the-cice-library">
+<h2>2.2. Building the CICE library<a class="headerlink" href="#building-the-cice-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-build-environment">
+<h3>2.2.1. The Build Environment<a class="headerlink" href="#the-build-environment" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>cime_config/build_cpp</strong> script sets all compile time parameters, such
+as the horizontal grid, the sea ice mode (prognostic or prescribed),
+tracers, etc. Additional options can be set using the <strong>configure</strong>
+utility such as the decomposition, and the number of tasks, but these
+are typically set via CESM enviroment variables.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>#--------------------------------------------------------------------
+# Invoke cice configure
+#--------------------------------------------------------------------
+
+set hgrid = &quot;-hgrid $ICE_GRID&quot;
+if ($ICE_GRID =~ *T*) set hgrid = &quot;-hgrid ${ICE_NX}x${ICE_NY}&quot;
+
+set mode = &quot;-cice_mode $CICE_MODE&quot;
+
+cd $CASEBUILD/ciceconf || exit -1
+$CODEROOT/ice/cice/bld/configure $hgrid $mode -nodecomp $CICE_CONFIG_OPTS || exit -1
+</pre></div>
+</div>
+<p>This example sets the horizontal grid and the mode (prognostic or
+prescribed). The <strong>build namelist</strong> utility sets up the namelist which
+controls the run time options for the CICE model. This utility sets
+namelist flags based on compile time settings from <strong>configure</strong> and
+some standard defaults based on horizontal grids and other options. The
+typical execution during the CESM configure is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$CODEROOT/ice/cice/bld/build-namelist -config config_cache.xml \
+       -csmdata \$DIN_LOC_ROOT -infile ccsm_namelist \
+       -inputdata $CASEBUILD/cice.input_data_list \
+       -namelist &quot;&amp;cice $CICE_NAMELIST_OPTS /&quot; || exit -1
+</pre></div>
+</div>
+<p>Again, the typical usage of the <strong>build namelist</strong> tool is through the
+CESM scripts, but can be called via the command line interface.</p>
+</div>
+<div class="section" id="cice-preprocessor-flags">
+<h3>2.2.2. CICE Preprocessor Flags<a class="headerlink" href="#cice-preprocessor-flags" title="Permalink to this headline">¶</a></h3>
+<p>Preprocessor flags are activated in the form -Doption in the
+<strong>cice.buildexe.csh</strong> script. Only advanced users should change these
+options. See the CESM User’s Guide or the CICE reference guide for more
+information on these. The flags specific to the ice model are:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>CPPDEFS :=  $(CPPDEFS) -DCESMCOUPLED -Dcoupled -Dncdf -DNCAT=5 -DNXGLOB=$()
+-DNYGLOB=$() -DNTR_AERO=3 -DBLCKX=$() -DBLCKY=$() -DMXBLCKS=$()
+</pre></div>
+</div>
+<p>The options -DCESMCOUPLED and -Dcoupled are set to activate the coupling
+interface. This will include the source code in <strong>ice_comp_mct.F90</strong>,
+for example. In coupled runs, the CESM coupler multiplies the fluxes by
+the ice area, so they are divided by the ice area in CICE to get the
+correct fluxes.</p>
+<p>The options -DBLCKX=$(CICE_BLCKX) and -DBLCKY=$(CICE_BLCKY) set the
+block sizes used in each grid direction. These values are set
+automatically in the scripts for the coupled model. Note that BLCKX and
+BLCKY must divide evenly into the grid, and are used only for MPI grid
+decomposition. If BLCX or BLCKY do not divide evenly into the grid,
+which determines the number of blocks in each direction, the model setup
+will exit from the setup script and print an error message to the
+<strong>ice.bldlog*</strong> (build log) file.</p>
+<p>The flag -DMXBLCKS is essentially the threading option. This controls
+the number of “blocks” per processor. This can describe the number of
+OpenMP threads on an MPI task, or can simply be that a single MPI task
+handles a number of blocks.</p>
+<p>The flat -DNTR_AERO=n flag turns on the aerosol deposition physics in
+the sea ice where n is the number of tracer species and 0 turns off the
+tracers. More details on this are in the section on tracers.</p>
+<p>The flag -D_MPI sets up the message passing interface. This must be set
+for runs using a parallel environment. To get a better idea of what code
+is included or excluded at compile time, grep for ifdef and ifndef in
+the source code or look at the <strong>.f90</strong> files in the /<strong>obj</strong> directory.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ice_what_is_cice5.html" title="1. What is CICE5"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, David Bailey.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+    </div>
+  </body>
+</html>
