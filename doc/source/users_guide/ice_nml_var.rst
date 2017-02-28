@@ -26,51 +26,62 @@ few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
 namelist is shown in Section [example1:sub:`n`\ ml].
 
-| p2.0cmp2.0cmp4.0cmp6.5cm Varible & Type & Default Value & Description
 
-| ice\_ic& character & default & Filename for initial and branch runs
-| & & & ’default’ uses default initialization
-| & & & ’none’ initializes with no ice
+===============    ========== ====================        ============================================================	   
+Varible            Type       Default Value   		  Description					   
+===============    ========== ====================        ============================================================	   
+ice\_ic            character  default        		  Filename for initial and branch runs		   
+						                                                       
+                                                          ’default’ uses default initialization		   
+						                                                       
+                                      			  ’none’ initializes with no ice			   
+ xndt\_dyn         integer    1               		  Times to loop through (sub-cycle) ice dynamics	   
+ diagfreq          integer    24              		  Frequency of diagnostics written 			   
+						                                                       
+                                                          (min, max, hemispheric sums) to standard output	   
+  						                                                       
+                                      			  24 =\ :math:`>` writes once every 24 timesteps	   
+						                                                       
+                                      			  1 =\ :math:`>` diagnostics written each timestep
+						                                                       
+                                      			  0 =\ :math:`>` no diagnostics written
 
-| xndt\_dyn& Integer & 1 & Times to loop through (sub-cycle) ice
-  dynamics
+histfreq           char array ’m’,’x’,’x’,’x’,’x’             Frequency of output written to history streams 
 
-| diagfreq & Integer & 24 & Frequency of diagnostics written (min, max,
-  hemispheric sums) to standard output
-| & & & 24 =\ :math:`>` writes once every 24 timesteps
-| & & & 1 =\ :math:`>` diagnostics written each timestep
-| & & & 0 =\ :math:`>` no diagnostics written
+                                                          ’D’ or ’d’ writes daily data
 
-| histfreq & Character Array & ’m’,’x’,’x’,’x’,’x’ & Frequency of output
-  written to history streams
-| & & & ’D’ or ’d’ writes daily data
-| & & & ’W’ or ’w’ writes weekly data
-| & & & ’M’ or ’m’ writes monthly data
-| & & & ’Y’ or ’y’ writes yearly data
-| & & & ’1’ writes every timestep
-| & & & ’x’ no history data is written
+							  ’W’ or ’w’ writes weekly data	
+					   				
+							  ’M’ or ’m’ writes monthly data	
+						   				
+							  ’Y’ or ’y’ writes yearly data	
+						   				
+							  ’1’ writes every timestep	
+						   				
+							  ’x’ no history data is written  
 
-| histfreq\_n & Integer & 1,1,1,1,1 & Frequency history data is written
-  to each stream
+histfreq           integer    1,1,1,1,1                   Frequency history data is written  to each stream
 
-| hist\_avg & Logical & .true. & If true, averaged history information
-  is written out at a frequency determined by histfreq. If false,
-  instantaneous values rather than time-averages are written.
+hist\_avg          logical    .true.                      If true, averaged history information
 
-| pointer\_file & Character & ’rpointer.ice’ & Pointer file that
-  contains the name of the restart file.
+                                                          is written out at a frequency determined by histfreq. 
 
-| lcdf64& Logical & .false. & Use 64-bit offset in netcdf files
+						          If false, instantaneous values are written.
 
-| The main run management namelist options are shown in Table
-  [table:setup:sub:`n`\ ml]. While additional namelist variables are
-  available in the uncoupled version, they are set by the driver in
-  CESM. Variables set by the driver include: dt, runid, runtype, istep0,
-  days\_per\_year, restart and dumpfreq. These should be changed in the
-  CESM configuration files:
 
-| CESM scripts
-  (http://www.cesm.ucar.edu/models/cesm1.0/cesm\_doc/book1.html).
+pointer\_file      character  ’rpointer.ice’               Pointer file that contains the name of the restart file.
+
+lcdf64             logical    .false.                     Use 64-bit offset in netcdf files
+===============    ========== ====================        ============================================================	   
+
+The main run management namelist options are shown in Table
+[table:setup:sub:`n`\ ml]. While additional namelist variables are
+available in the uncoupled version, they are set by the driver in
+CESM. Variables set by the driver include: dt, runid, runtype, istep0,
+days\_per\_year, restart and dumpfreq. These should be changed in the
+CESM configuration files:
+
+CESM scripts (http://www.cesm.ucar.edu/models/cesm1.0/cesm\_doc/book1.html).
 
 Changing the timestep
 ---------------------
@@ -88,10 +99,12 @@ Maximum values for dt for the two standard CESM POP grids, assuming
 The default timestep for CICE is 30 minutes, which must be equal to the
 coupling interval set in the CESM configuration files.
 
-| lll Grid & :math:`min(\Delta x, \Delta y)` & :math:`max \Delta t`
-
-| gx3v5 & 28845.9 m & 4.0 hr
-| gx1v3 & 8558.2 m & 1.2 hr
+=====================  =========================================  ====================== 
+Grid                   :math:`min(\Delta x, \Delta y)`            :math:`max \Delta t`
+=====================  =========================================  ====================== 
+gx3v5                  28845.9 m                                  4.0 hr
+gx1v3                  8558.2 m                                   1.2 hr
+=====================  =========================================  ====================== 
 
 Occasionally, ice velocities are calculated that are larger than what is
 assumed when the model timestep is chosen. This causes a CFL violation
@@ -233,40 +246,19 @@ snow, sea ice, and melt ponds. These albedos are tunable through
 adjustments to the snow grain radius, R\_snw, temperature to transition
 to melting snow, and maximum snow grain radius.
 
-| p3cmp2cmp3cmp3cmp3cmp6.5cm Variable Name & Type & CESM-CAM4 gx3
-  dipole-grid default & CESM-CAM4 gx1 dipole-grid default & CESM-CAM5
-  gx1 dipole-grid default & Description
+.. csv-table:: a title
+   :header: "name", "firstname", "age"
+   :widths: 20, 12, 12, 12, 12, 60
 
-| ndte & Integer & 1 & 1 & 1 & Number of sub-cycles in EVP dynamics.
-
-| kcolumn & Integer & 0 & 0 & 0 & Column model flag.
-| & & & & & 0 = off
-| & & & & & 1 = column model (not tested or supported)
-
-| kitd & Integer & 1 & 1 & 1 & Determines ITD conversion
-| & & & & & 0 = delta scheme
-| & & & & & 1 = linear remapping
-
-| kdyn & Integer & 1 & 1 & 1 & Determines ice dynamics
-| & & & & & 0 = No ice dynamics
-| & & & & & 1 = Elastic viscous plastic dynamics
-
-| kstrength & Integer & 1 & 1 & 1 & Determines pressure formulation
-| & & & & & 0 = parameterization
-| & & & & & 1 = parameterization
-
-| evp\_damping & Logical & .false. & .false. & .false. & If true, use
-  damping procedure in evp dynamics (not supported).
-
-| advection & Character & remap & remap & remap & Determines horizontal
-  advection scheme.
-| & & & & & ’remap’ = incremental remapping
-| & & & & & ’upwind’ = first order advection
-
-| shortwave & Character & dEdd & dEdd & dEdd & Shortwave Radiative
-  Transfer Scheme
-| & & & & & ’default’ = CCSM3 Shortwave
-| & & & & & ’dEdd’ = delta-Eddington Shortwave
+   "Variable Name", "Type", "CESM-CAM4 gx3 dipole-grid default", "CESM-CAM4 gx1 dipole-grid default", "CESM-CAM5 gx1 dipole-grid default", "Description"
+   "ndte", "Integer", "1", "1", "1", "Number of sub-cycles in EVP dynamics."
+   "kcolumn","Integer","0","0","0","Column model flag. 0 = off, 1 = column model (not tested or supported)"
+   "kitd","Integer","1", "1","1", "Determines ITD conversion, 0 = delta scheme, 1=linear remapping"
+   "kdyn","Integer","1","1","1","Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics"
+   "kstrength", "Integer","1", "1","1","Determines pressure formulation, 0 = parameterization, 1 = parameterization"
+   "evp\_damping","Logical",".false.",".false.",".false.","If true, use damping procedure in evp dynamics (not supported)."
+   "advection","Character","remap","remap","remap","Determines horizontal  advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection"
+   "shortwave","Character","dEdd","dEdd","dEdd","Shortwave Radiative Transfer Scheme,  ’default’ = CCSM3 Shortwave, ’dEdd’ = delta-Eddington Shortwave"
 
 | albicev & Double & 0.68 & 0.75 & 0.75 & Visible ice albedo (CCSM3)
 

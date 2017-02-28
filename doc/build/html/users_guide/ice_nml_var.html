@@ -123,63 +123,89 @@ are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
 namelist is shown in Section [example1:sub:<cite>n</cite>ml].</p>
-<div class="line-block">
-<div class="line">p2.0cmp2.0cmp4.0cmp6.5cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">ice_ic&amp; character &amp; default &amp; Filename for initial and branch runs</div>
-<div class="line">&amp; &amp; &amp; ’default’ uses default initialization</div>
-<div class="line">&amp; &amp; &amp; ’none’ initializes with no ice</div>
-</div>
-<div class="line-block">
-<div class="line">xndt_dyn&amp; Integer &amp; 1 &amp; Times to loop through (sub-cycle) ice
-dynamics</div>
-</div>
-<div class="line-block">
-<div class="line">diagfreq &amp; Integer &amp; 24 &amp; Frequency of diagnostics written (min, max,
-hemispheric sums) to standard output</div>
-<div class="line">&amp; &amp; &amp; 24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps</div>
-<div class="line">&amp; &amp; &amp; 1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep</div>
-<div class="line">&amp; &amp; &amp; 0 =<span class="math">\(&gt;\)</span> no diagnostics written</div>
-</div>
-<div class="line-block">
-<div class="line">histfreq &amp; Character Array &amp; ’m’,’x’,’x’,’x’,’x’ &amp; Frequency of output
-written to history streams</div>
-<div class="line">&amp; &amp; &amp; ’D’ or ’d’ writes daily data</div>
-<div class="line">&amp; &amp; &amp; ’W’ or ’w’ writes weekly data</div>
-<div class="line">&amp; &amp; &amp; ’M’ or ’m’ writes monthly data</div>
-<div class="line">&amp; &amp; &amp; ’Y’ or ’y’ writes yearly data</div>
-<div class="line">&amp; &amp; &amp; ’1’ writes every timestep</div>
-<div class="line">&amp; &amp; &amp; ’x’ no history data is written</div>
-</div>
-<div class="line-block">
-<div class="line">histfreq_n &amp; Integer &amp; 1,1,1,1,1 &amp; Frequency history data is written
-to each stream</div>
-</div>
-<div class="line-block">
-<div class="line">hist_avg &amp; Logical &amp; .true. &amp; If true, averaged history information
-is written out at a frequency determined by histfreq. If false,
-instantaneous values rather than time-averages are written.</div>
-</div>
-<div class="line-block">
-<div class="line">pointer_file &amp; Character &amp; ’rpointer.ice’ &amp; Pointer file that
-contains the name of the restart file.</div>
-</div>
-<div class="line-block">
-<div class="line">lcdf64&amp; Logical &amp; .false. &amp; Use 64-bit offset in netcdf files</div>
-</div>
-<div class="line-block">
-<div class="line">The main run management namelist options are shown in Table
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="10%" />
+<col width="19%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Varible</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ice_ic</td>
+<td>character</td>
+<td>default</td>
+<td><p class="first">Filename for initial and branch runs</p>
+<p>’default’ uses default initialization</p>
+<p class="last">’none’ initializes with no ice</p>
+</td>
+</tr>
+<tr class="row-odd"><td>xndt_dyn</td>
+<td>integer</td>
+<td>1</td>
+<td>Times to loop through (sub-cycle) ice dynamics</td>
+</tr>
+<tr class="row-even"><td>diagfreq</td>
+<td>integer</td>
+<td>24</td>
+<td><p class="first">Frequency of diagnostics written</p>
+<p>(min, max, hemispheric sums) to standard output</p>
+<p>24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps</p>
+<p>1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep</p>
+<p class="last">0 =<span class="math">\(&gt;\)</span> no diagnostics written</p>
+</td>
+</tr>
+<tr class="row-odd"><td>histfreq</td>
+<td>char array</td>
+<td>’m’,’x’,’x’,’x’,’x’</td>
+<td><blockquote class="first">
+<div>Frequency of output written to history streams</div></blockquote>
+<p>’D’ or ’d’ writes daily data</p>
+<p>’W’ or ’w’ writes weekly data</p>
+<p>’M’ or ’m’ writes monthly data</p>
+<p>’Y’ or ’y’ writes yearly data</p>
+<p>’1’ writes every timestep</p>
+<p class="last">’x’ no history data is written</p>
+</td>
+</tr>
+<tr class="row-even"><td>histfreq</td>
+<td>integer</td>
+<td>1,1,1,1,1</td>
+<td>Frequency history data is written  to each stream</td>
+</tr>
+<tr class="row-odd"><td>hist_avg</td>
+<td>logical</td>
+<td>.true.</td>
+<td><p class="first">If true, averaged history information</p>
+<p>is written out at a frequency determined by histfreq.</p>
+<p class="last">If false, instantaneous values are written.</p>
+</td>
+</tr>
+<tr class="row-even"><td>pointer_file</td>
+<td>character</td>
+<td>’rpointer.ice’</td>
+<td>Pointer file that contains the name of the restart file.</td>
+</tr>
+<tr class="row-odd"><td>lcdf64</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Use 64-bit offset in netcdf files</td>
+</tr>
+</tbody>
+</table>
+<p>The main run management namelist options are shown in Table
 [table:setup:sub:<cite>n</cite>ml]. While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
 CESM. Variables set by the driver include: dt, runid, runtype, istep0,
 days_per_year, restart and dumpfreq. These should be changed in the
-CESM configuration files:</div>
-</div>
-<div class="line-block">
-<div class="line">CESM scripts
-(<a class="reference external" href="http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html">http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html</a>).</div>
-</div>
+CESM configuration files:</p>
+<p>CESM scripts (<a class="reference external" href="http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html">http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html</a>).</p>
 <div class="section" id="changing-the-timestep">
 <h2>3.1. Changing the timestep<a class="headerlink" href="#changing-the-timestep" title="Permalink to this headline">¶</a></h2>
 <p>dt is the timestep in seconds for the ice model thermodynamics. The
@@ -193,13 +219,29 @@ for the transport using the upwind advection scheme is:</p>
 <span class="math">\(max(u,v) = 0.5 m/s\)</span>, are shown in Table [table:max:sub:<cite>d</cite>t].
 The default timestep for CICE is 30 minutes, which must be equal to the
 coupling interval set in the CESM configuration files.</p>
-<div class="line-block">
-<div class="line">lll Grid &amp; <span class="math">\(min(\Delta x, \Delta y)\)</span> &amp; <span class="math">\(max \Delta t\)</span></div>
-</div>
-<div class="line-block">
-<div class="line">gx3v5 &amp; 28845.9 m &amp; 4.0 hr</div>
-<div class="line">gx1v3 &amp; 8558.2 m &amp; 1.2 hr</div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="49%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Grid</th>
+<th class="head"><span class="math">\(min(\Delta x, \Delta y)\)</span></th>
+<th class="head"><span class="math">\(max \Delta t\)</span></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>gx3v5</td>
+<td>28845.9 m</td>
+<td>4.0 hr</td>
+</tr>
+<tr class="row-odd"><td>gx1v3</td>
+<td>8558.2 m</td>
+<td>1.2 hr</td>
+</tr>
+</tbody>
+</table>
 <p>Occasionally, ice velocities are calculated that are larger than what is
 assumed when the model timestep is chosen. This causes a CFL violation
 in the transport scheme. A namelist option was added (xndt_dyn) to
@@ -322,50 +364,91 @@ base albedos are computed based on the inherent optical properties of
 snow, sea ice, and melt ponds. These albedos are tunable through
 adjustments to the snow grain radius, R_snw, temperature to transition
 to melting snow, and maximum snow grain radius.</p>
-<div class="line-block">
-<div class="line">p3cmp2cmp3cmp3cmp3cmp6.5cm Variable Name &amp; Type &amp; CESM-CAM4 gx3
-dipole-grid default &amp; CESM-CAM4 gx1 dipole-grid default &amp; CESM-CAM5
-gx1 dipole-grid default &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">ndte &amp; Integer &amp; 1 &amp; 1 &amp; 1 &amp; Number of sub-cycles in EVP dynamics.</div>
-</div>
-<div class="line-block">
-<div class="line">kcolumn &amp; Integer &amp; 0 &amp; 0 &amp; 0 &amp; Column model flag.</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 0 = off</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 1 = column model (not tested or supported)</div>
-</div>
-<div class="line-block">
-<div class="line">kitd &amp; Integer &amp; 1 &amp; 1 &amp; 1 &amp; Determines ITD conversion</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 0 = delta scheme</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 1 = linear remapping</div>
-</div>
-<div class="line-block">
-<div class="line">kdyn &amp; Integer &amp; 1 &amp; 1 &amp; 1 &amp; Determines ice dynamics</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 0 = No ice dynamics</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 1 = Elastic viscous plastic dynamics</div>
-</div>
-<div class="line-block">
-<div class="line">kstrength &amp; Integer &amp; 1 &amp; 1 &amp; 1 &amp; Determines pressure formulation</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 0 = parameterization</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; 1 = parameterization</div>
-</div>
-<div class="line-block">
-<div class="line">evp_damping &amp; Logical &amp; .false. &amp; .false. &amp; .false. &amp; If true, use
-damping procedure in evp dynamics (not supported).</div>
-</div>
-<div class="line-block">
-<div class="line">advection &amp; Character &amp; remap &amp; remap &amp; remap &amp; Determines horizontal
-advection scheme.</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; ’remap’ = incremental remapping</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; ’upwind’ = first order advection</div>
-</div>
-<div class="line-block">
-<div class="line">shortwave &amp; Character &amp; dEdd &amp; dEdd &amp; dEdd &amp; Shortwave Radiative
-Transfer Scheme</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; ’default’ = CCSM3 Shortwave</div>
-<div class="line">&amp; &amp; &amp; &amp; &amp; ’dEdd’ = delta-Eddington Shortwave</div>
-</div>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">a title</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="16%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">firstname</th>
+<th class="head">age</th>
+<th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable Name</td>
+<td>Type</td>
+<td>CESM-CAM4 gx3 dipole-grid default</td>
+<td>CESM-CAM4 gx1 dipole-grid default</td>
+<td>CESM-CAM5 gx1 dipole-grid default</td>
+<td>Description</td>
+</tr>
+<tr class="row-odd"><td>ndte</td>
+<td>Integer</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Number of sub-cycles in EVP dynamics.</td>
+</tr>
+<tr class="row-even"><td>kcolumn</td>
+<td>Integer</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Column model flag. 0 = off, 1 = column model (not tested or supported)</td>
+</tr>
+<tr class="row-odd"><td>kitd</td>
+<td>Integer</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Determines ITD conversion, 0 = delta scheme, 1=linear remapping</td>
+</tr>
+<tr class="row-even"><td>kdyn</td>
+<td>Integer</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics</td>
+</tr>
+<tr class="row-odd"><td>kstrength</td>
+<td>Integer</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Determines pressure formulation, 0 = parameterization, 1 = parameterization</td>
+</tr>
+<tr class="row-even"><td>evp_damping</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>.false.</td>
+<td>.false.</td>
+<td>If true, use damping procedure in evp dynamics (not supported).</td>
+</tr>
+<tr class="row-odd"><td>advection</td>
+<td>Character</td>
+<td>remap</td>
+<td>remap</td>
+<td>remap</td>
+<td>Determines horizontal  advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection</td>
+</tr>
+<tr class="row-even"><td>shortwave</td>
+<td>Character</td>
+<td>dEdd</td>
+<td>dEdd</td>
+<td>dEdd</td>
+<td>Shortwave Radiative Transfer Scheme,  ’default’ = CCSM3 Shortwave, ’dEdd’ = delta-Eddington Shortwave</td>
+</tr>
+</tbody>
+</table>
 <div class="line-block">
 <div class="line">albicev &amp; Double &amp; 0.68 &amp; 0.75 &amp; 0.75 &amp; Visible ice albedo (CCSM3)</div>
 </div>
