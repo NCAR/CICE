@@ -7,47 +7,45 @@ Configuring and Building CICE
 Overview
 ========
 
-The setup scripts for the coupled model are located in **cesm1/scripts**. 
+The setup scripts for the coupled model are located in **cesm2/scripts**. 
 
-The directory structure of CICE4 within CESM is shown below.
+The directory structure of CICE5 within CESM is shown below.
 
 ::
 
-				  cesm1         (main directory)
-				    |
-				    |
-		      models--------+--------- scripts
+				       cesm2         (main directory)
+                                         |
+				         |
+		      components --------+--------- scripts
 			 |                        |
 			 |               * * * * *|* * * * * 
-		bld------+------ice      *build scripts for*
-		 |               |       *  coupled model  *
-	     (Makefile           |       * * * * * * * * * *
-	      macros)            |
-			       cice         (active ice component)
-				 |
-      bld ---------- docs -------+------- src
-		      |                    |
-		    (CICE                  |
-		 documentation)            |
-					   |
-					   |                  
-			drivers --- mpi ---+--- serial --- source
-			   | 
-			   |
-			   |
-     cice4 ---- cpl_esmf --+-- cpl_mct ---- cpl_share
+		        cice             *build scripts for*
+		         |               *  coupled model  *
+	                 |               * * * * * * * * * *
+			 |
+                 bld ----+---- cime_config ---- docs ------ src
+                         |                       |           |
+		       (Build scripts          (CICE         |
+		        and CIME config)    documentation)   |
+           				  	             |
+	           				             |                  
+            	           		  drivers --- mpi ---+--- io_pio --- serial --- source
+			                     | 
+			                     |
+			                     |
+                            cesm --- cice ---+--- hadley
 
 
 The CIME scripts generate a set of “resolved scripts” for a specific configuration
 determined by the user. The configuration includes components,
 resolution, run type, and machine. The run and setup scripts that were
-previously in the **/scripts** directory for CCSM3 are now generated
-automatically. See the CESM1 User’s Guide for information on how to
-use the new scripts: http://www.cesm.ucar.edu/models/cesm1.0/cesm\_doc/book1.html.
+in the **/scripts** directory for previous versions are now generated
+automatically. See the CESM2 User’s Guide for information on how to
+use the new scripts.
 
 The file that contains the ice model namelist is now located in
-**$CASE/Buildconf**. The script containing the environment variables
-used for building the executable file for the ice model is also in
+**$CASE/CaseDocs**. The script containing the environment variables
+used for building the executable file for the ice model is in
 **$CASE/Buildconf**. The contents of the ice model namelist are
 described in section [namelist].
 
@@ -81,17 +79,7 @@ This example sets the horizontal grid and the mode (prognostic or
 prescribed). The **build namelist** utility sets up the namelist which
 controls the run time options for the CICE model. This utility sets
 namelist flags based on compile time settings from **configure** and
-some standard defaults based on horizontal grids and other options. The
-typical execution during the CESM configure is:
-
-::
-
-
-      $CODEROOT/ice/cice/bld/build-namelist -config config_cache.xml \
-             -csmdata \$DIN_LOC_ROOT -infile ccsm_namelist \
-             -inputdata $CASEBUILD/cice.input_data_list \
-             -namelist "&cice $CICE_NAMELIST_OPTS /" || exit -1
-
+some standard defaults based on horizontal grids and other options. 
 Again, the typical usage of the **build namelist** tool is through the
 CESM scripts, but can be called via the command line interface.
 
@@ -99,7 +87,7 @@ CICE Preprocessor Flags
 ---------------------------
 
 Preprocessor flags are activated in the form -Doption in the
-**cice.buildexe.csh** script. Only advanced users should change these
+**buildcpp** script. Only advanced users should change these
 options. See the CESM User’s Guide or the CICE reference guide for more
 information on these. The flags specific to the ice model are:
 
@@ -112,7 +100,8 @@ The options -DCESMCOUPLED and -Dcoupled are set to activate the coupling
 interface. This will include the source code in **ice\_comp\_mct.F90**,
 for example. In coupled runs, the CESM coupler multiplies the fluxes by
 the ice area, so they are divided by the ice area in CICE to get the
-correct fluxes.
+correct fluxes. Note that the **ice\_forcing.F90** module is not used in
+coupled runs.
 
 The options -DBLCKX=$(CICE\_BLCKX) and -DBLCKY=$(CICE\_BLCKY) set the
 block sizes used in each grid direction. These values are set

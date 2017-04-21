@@ -116,7 +116,7 @@ Changing Content
 The second namelist in the setup script controls what variables are
 written to the history file. To remove a field from this list, add the
 name of the character variable associated with that field to the
-&icefields\_nml namelist in **cice.buildnml.csh** and assign it a value
+**$CASE/user\_nl\_cice** file and assign it a value
 of ’xxxxx’. For example, to remove ice thickness and snow cover from the
 history file, add
 

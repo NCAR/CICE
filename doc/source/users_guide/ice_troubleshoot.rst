@@ -46,9 +46,9 @@ Set
 
 ::
 
-     , xndt_dyn = 2
+     ndtd = 2
 
-in the namelist and restart the model. When the job completes set the
+in **user\_nl\_cice** and restart the model. When the job completes set the
 value back to 1.
 
 Thermodynamic Iteration Error

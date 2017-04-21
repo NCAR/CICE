@@ -107,7 +107,7 @@
 This section describes the namelist variables in the namelist ice_nml,
 which determine time management, output frequency, model physics, and
 filenames The ice namelists for the coupled model are now located in
-<strong>$CASE/Buildconf</strong>.</p>
+<strong>$CASE/CaseDocs</strong>.</p>
 <p>A script reads the input namelist at runtime, and writes the namelist
 information to the file <strong>ice_in</strong> in the directory where the model
 executable is located. Therefore, the namelist will be updated even if
@@ -116,19 +116,25 @@ grid, tracer, and physics namelists are set in <strong>ice_init.F90</strong>. Th
 prescribed ice option along with the history namelist variables are set
 in <strong>ice_prescribed.F90</strong> and <strong>ice_history.F90</strong> respectively. If
 they are not set in the namelist in the script, they will assume the
-default values listed in Tables
-[table:setup:sub:<cite>n</cite>ml]-[table:ice<sub>p</sub>io<sub>n</sub>ml], which
+default values listed in the following tables, which
 list all available namelist parameters. The default values shown here
 are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
-namelist is shown in Section [example1:sub:<cite>n</cite>ml].</p>
-<table border="1" class="docutils">
+namelist is shown in Section.</p>
+<p>The main run management namelist options are shown in <a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>.
+While additional namelist variables are
+available in the uncoupled version, they are set by the driver in
+CESM. Variables set by the driver include: dt, runid, runtype, istep0,
+days_per_year, restart and dumpfreq. These should be changed in the
+CESM configuration files.</p>
+<table border="1" class="colwidths-given docutils" id="id2">
+<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="14%" />
-<col width="10%" />
 <col width="19%" />
-<col width="57%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Varible</th>
@@ -138,74 +144,128 @@ namelist is shown in Section [example1:sub:<cite>n</cite>ml].</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>ice_ic</td>
-<td>character</td>
-<td>default</td>
-<td><p class="first">Filename for initial and branch runs</p>
-<p>’default’ uses default initialization</p>
-<p class="last">’none’ initializes with no ice</p>
-</td>
+<tr class="row-even"><td>bfbflag</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Require bit-for-bit global sums.</td>
 </tr>
-<tr class="row-odd"><td>xndt_dyn</td>
+<tr class="row-odd"><td>days_per_year</td>
 <td>integer</td>
-<td>1</td>
-<td>Times to loop through (sub-cycle) ice dynamics</td>
+<td>365</td>
+<td>Standard number of days per year for calendar. Does interact
+with Gregorian calendar setting (set by driver).</td>
 </tr>
 <tr class="row-even"><td>diagfreq</td>
 <td>integer</td>
 <td>24</td>
-<td><p class="first">Frequency of diagnostics written</p>
-<p>(min, max, hemispheric sums) to standard output</p>
-<p>24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps</p>
-<p>1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep</p>
-<p class="last">0 =<span class="math">\(&gt;\)</span> no diagnostics written</p>
-</td>
+<td>Frequency of diagnostics written
+(min, max, hemispheric sums) to standard output
+24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps
+1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep
+0 =<span class="math">\(&gt;\)</span> no diagnostics written</td>
 </tr>
-<tr class="row-odd"><td>histfreq</td>
-<td>char array</td>
-<td>’m’,’x’,’x’,’x’,’x’</td>
-<td><blockquote class="first">
-<div>Frequency of output written to history streams</div></blockquote>
-<p>’D’ or ’d’ writes daily data</p>
-<p>’W’ or ’w’ writes weekly data</p>
-<p>’M’ or ’m’ writes monthly data</p>
-<p>’Y’ or ’y’ writes yearly data</p>
-<p>’1’ writes every timestep</p>
-<p class="last">’x’ no history data is written</p>
-</td>
+<tr class="row-odd"><td>dumpfreq</td>
+<td>character</td>
+<td>&#8216;x&#8217;</td>
+<td>Unit for frequency of dump files. Currently set by driver.</td>
 </tr>
-<tr class="row-even"><td>histfreq</td>
+<tr class="row-even"><td>dumpfreq_n</td>
 <td>integer</td>
-<td>1,1,1,1,1</td>
-<td>Frequency history data is written  to each stream</td>
+<td>1</td>
+<td>Frequency of dumpfreq dump files. Set by driver.</td>
 </tr>
 <tr class="row-odd"><td>hist_avg</td>
 <td>logical</td>
 <td>.true.</td>
-<td><p class="first">If true, averaged history information</p>
-<p>is written out at a frequency determined by histfreq.</p>
-<p class="last">If false, instantaneous values are written.</p>
-</td>
+<td>If true, averaged history information
+is written out at a frequency determined by histfreq.
+If false, instantaneous values are written in all streams.</td>
+</tr>
+<tr class="row-even"><td>histfreq</td>
+<td>char array</td>
+<td>’m’,’x’,’x’,’x’,’x’</td>
+<td>Unit for frequency of output written to history streams
+’D’ or ’d’ writes daily data
+’H’ or ’h’ writes hourly data
+’M’ or ’m’ writes monthly data
+’Y’ or ’y’ writes yearly data
+’1’ writes every timestep
+’x’ no history data is written</td>
+</tr>
+<tr class="row-odd"><td>histfreq</td>
+<td>integer</td>
+<td>1,1,1,1,1</td>
+<td>Frequency of histfreq history data is written to each stream.</td>
+</tr>
+<tr class="row-even"><td>history_file</td>
+<td>character</td>
+<td>&#8216;unknown&#8217;</td>
+<td>History file prefix. Set by driver.</td>
+</tr>
+<tr class="row-odd"><td>ice_ic</td>
+<td>character</td>
+<td>default</td>
+<td>Filename for initial and branch runs. Set by driver scripts.
+’default’ uses default initialization
+’none’ initializes with no ice</td>
+</tr>
+<tr class="row-even"><td>latpnt</td>
+<td>float arr</td>
+<td>90.0, -65.0</td>
+<td>Latitudes for diagnostic points (print_points)</td>
+</tr>
+<tr class="row-odd"><td>lonpnt</td>
+<td>float arr</td>
+<td>0.0, -45.0</td>
+<td>Longitudes for diagnostic points (print_points)</td>
+</tr>
+<tr class="row-even"><td>lcdf64</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Use 64-bit offset in netcdf files</td>
+</tr>
+<tr class="row-odd"><td>ndtd</td>
+<td>integer</td>
+<td>1</td>
+<td>Number of dynamic timesteps per thermodynamic timestep.</td>
 </tr>
 <tr class="row-even"><td>pointer_file</td>
 <td>character</td>
 <td>’rpointer.ice’</td>
 <td>Pointer file that contains the name of the restart file.</td>
 </tr>
-<tr class="row-odd"><td>lcdf64</td>
+<tr class="row-odd"><td>print_global</td>
+<td>logical</td>
+<td>.true.</td>
+<td>Print global diagnostics.</td>
+</tr>
+<tr class="row-even"><td>print_points</td>
+<td>logical</td>
+<td>.true.</td>
+<td>Print diagnostics at latpnt and lonpnt.</td>
+</tr>
+<tr class="row-odd"><td>restart_ext</td>
 <td>logical</td>
 <td>.false.</td>
-<td>Use 64-bit offset in netcdf files</td>
+<td>Write ghost cells as a part of restarts.</td>
+</tr>
+<tr class="row-even"><td>restart_file</td>
+<td>character</td>
+<td>none</td>
+<td>Restart file prefix. Set by driver.</td>
+</tr>
+<tr class="row-odd"><td>use_leap_years</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Calendar set by driver. Do not use.</td>
+</tr>
+<tr class="row-even"><td>year_init</td>
+<td>integer</td>
+<td>1</td>
+<td>Used in leap year calculation. Do not change.</td>
 </tr>
 </tbody>
 </table>
-<p>The main run management namelist options are shown in Table
-[table:setup:sub:<cite>n</cite>ml]. While additional namelist variables are
-available in the uncoupled version, they are set by the driver in
-CESM. Variables set by the driver include: dt, runid, runtype, istep0,
-days_per_year, restart and dumpfreq. These should be changed in the
-CESM configuration files:</p>
-<p>CESM scripts (<a class="reference external" href="http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html">http://www.cesm.ucar.edu/models/cesm1.0/cesm_doc/book1.html</a>).</p>
 <div class="section" id="changing-the-timestep">
 <h2>3.1. Changing the timestep<a class="headerlink" href="#changing-the-timestep" title="Permalink to this headline">¶</a></h2>
 <p>dt is the timestep in seconds for the ice model thermodynamics. The
@@ -216,27 +276,29 @@ for the transport using the upwind advection scheme is:</p>
 <div class="math">
 \[\Delta t &lt; \frac{min(\Delta x, \Delta y)}{4 max(u, v)} .\]</div>
 <p>Maximum values for dt for the two standard CESM POP grids, assuming
-<span class="math">\(max(u,v) = 0.5 m/s\)</span>, are shown in Table [table:max:sub:<cite>d</cite>t].
-The default timestep for CICE is 30 minutes, which must be equal to the
-coupling interval set in the CESM configuration files.</p>
-<table border="1" class="docutils">
+<span class="math">\(max(u,v) = 0.5\ m/s\)</span>, are shown in <a class="reference internal" href="#timestep"><span class="std std-ref">Table 2: Recommended timesteps</span></a>.
+The default timestep for CICE is 30 minutes for gx1,
+which must be equal to the coupling interval (<strong>ICE_NCPL</strong> and <strong>ATM_NCPL</strong>)
+set in the CESM configuration files <strong>env_run.xml</strong>.</p>
+<table border="1" class="colwidths-given docutils" id="id3">
+<span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="25%" />
-<col width="49%" />
-<col width="26%" />
+<col width="20%" />
+<col width="60%" />
+<col width="20%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Grid</th>
-<th class="head"><span class="math">\(min(\Delta x, \Delta y)\)</span></th>
-<th class="head"><span class="math">\(max \Delta t\)</span></th>
+<th class="head"><span class="math">\(min(Delta x, Delta y)\)</span></th>
+<th class="head"><span class="math">\(max Delta t\)</span></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>gx3v5</td>
+<tr class="row-even"><td>gx3</td>
 <td>28845.9 m</td>
 <td>4.0 hr</td>
 </tr>
-<tr class="row-odd"><td>gx1v3</td>
+<tr class="row-odd"><td>gx1</td>
 <td>8558.2 m</td>
 <td>1.2 hr</td>
 </tr>
@@ -244,7 +306,7 @@ coupling interval set in the CESM configuration files.</p>
 </table>
 <p>Occasionally, ice velocities are calculated that are larger than what is
 assumed when the model timestep is chosen. This causes a CFL violation
-in the transport scheme. A namelist option was added (xndt_dyn) to
+in the transport scheme. A namelist option was added (ndtd) to
 subcycle the dynamics to get through these instabilities that arise
 during long integrations. The default value for this variable is one,
 and is typically increased to two when the ice model reaches an
@@ -254,8 +316,8 @@ user when the model integrates past that point.</p>
 <div class="section" id="writing-output">
 <h2>3.2. Writing Output<a class="headerlink" href="#writing-output" title="Permalink to this headline">¶</a></h2>
 <p>The namelist variables that control the frequency of the model
-diagnostics, netCDF history, and restart files are shown in Table
-[table:setup:sub:<cite>n</cite>ml]. By default, diagnostics are written out once
+diagnostics, netCDF history, and restart files are shown in
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>. By default, diagnostics are written out once
 every 48 timesteps to the ascii file <strong>ice.log.$LID</strong> (see section
 [stdout]). $LID is a time stamp that is set in the main script.</p>
 <p>The namelist variable histfreq controls the output frequency of the
@@ -275,11 +337,11 @@ execution begins. The pointer file resides in the scripts directory and
 is created initially by the ice setup script but is overwritten every
 time a new restart file is created. It will contain the name of the
 latest restart file. The default filename <em>ice.restart_file</em> shown in
-Table [table:setup:sub:<cite>n</cite>ml] will not work unless some modifications
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a> will not work unless some modifications
 are made to the ice setup script and a file is created with this name
 and contains the name of a valid restart file; this variable must be set
 in the namelist. More information on restart pointer files can be found
-in section [pointer:sub:<cite>f</cite>iles].</p>
+in Section .</p>
 <p>The variables dumpfreq and dumpfreq_n control the output frequency of
 the netCDF restart files; writing one restart file per year is the
 default and is set by the CESM driver. The default format for restart
@@ -301,18 +363,14 @@ directory.</p>
 the initial condition file, the restart files and the history files,
 respectively. These strings have been determined by the requirements of
 the CESM filenaming convention, so the default values are set by the
-CESM driver. See [restart:sub:<cite>f</cite>iles] and [history:sub:<cite>f</cite>iles] for
+CESM driver. See X and Y for
 an explanation of how the rest of the filename is created.</p>
 </div>
 <div class="section" id="model-physics">
 <h2>3.3. Model Physics<a class="headerlink" href="#model-physics" title="Permalink to this headline">¶</a></h2>
-<p>The namelist variables for the ice model physics are listed in Table
-[ice:sub:<cite>n</cite>ml]. restart is almost always true since most run types
-begin by reading in a binary restart file. See section [runtypes] for a
-description of the run types and about using restart files and
-internally generated model data as initial conditions. kcolumn is a flag
-that will run the model as a single column if is set to 1. This option
-has not been thoroughly tested and is not supported.</p>
+<p>Some of the most commonly used namelist variables for the ice model physics
+are listed in the following tables. More information can be found in the
+CICE reference guide at:</p>
 <p>The calculation of the ice velocities is subcycled ndte times per
 timestep so that the elastic waves are damped before the next timestep.
 The subcycling timestep is calculated as dte = dt/ndte and must be
@@ -343,17 +401,16 @@ the strength of the pack ice. The calculation depends on mean ice
 thickness and open water fraction. The calculation of is based on
 energetics and should not be used if the ice that participates in
 ridging is not well resolved.</p>
-<p>evp_damping is used to control the damping of elastic waves in the ice
-dynamics. It is typically set to .true. for high-resolution simulations
-where the elastic waves are not sufficiently damped out in a small
-timestep without a significant amount of subcycling. This procedure
-works by reducing the effective ice strength that’s used by the dynamics
-and is not a supported option.</p>
 <p>advection determines the horizontal transport scheme used. The default
 scheme is the incremental remapping method (). This method is less
 diffusive and is computationally efficient for large numbers of
 categories or tracers. The upwind scheme is also available. The upwind
 scheme is only first order accurate.</p>
+<p>A new thermodynamics option (ktherm = 2) is now the default. This is the
+so-called mushy-layer thermodyanmics of Turner and Hunke 2015. The basic
+idea of this is that prognostic salinity is now used in the vertical
+thermodynamic calculation where this used to be a constant profile. The
+older option of Bitz and Lipscomb 1999 (ktherm = 1) is still available.</p>
 <p>The base values of the snow and ice albedos for the CCSM3 shortwave
 option are set in the namelist. The ice albedos are those for ice
 thicker than ahmax, which is currently set at 0.5 m. This thickness is a
@@ -364,8 +421,104 @@ base albedos are computed based on the inherent optical properties of
 snow, sea ice, and melt ponds. These albedos are tunable through
 adjustments to the snow grain radius, R_snw, temperature to transition
 to melting snow, and maximum snow grain radius.</p>
-<table border="1" class="colwidths-given docutils" id="id2">
-<caption><span class="caption-text">a title</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id4">
+<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>kdyn</td>
+<td>Integer</td>
+<td>1</td>
+<td>Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics</td>
+</tr>
+<tr class="row-odd"><td>revised_evp</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>Revised EVP formulation</td>
+</tr>
+<tr class="row-even"><td>ndte</td>
+<td>Integer</td>
+<td>1</td>
+<td>Number of sub-cycles in EVP dynamics.</td>
+</tr>
+<tr class="row-odd"><td>advection</td>
+<td>Character</td>
+<td>remap</td>
+<td>Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection</td>
+</tr>
+<tr class="row-even"><td>kstrength</td>
+<td>Integer</td>
+<td>1</td>
+<td>Determines pressure formulation, 0 = parameterization, 1 = parameterization</td>
+</tr>
+<tr class="row-odd"><td>krdg_partic</td>
+<td>Integer</td>
+<td>1</td>
+<td>Ridging participation function, 0 = Thorndike, 1 = Expontential</td>
+</tr>
+<tr class="row-even"><td>krdg_redist</td>
+<td>Integer</td>
+<td>1</td>
+<td>Ridging distribution function, 0 = Hibler , 1 = Expontential</td>
+</tr>
+<tr class="row-odd"><td>mu_rdg</td>
+<td>Real</td>
+<td>4.0</td>
+<td>e-folding scale of ridged ice</td>
+</tr>
+<tr class="row-even"><td>Cf</td>
+<td>Real</td>
+<td>17.0</td>
+<td>Ratio of ridging work to PE change</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id5">
+<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>kitd</td>
+<td>Integer</td>
+<td>1</td>
+<td>Determines ITD conversion, 0 = delta scheme, 1=linear remapping</td>
+</tr>
+<tr class="row-odd"><td>ktherm</td>
+<td>Integer</td>
+<td>1</td>
+<td>Determines ice thermodynamics, 1 = BL99, 2 = mushy layer</td>
+</tr>
+<tr class="row-even"><td>conduct</td>
+<td>Character</td>
+<td>MU71</td>
+<td>Determines conductivity formulation used with ktherm = 1, MU71, bubbly</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-given docutils" id="id6">
+<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="16%" />
 <col width="9%" />
@@ -375,71 +528,15 @@ to melting snow, and maximum snow grain radius.</p>
 <col width="47%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">name</th>
-<th class="head">firstname</th>
-<th class="head">age</th>
-<th class="head">&nbsp;</th>
-<th class="head">&nbsp;</th>
-<th class="head">&nbsp;</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
+<th class="head">Type</th>
+<th class="head">CESM-CAM4 gx3</th>
+<th class="head">CESM-CAM4 gx1</th>
+<th class="head">CESM-CAM5 gx1</th>
+<th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Variable Name</td>
-<td>Type</td>
-<td>CESM-CAM4 gx3 dipole-grid default</td>
-<td>CESM-CAM4 gx1 dipole-grid default</td>
-<td>CESM-CAM5 gx1 dipole-grid default</td>
-<td>Description</td>
-</tr>
-<tr class="row-odd"><td>ndte</td>
-<td>Integer</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>Number of sub-cycles in EVP dynamics.</td>
-</tr>
-<tr class="row-even"><td>kcolumn</td>
-<td>Integer</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>Column model flag. 0 = off, 1 = column model (not tested or supported)</td>
-</tr>
-<tr class="row-odd"><td>kitd</td>
-<td>Integer</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>Determines ITD conversion, 0 = delta scheme, 1=linear remapping</td>
-</tr>
-<tr class="row-even"><td>kdyn</td>
-<td>Integer</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics</td>
-</tr>
-<tr class="row-odd"><td>kstrength</td>
-<td>Integer</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>Determines pressure formulation, 0 = parameterization, 1 = parameterization</td>
-</tr>
-<tr class="row-even"><td>evp_damping</td>
-<td>Logical</td>
-<td>.false.</td>
-<td>.false.</td>
-<td>.false.</td>
-<td>If true, use damping procedure in evp dynamics (not supported).</td>
-</tr>
-<tr class="row-odd"><td>advection</td>
-<td>Character</td>
-<td>remap</td>
-<td>remap</td>
-<td>remap</td>
-<td>Determines horizontal  advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection</td>
-</tr>
 <tr class="row-even"><td>shortwave</td>
 <td>Character</td>
 <td>dEdd</td>
@@ -447,196 +544,407 @@ to melting snow, and maximum snow grain radius.</p>
 <td>dEdd</td>
 <td>Shortwave Radiative Transfer Scheme,  ’default’ = CCSM3 Shortwave, ’dEdd’ = delta-Eddington Shortwave</td>
 </tr>
+<tr class="row-odd"><td>albicev</td>
+<td>Real</td>
+<td>0.68</td>
+<td>0.75</td>
+<td>0.75</td>
+<td>Visible ice albedo (CCSM3)</td>
+</tr>
+<tr class="row-even"><td>albicei</td>
+<td>Real</td>
+<td>0.30</td>
+<td>0.45</td>
+<td>0.45</td>
+<td>Near-infrared ice albedo (CCSM3)</td>
+</tr>
+<tr class="row-odd"><td>albsnowv</td>
+<td>Real</td>
+<td>0.91</td>
+<td>0.98</td>
+<td>0.98</td>
+<td>Visible snow albedo (CCSM3)</td>
+</tr>
+<tr class="row-even"><td>albsnowi</td>
+<td>Real</td>
+<td>0.63</td>
+<td>0.73</td>
+<td>0.73</td>
+<td>Near-infrared snow albedo (CCSM3)</td>
+</tr>
+<tr class="row-odd"><td>R_ice</td>
+<td>Real</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>Base ice tuning parameter (dEdd)</td>
+</tr>
+<tr class="row-even"><td>R_pnd</td>
+<td>Real</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>Base pond tuning parameter (dEdd)</td>
+</tr>
+<tr class="row-odd"><td>R_snw</td>
+<td>Real</td>
+<td>-2.0</td>
+<td>1.5</td>
+<td>1.75</td>
+<td>Base snow grain radius tuning parameter (dEdd)</td>
+</tr>
+<tr class="row-even"><td>dT_mlt_in</td>
+<td>Real</td>
+<td>2.0</td>
+<td>1.5</td>
+<td>1.0</td>
+<td>Snow melt onset temperature parameter (dEdd)</td>
+</tr>
+<tr class="row-odd"><td>rsnw_mlt_in</td>
+<td>Real</td>
+<td><ol class="first last arabic simple" start="2000">
+<li></li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="1500">
+<li></li>
+</ol>
+</td>
+<td><ol class="first last arabic simple" start="1000">
+<li></li>
+</ol>
+</td>
+<td>Snow melt maximum radius (dEdd)</td>
+</tr>
 </tbody>
 </table>
-<div class="line-block">
-<div class="line">albicev &amp; Double &amp; 0.68 &amp; 0.75 &amp; 0.75 &amp; Visible ice albedo (CCSM3)</div>
-</div>
-<div class="line-block">
-<div class="line">albicei &amp; Double &amp; 0.30 &amp; 0.45 &amp; 0.45 &amp; Near-infrared ice albedo
-(CCSM3)</div>
-</div>
-<div class="line-block">
-<div class="line">albsnowv &amp; Double &amp; 0.91 &amp; 0.98 &amp; 0.98 &amp; Visible snow albedo (CCSM3)</div>
-</div>
-<div class="line-block">
-<div class="line">albsnowi &amp; Double &amp; 0.63 &amp; 0.73 &amp; 0.73 &amp; Near-infrared snow albedo
-(CCSM3)</div>
-</div>
-<div class="line-block">
-<div class="line">R_ice &amp; Double &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; Base ice tuning parameter (dEdd)</div>
-</div>
-<div class="line-block">
-<div class="line">R_pnd &amp; Double &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; Base pond tuning parameter (dEdd)</div>
-</div>
-<div class="line-block">
-<div class="line">R_snw &amp; Double &amp; -2.0 &amp; 1.5 &amp; 1.75 &amp; Base snow grain radius tuning
-parameter (dEdd)</div>
-</div>
-<div class="line-block">
-<div class="line">dT_mlt_in &amp; Double &amp; 2.0 &amp; 1.5 &amp; 1.0 &amp; Snow melt onset temperature
-parameter (dEdd)</div>
-</div>
-<div class="line-block">
-<div class="line">rsnw_mlt_in &amp; Double &amp; 2000. &amp; 1500. &amp; 1000. &amp; Snow melt maximum
-radius (dEdd)</div>
-</div>
 </div>
 <div class="section" id="tracer-namelist">
 <h2>3.4. Tracer Namelist<a class="headerlink" href="#tracer-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in Table [table:tracer:sub:<cite>n</cite>ml] are
-for adding tracers. See section on tracers.</p>
-<div class="line-block">
-<div class="line">p2.5cmp2.5cmp3cmp6.0cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">tr_iage &amp; Logical &amp; .true. &amp; Ice age passive tracer</div>
-</div>
-<div class="line-block">
-<div class="line">tr_FY &amp; Logical &amp; .true. &amp; First-year ice area passive tracer</div>
-</div>
-<div class="line-block">
-<div class="line">tr_lvl &amp; Logical &amp; .false. &amp; Level ice area passive tracer</div>
-</div>
-<div class="line-block">
-<div class="line">tr_pond &amp; Logical &amp; .true. &amp; Melt pond physics and tracer</div>
-</div>
-<div class="line-block">
-<div class="line">tr_aero &amp; Logical &amp; .true. &amp; Aerosol physics and tracer</div>
-</div>
+<p>The namelist parameters listed in <a class="reference internal" href="#tracers"><span class="std std-ref">Table 6: Tracer Namelist</span></a> are
+for adding tracers. The tracers should be added through the CESM
+driver scripts via the CICE_CONFIG_OPTS variable.</p>
+<table border="1" class="colwidths-given docutils" id="id7">
+<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tr_iage</td>
+<td>Logical</td>
+<td>.true.</td>
+<td>Ice age passive tracer</td>
+</tr>
+<tr class="row-odd"><td>tr_FY</td>
+<td>Logical</td>
+<td>.true.</td>
+<td>First-year ice area passive tracer</td>
+</tr>
+<tr class="row-even"><td>tr_lvl</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>Level ice area passive tracer</td>
+</tr>
+<tr class="row-odd"><td>tr_pond_cesm</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>The older CESM melt pond option.</td>
+</tr>
+<tr class="row-even"><td>tr_pond_lvl</td>
+<td>Logical</td>
+<td>.true.</td>
+<td>The Hunke et al. level ice pond formulation</td>
+</tr>
+<tr class="row-odd"><td>tr_pond_topo</td>
+<td>Logical</td>
+<td>.true.</td>
+<td>The Felthem et al. topographic pond formulation</td>
+</tr>
+<tr class="row-even"><td>tr_aero</td>
+<td>Logical</td>
+<td>.true.</td>
+<td>Aerosol physics and tracer</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="prescribed-ice-namelist">
 <h2>3.5. Prescribed Ice Namelist<a class="headerlink" href="#prescribed-ice-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in Table
-[table:ice:sub:<cite>p</cite>rescribed<sub>n</sub>ml] are for the prescribed ice
+<p>The namelist parameters listed in <a class="reference internal" href="#prescribed"><span class="std std-ref">Table 7: Prescribed Ice Namelist</span></a> are for the prescribed ice
 option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
-<div class="line-block">
-<div class="line">p4.0cmp2.0cmp3cmp6.0cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">prescribed_ice &amp; Logical &amp; .false. &amp; Flag to turn on prescribed ice</div>
-</div>
-<div class="line-block">
-<div class="line">prescribed_ice_fill &amp; Logical &amp; .false. &amp; Flag to turn fill option</div>
-</div>
-<div class="line-block">
-<div class="line">stream_year_first &amp; Integer &amp; 1 &amp; First year of prescribed ice data</div>
-</div>
-<div class="line-block">
-<div class="line">stream_year_last &amp; Integer &amp; 1 &amp; Last year of prescribed ice data</div>
-</div>
-<div class="line-block">
-<div class="line">model_year_align &amp; Integer &amp; 1 &amp; Year in model run that aligns with
-stream_year_first</div>
-</div>
-<div class="line-block">
-<div class="line">stream_domfilename &amp; Character &amp; &amp; Prescribed ice stream data file</div>
-</div>
-<div class="line-block">
-<div class="line">stream_fldfilename &amp; Character &amp; &amp; Prescribed ice stream data file</div>
-</div>
-<div class="line-block">
-<div class="line">stream_fldvarname &amp; Character &amp; ice_cov &amp; Ice fraction field name</div>
-</div>
+<table border="1" class="colwidths-given docutils" id="id8">
+<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>prescribed_ice</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>Flag to turn on prescribed ice</td>
+</tr>
+<tr class="row-odd"><td>prescribed_ice_fill</td>
+<td>Logical</td>
+<td>.false.</td>
+<td>Flag to turn fill option</td>
+</tr>
+<tr class="row-even"><td>stream_year_first</td>
+<td>Integer</td>
+<td>1</td>
+<td>First year of prescribed ice data</td>
+</tr>
+<tr class="row-odd"><td>stream_year_last</td>
+<td>Integer</td>
+<td>1</td>
+<td>Last year of prescribed ice data</td>
+</tr>
+<tr class="row-even"><td>model_year_align</td>
+<td>Integer</td>
+<td>1</td>
+<td>Year in model run that aligns with stream_year_first</td>
+</tr>
+<tr class="row-odd"><td>stream_domfilename</td>
+<td>Character</td>
+<td>none</td>
+<td>Prescribed ice stream data file</td>
+</tr>
+<tr class="row-even"><td>stream_fldfilename</td>
+<td>Character</td>
+<td>none</td>
+<td>Prescribed ice stream data file</td>
+</tr>
+<tr class="row-odd"><td>stream_fldvarname</td>
+<td>Character</td>
+<td>ice_cov</td>
+<td>Ice fraction field name</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="grid-namelist">
 <h2>3.6. Grid Namelist<a class="headerlink" href="#grid-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in Table [table:grid:sub:<cite>n</cite>ml] are for
+<p>The namelist parameters listed in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Settings Namelist</span></a> are for
 grid and mask information. During execution, the ice model reads grid
 and land mask information from the files grid_file and kmt_file that
 should be located in the executable directory. There are commands in the
 scripts that copy these files from the input data directory, rename them
 from <strong>global_$ICE_GRID.grid</strong> and <strong>global_$ICE_GRID.kmt</strong> to the
-default filenames shown in Table [table:grid:sub:<cite>n</cite>ml].</p>
-<div class="line-block">
-<div class="line">p2.5cmp2.5cmp3cmp6.0cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">grid_type &amp; Character &amp; ’displaced_pole’ &amp; Determines grid type.</div>
-<div class="line">&amp; &amp; &amp; ’displaced_pole’</div>
-<div class="line">&amp; &amp; &amp; ’tripole’</div>
-<div class="line">&amp; &amp; &amp; ’rectangular’</div>
-</div>
-<div class="line-block">
-<div class="line">grid_format &amp; Character &amp; binary &amp; Grid file format (binary or
-netCDF)</div>
-</div>
-<div class="line-block">
-<div class="line">grid_file &amp; Character &amp; ’data.domain.grid’ &amp; Input filename
-containing grid information.</div>
-</div>
-<div class="line-block">
-<div class="line">kmt_file &amp; Character &amp; ’data.domain.kmt’ &amp; Input filename containing
-land mask information.</div>
-</div>
-<div class="line-block">
-<div class="line">kcatbound &amp; Integer &amp; 0 &amp; How category boundaries are set (0 or 1)</div>
-</div>
+default filenames shown in Table .</p>
+<table border="1" class="colwidths-given docutils" id="id9">
+<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>grid_type</td>
+<td>Character</td>
+<td>displaced_pole</td>
+<td>Determines grid type.</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>displaced_pole</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>tripole</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>rectangular</td>
+</tr>
+<tr class="row-even"><td>grid_format</td>
+<td>Character</td>
+<td>binary</td>
+<td>Grid file format (binary or netCDF)</td>
+</tr>
+<tr class="row-odd"><td>grid_file</td>
+<td>Character</td>
+<td>data.domain.grid</td>
+<td>Input filename containing grid information.</td>
+</tr>
+<tr class="row-even"><td>kmt_file</td>
+<td>Character</td>
+<td>data.domain.kmt</td>
+<td>Input filename containing land mask information.</td>
+</tr>
+<tr class="row-odd"><td>kcatbound</td>
+<td>Integer</td>
+<td>0</td>
+<td>How category boundaries are set (0 or 1)</td>
+</tr>
+</tbody>
+</table>
 <p>For coupled runs, supported grids include the ’displaced_pole’ grids
-(gx3v7 and gx1v6) and the ’tripole’ grids.</p>
+(gx3 and gx1) and the ’tripole’ grids.</p>
 </div>
 <div class="section" id="domain-namelist">
 <h2>3.7. Domain Namelist<a class="headerlink" href="#domain-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in Table [table:domain:sub:<cite>n</cite>ml] are
+<p>The namelist parameters listed in <a class="reference internal" href="#domain"><span class="std std-ref">Table 9: Domain Settings Namelist</span></a> are
 for computational domain decomposition information. These are generally
-set in the build configure scripts based on the number of processors.
+set in the build configure scripts through the variables CICE_DECOMPTYPE and CICE_DECOMSETTING
+based on the number of processors.
 See the CESM scripts documentation.</p>
-<div class="line-block">
-<div class="line">p4.0cmp2cmp2cmp6.0cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">processor_shape &amp; Character &amp; ’square-pop’ &amp; Approximate block shapes</div>
-</div>
-<div class="line-block">
-<div class="line">ew_boundary_type &amp; Character &amp; ’cyclic’ &amp; Boundary conditions in E-W
-direction</div>
-</div>
-<div class="line-block">
-<div class="line">ns_boundary_type &amp; Character &amp; ’open’ &amp; Boundary conditions in N-S
-direction</div>
-</div>
-<div class="line-block">
-<div class="line">distribution_type &amp; Character &amp; ’cartesian’ &amp; How blocks are split
-onto processors</div>
-<div class="line">&amp; &amp; &amp; ’cartesian’</div>
-<div class="line">&amp; &amp; &amp; ’spacecurve’</div>
-<div class="line">&amp; &amp; &amp; ’rake’</div>
-</div>
-<div class="line-block">
-<div class="line">distribution_wght &amp; Character &amp; ’erfc’ &amp; How blocks are weighted when
-using space-filling curves (erfc or file)</div>
-</div>
-<div class="line-block">
-<div class="line">distribution_wght_file &amp; Character &amp; ” &amp; File containing
-space-filling curve weights when not using erfc weighting</div>
-</div>
+<table border="1" class="colwidths-given docutils" id="id10">
+<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>processor_shape</td>
+<td>Character</td>
+<td>square-pop</td>
+<td>Approximate block shapes</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>slenderX1</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>slenderX2</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>square-ice</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>square-pop</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>blocks</td>
+</tr>
+<tr class="row-even"><td>distribution_type</td>
+<td>Character</td>
+<td>cartesian</td>
+<td>How domain is split into blocks and distributed onto processors</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>cartesian</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>rake</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>roundrobin</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>sectcart</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>sectrobin</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>spacecurve</td>
+</tr>
+<tr class="row-odd"><td>distribution_wght</td>
+<td>Character</td>
+<td>erfc</td>
+<td>How blocks are weighted when using space-filling curves</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>block</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>latitude</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>erfc</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>file</td>
+</tr>
+<tr class="row-even"><td>distribution_wght_file</td>
+<td>Character</td>
+<td>none</td>
+<td>File containing space-filling curve weights when using file weighting</td>
+</tr>
+<tr class="row-odd"><td>ew_boundary_type</td>
+<td>Character</td>
+<td>cyclic</td>
+<td>Boundary conditions in E-W direction</td>
+</tr>
+<tr class="row-even"><td>ns_boundary_type</td>
+<td>Character</td>
+<td>open</td>
+<td>Boundary conditions in N-S direction</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="pio-namelist">
 <h2>3.8. PIO Namelist<a class="headerlink" href="#pio-namelist" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">The namelist parameters listed in Table
-[table:ice:sub:<cite>p</cite>io<sub>n</sub>ml] are for controlling parallel
-input/output. Only a brief overview will be given here, but more on
-parallel input/output can be found at:</div>
-</div>
-<div class="line-block">
-<div class="line"><a class="reference external" href="http://web.ncar.teragrid.org/~dennis/pio_doc/html">http://web.ncar.teragrid.org/~dennis/pio_doc/html</a>.</div>
-</div>
-<div class="line-block">
-<div class="line">p2.5cmp2.5cmp3cmp6.0cm Varible &amp; Type &amp; Default Value &amp; Description</div>
-</div>
-<div class="line-block">
-<div class="line">ice_num_iotasks &amp; Integer &amp; -1 &amp; Number of I/O tasks.</div>
-<div class="line">&amp; &amp; &amp; default -1 selects all processors.</div>
-</div>
-<div class="line-block">
-<div class="line">ice_pio_stride &amp; Integer &amp; -1 &amp; Stride between I/O tasks.</div>
-<div class="line">&amp; &amp; &amp; -1 selects defaulto stride.</div>
-</div>
-<div class="line-block">
-<div class="line">ice_pio_type_name &amp; Character &amp; netcdf &amp; Underlying library used.</div>
-<div class="line">&amp; &amp; &amp; default is netcdf.</div>
-</div>
+<p>PIO settings are now handled via the CESM driver.</p>
 </div>
 </div>
 
@@ -664,7 +972,7 @@ parallel input/output can be found at:</div>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

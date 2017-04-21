@@ -6,7 +6,7 @@
 **************************
 
 This section shows several examples of namelists from the coupled ice
-model. These examples are taken directly from **cice.buildnml.csh** for
+model. These examples are taken directly from **$CASE/CaseDocs/ice\_in** for
 the coupled model. Most of the variables in the namelist are determined
 from environment variables set elsewhere in the scripts. Since the
 namelists from the coupled model are “resolved” by the scripts, meaning
@@ -20,10 +20,9 @@ Example 1: CESM Fully Coupled
 -------------------------------
 
 The following example is the namelist used for CESM fully coupled, or
-the B configuration. The variables that are still set to shell script
-variables have been set at the top of **cice.buildnml.csh** or in other
-scripts. A completely resolved version of the namelist will be written
-to **ice\_in** in the executable directory.
+the B configuration. A completely resolved version of the namelist will 
+be written to **$CASE/CaseDocs/ice\_in** and **ice\_in** in the executable 
+directory. Note that modifications to the CICE namelist go in **$CASE/user\_nl\_cice**.
 
 ::
 
@@ -35,7 +34,7 @@ to **ice\_in** in the executable directory.
      ice_ic         = 'b40.1850.track1.1deg.006.cice.r.0301-01-01-00000.nc'
      lcdf64         = .false. 
      pointer_file           = 'rpointer.ice'
-     xndt_dyn               =  1.0 
+     ndtd                   =  1
     /
     &grid_nml
      grid_file              = '/fis/cgd/cseg/csm/inputdata/ice/cice/global_gx1v6_200

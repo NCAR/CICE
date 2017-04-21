@@ -194,7 +194,7 @@ day of the month.</p>
 <p>The second namelist in the setup script controls what variables are
 written to the history file. To remove a field from this list, add the
 name of the character variable associated with that field to the
-&amp;icefields_nml namelist in <strong>cice.buildnml.csh</strong> and assign it a value
+<strong>$CASE/user_nl_cice</strong> file and assign it a value
 of ’xxxxx’. For example, to remove ice thickness and snow cover from the
 history file, add</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">icefields_nml</span>
@@ -217,7 +217,7 @@ history file, add</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>model time</td>
 <td>days</td>
 </tr>
@@ -243,7 +243,7 @@ history file, add</p>
 </tr>
 <tr class="row-even"><td>tmask</td>
 <td>ocean grid mask (0=land, 1=ocean)</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>tarea</td>
 <td>T grid cell area</td>
@@ -287,7 +287,7 @@ history file, add</p>
 </tr>
 <tr class="row-odd"><td>ice_present</td>
 <td>fraction of time-averaging interval that any ice is present</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -426,7 +426,7 @@ day<span class="math">\(^{-1}\)</span></div>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

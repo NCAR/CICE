@@ -96,10 +96,10 @@ three places:</p>
 <li>The initial condition (restart) file in the input file directory</li>
 </ul>
 <p>The number of ice thickness categories is set in
-<strong>$CASE/Buildconf/cice.buildexe.csh</strong> using the variable called $NCAT.
+<strong>$CASE/env_build.xml</strong> using the xml variable CICE_CONFIG_OPTS.
 The default value is 5 categories. $NCAT is used to determine the CPP
 variable setting (NCAT) in <strong>ice_model_size.F90</strong>. $RES is the
-resolution of the grid, 100x116 (gx3v7) and 320x384 (gx1v6) for low and
+resolution of the grid, 100x116 (gx3) and 320x384 (gx1) for low and
 medium resolution grids, respectively.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -119,14 +119,15 @@ of 5 ice thickness categories, with four layers in each category. To
 create an initial condition file for a different number of categories or
 layers, these steps should be followed:</p>
 <ul class="simple">
-<li>Set $NCAT to the desired number of categories in <strong>$CASE/Buildconf/cice.buildexe.csh</strong>.</li>
-<li>Set the namelist variable dumpfreq = ’m’ in <strong>$CASE/Buildconf/cice.buildnml.csh</strong> to print out restart files monthly.</li>
-<li>Set the namelist variable restart = .false. in <strong>$CASE/Buildconf/cice.buildnml.csh</strong> to use the initial conditions within the ice model.</li>
+<li>Set ncat to the desired number of categories in <strong>$CASE/env_build.xml</strong>.</li>
+<li>Set the namelist variable dumpfreq = ’m’ in <strong>$CASE/user_nl_cice</strong> to print out restart files monthly.</li>
+<li>Set the namelist variable restart = .false. in <strong>$CASE/user_nl_cice</strong> to use the initial conditions within the ice model.</li>
 <li>Run the model to equilibrium.</li>
 <li>The last restart file can be used as an initial condition file.</li>
 <li>Change the name of the last restart file to <em>iced.0001-01-01.$GRID</em>.</li>
 <li>Copy the file into the input data directory or directly into the the
 executable directory.</li>
+<li>There are a few restart files available in <strong>$DIN_LOC_ROOT/ice/cice</strong>.</li>
 </ul>
 <p>Note that the date printed inside the binary restart file will not be
 the same as 0001-01-01. For coupled runs, $BASEDATE will be the starting
@@ -157,7 +158,7 @@ o date and the date inside the file will not be used.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

@@ -25,6 +25,13 @@ CICE User's Guide
    ice_stdout.rst
    ice_troubleshoot.rst
 
+.. rubric:: References
+
+.. bibliography:: master_list.bib
+   :list: bullet
+   :cited:
+
+
 Indices and tables
 ==================
 

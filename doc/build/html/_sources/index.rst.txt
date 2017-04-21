@@ -9,7 +9,7 @@
 
 This document has one major sections.
 
-The :ref:`CICE user's guide <users-guide>` is a basic guide in utilizing CLM.
+The :ref:`CICE user's guide <users-guide>` is a basic guide in utilizing the Los Alamos Sea Ice Model (CICE).
 
 Table of contents
 -----------------

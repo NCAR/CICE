@@ -98,7 +98,7 @@
   <div class="section" id="cice-namelist-examples">
 <span id="id1"></span><h1>4. CICE Namelist Examples<a class="headerlink" href="#cice-namelist-examples" title="Permalink to this headline">¶</a></h1>
 <p>This section shows several examples of namelists from the coupled ice
-model. These examples are taken directly from <strong>cice.buildnml.csh</strong> for
+model. These examples are taken directly from <strong>$CASE/CaseDocs/ice_in</strong> for
 the coupled model. Most of the variables in the namelist are determined
 from environment variables set elsewhere in the scripts. Since the
 namelists from the coupled model are “resolved” by the scripts, meaning
@@ -110,10 +110,9 @@ the ice dynamics ndte.</p>
 <div class="section" id="example-1-cesm-fully-coupled">
 <h2>4.1. Example 1: CESM Fully Coupled<a class="headerlink" href="#example-1-cesm-fully-coupled" title="Permalink to this headline">¶</a></h2>
 <p>The following example is the namelist used for CESM fully coupled, or
-the B configuration. The variables that are still set to shell script
-variables have been set at the top of <strong>cice.buildnml.csh</strong> or in other
-scripts. A completely resolved version of the namelist will be written
-to <strong>ice_in</strong> in the executable directory.</p>
+the B configuration. A completely resolved version of the namelist will
+be written to <strong>$CASE/CaseDocs/ice_in</strong> and <strong>ice_in</strong> in the executable
+directory. Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</strong>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">setup_nml</span>
  <span class="n">diagfreq</span>               <span class="o">=</span>  <span class="mi">24</span>
  <span class="n">hist_avg</span>               <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
@@ -122,7 +121,7 @@ to <strong>ice_in</strong> in the executable directory.</p>
  <span class="n">ice_ic</span>         <span class="o">=</span> <span class="s1">&#39;b40.1850.track1.1deg.006.cice.r.0301-01-01-00000.nc&#39;</span>
  <span class="n">lcdf64</span>         <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
  <span class="n">pointer_file</span>           <span class="o">=</span> <span class="s1">&#39;rpointer.ice&#39;</span>
- <span class="n">xndt_dyn</span>               <span class="o">=</span>  <span class="mf">1.0</span>
+ <span class="n">ndtd</span>                   <span class="o">=</span>  <span class="mi">1</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">grid_nml</span>
  <span class="n">grid_file</span>              <span class="o">=</span> <span class="s1">&#39;/fis/cgd/cseg/csm/inputdata/ice/cice/global_gx1v6_200</span>
@@ -260,7 +259,7 @@ distribution consists of five ice categories.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
