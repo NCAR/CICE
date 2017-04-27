@@ -23,12 +23,14 @@ list all available namelist parameters. The default values shown here
 are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
-namelist is shown in Section.
+namelist is shown in Section :ref:`cice_namelist_examples`.
 
 The main run management namelist options are shown in :ref:`setupnml`. 
 While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
-CESM. Variables set by the driver include: dt, runid, runtype, istep0,
+CESM. For a full list of namelist variables, you should consult the CICE
+Reference Guide :cite:`cice15`. 
+Variables set by the driver include: dt, runid, runtype, istep0,
 days\_per\_year, restart and dumpfreq. These should be changed in the
 CESM configuration files.
 
@@ -38,7 +40,7 @@ CESM configuration files.
    :widths: 20,12,12,60
 
    ================    ==========  ====================        ============================================================  
-   Varible             Type        Default Value               Description
+   Variable            Type        Default Value               Description
    ================    ==========  ====================        ============================================================
    bfbflag             logical     .false.                     Require bit-for-bit global sums.
    days\_per\_year     integer     365                         Standard number of days per year for calendar. Does interact

@@ -5,20 +5,27 @@
 CICE Input Data
 ********************
 
-The coupled CICE model requires a minimum of three files to run:
+The coupled CICE model requires a minimum of two files to run:
 
--  **global\_${ICE\_GRID}.grid** is a binary file containing grid information
+-  **grid\_file** is a binary or netcdf file containing grid information such as the latitude, longitude, grid cell area, etc.
 
--  **global\_${ICE\_GRID}.kmt** is a binary file containing land mask information
-
--  **iced.0001-01-01.${ICE\_GRID}.20lay** are binary files containing
-   initial condition information for the gx1v6 and gx3v7 grids,
-   respectively. The thickness distribution in this restart file
-   contains 5 categories, each with 4 layers.
+-  **kmt\_file** is a binary or netcdf file containing land mask information. This points to the ocean model KMT file or the depths of the ocean columns.
 
 Depending on the grid selected in the scripts, the appropriate
-**global\*** and **iced\*** files will be used in the executable
-directory. These files are read directory from the system input data
+**grid_file*** and **kmt_file*** files will be used in the executable
+directory. These files are read directly from the system input data
 directory and not copied to the executable directory. Currently, only
-gx3v7, gx1v6, tx1v1, and tx0.1v2 grids are supported for the ice and
+the POP resolutions of gx3, gx1, tx1, and tx0.1 grids are supported for the ice and
 ocean models. Note that these files can now be used in netCDF format.
+
+A third namelist variable that is required for initial or hybrid runs is the 
+**ice\_ic** variable. 
+
+- ice\_ic \= 'none' initializes the sea ice to zero everywhere
+
+- ice\_ic \= 'default' initializes the sea ice to 100% concentration with 2m or 1m thickness in the Northern and Southern Hemispheres respectively where the SST is -1.8C or below
+
+- ice\_ic \= "filename.nc" will read the state information from an initial file named "filename.nc"
+ 
+For the third option, the initial file resolution must match that of the grid\_file
+specified as above. Restart or branch runs are discussed later.

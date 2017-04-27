@@ -121,15 +121,17 @@ list all available namelist parameters. The default values shown here
 are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
-namelist is shown in Section.</p>
+namelist is shown in Section <a class="reference internal" href="ice_nml_example.html#cice-namelist-examples"><span class="std std-ref">CICE Namelist Examples</span></a>.</p>
 <p>The main run management namelist options are shown in <a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>.
 While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
-CESM. Variables set by the driver include: dt, runid, runtype, istep0,
+CESM. For a full list of namelist variables, you should consult the CICE
+Reference Guide [cice15].
+Variables set by the driver include: dt, runid, runtype, istep0,
 days_per_year, restart and dumpfreq. These should be changed in the
 CESM configuration files.</p>
-<table border="1" class="colwidths-given docutils" id="id2">
-<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id3">
+<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -137,7 +139,7 @@ CESM configuration files.</p>
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Varible</th>
+<tr class="row-odd"><th class="head">Variable</th>
 <th class="head">Type</th>
 <th class="head">Default Value</th>
 <th class="head">Description</th>
@@ -280,8 +282,8 @@ for the transport using the upwind advection scheme is:</p>
 The default timestep for CICE is 30 minutes for gx1,
 which must be equal to the coupling interval (<strong>ICE_NCPL</strong> and <strong>ATM_NCPL</strong>)
 set in the CESM configuration files <strong>env_run.xml</strong>.</p>
-<table border="1" class="colwidths-given docutils" id="id3">
-<span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id4">
+<span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="60%" />
@@ -421,8 +423,8 @@ base albedos are computed based on the inherent optical properties of
 snow, sea ice, and melt ponds. These albedos are tunable through
 adjustments to the snow grain radius, R_snw, temperature to transition
 to melting snow, and maximum snow grain radius.</p>
-<table border="1" class="colwidths-given docutils" id="id4">
-<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id5">
+<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -484,8 +486,8 @@ to melting snow, and maximum snow grain radius.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="colwidths-given docutils" id="id5">
-<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id6">
+<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -517,8 +519,8 @@ to melting snow, and maximum snow grain radius.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="colwidths-given docutils" id="id6">
-<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id7">
+<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="16%" />
 <col width="9%" />
@@ -624,8 +626,8 @@ to melting snow, and maximum snow grain radius.</p>
 <p>The namelist parameters listed in <a class="reference internal" href="#tracers"><span class="std std-ref">Table 6: Tracer Namelist</span></a> are
 for adding tracers. The tracers should be added through the CESM
 driver scripts via the CICE_CONFIG_OPTS variable.</p>
-<table border="1" class="colwidths-given docutils" id="id7">
-<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id8">
+<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -682,8 +684,8 @@ driver scripts via the CICE_CONFIG_OPTS variable.</p>
 <h2>3.5. Prescribed Ice Namelist<a class="headerlink" href="#prescribed-ice-namelist" title="Permalink to this headline">¶</a></h2>
 <p>The namelist parameters listed in <a class="reference internal" href="#prescribed"><span class="std std-ref">Table 7: Prescribed Ice Namelist</span></a> are for the prescribed ice
 option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
-<table border="1" class="colwidths-given docutils" id="id8">
-<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id9">
+<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -750,8 +752,8 @@ should be located in the executable directory. There are commands in the
 scripts that copy these files from the input data directory, rename them
 from <strong>global_$ICE_GRID.grid</strong> and <strong>global_$ICE_GRID.kmt</strong> to the
 default filenames shown in Table .</p>
-<table border="1" class="colwidths-given docutils" id="id9">
-<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id10">
+<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -818,8 +820,8 @@ for computational domain decomposition information. These are generally
 set in the build configure scripts through the variables CICE_DECOMPTYPE and CICE_DECOMSETTING
 based on the number of processors.
 See the CESM scripts documentation.</p>
-<table border="1" class="colwidths-given docutils" id="id10">
-<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id11">
+<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
