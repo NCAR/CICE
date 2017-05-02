@@ -24,13 +24,7 @@ CICE User's Guide
    ice_restart.rst
    ice_stdout.rst
    ice_troubleshoot.rst
-
-.. rubric:: References
-
-.. bibliography:: master_list.bib
-   :list: bullet
-   :cited:
-
+   zreferences.rst
 
 Indices and tables
 ==================

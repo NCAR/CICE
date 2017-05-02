@@ -44,9 +44,9 @@ automatically. See the CESM2 User’s Guide for information on how to
 use the new scripts.
 
 The file that contains the ice model namelist is now located in
-**$CASE/CaseDocs**. The script containing the environment variables
+**$CASE/CaseDocs**. The file containing the environment variables
 used for building the executable file for the ice model is in
-**$CASE/Buildconf**. The contents of the ice model namelist are
+**$CASE/env\_build.xml**. The contents of the ice model namelist are
 described in section [namelist].
 
 Building the CICE library
@@ -57,31 +57,9 @@ The Build Environment
 
 The **cime_config/build_cpp** script sets all compile time parameters, such
 as the horizontal grid, the sea ice mode (prognostic or prescribed),
-tracers, etc. Additional options can be set using the **configure**
-utility such as the decomposition, and the number of tasks, but these
-are typically set via CESM enviroment variables. 
-
-::
-
-    #--------------------------------------------------------------------
-    # Invoke cice configure
-    #--------------------------------------------------------------------
-
-    set hgrid = "-hgrid $ICE_GRID"
-    if ($ICE_GRID =~ *T*) set hgrid = "-hgrid ${ICE_NX}x${ICE_NY}"
-
-    set mode = "-cice_mode $CICE_MODE"
-
-    cd $CASEBUILD/ciceconf || exit -1
-    $CODEROOT/ice/cice/bld/configure $hgrid $mode -nodecomp $CICE_CONFIG_OPTS || exit -1
-
-This example sets the horizontal grid and the mode (prognostic or
-prescribed). The **build namelist** utility sets up the namelist which
-controls the run time options for the CICE model. This utility sets
-namelist flags based on compile time settings from **configure** and
-some standard defaults based on horizontal grids and other options. 
-Again, the typical usage of the **build namelist** tool is through the
-CESM scripts, but can be called via the command line interface.
+tracers, etc. However, to change the CPP variables, one needs to add these to
+the **CICE\_CONFIG\_OPTS** variable in the env\_build.xml file. Additional options
+can be set here, such as the decomposition and the number of tasks.
 
 CICE Preprocessor Flags
 ---------------------------
@@ -107,19 +85,26 @@ The options -DBLCKX=$(CICE\_BLCKX) and -DBLCKY=$(CICE\_BLCKY) set the
 block sizes used in each grid direction. These values are set
 automatically in the scripts for the coupled model. Note that BLCKX and
 BLCKY must divide evenly into the grid, and are used only for MPI grid
-decomposition. If BLCX or BLCKY do not divide evenly into the grid,
+decomposition. If BLCKX or BLCKY do not divide evenly into the grid,
 which determines the number of blocks in each direction, the model setup
 will exit from the setup script and print an error message to the
-**ice.bldlog\*** (build log) file.
+**ice.bldlog\** (build log) file. To override these values, one must set
+the variable **CICE\_AUTO\_DECOMP** to "false" in **env\_build.xml** and 
+then the variables **CICE\_BLCKX**, **CICE\_BLCKY**, and **CICE\_MBLCKS** 
+can be set manually. 
 
 The flag -DMXBLCKS is essentially the threading option. This controls
 the number of “blocks” per processor. This can describe the number of
 OpenMP threads on an MPI task, or can simply be that a single MPI task
-handles a number of blocks.
+handles a number of blocks. This is set automatically, but can be changed
+as described above.
 
 The flat -DNTR\_AERO=n flag turns on the aerosol deposition physics in
 the sea ice where n is the number of tracer species and 0 turns off the
-tracers. More details on this are in the section on tracers.
+tracers. More details on this are in the section on tracers. The default here
+is 3 and should only be changed when adding additional aerosol tracers. This can
+be turned off by setting **CICE\_CONFIG\_OPTS** to "-ntr_aero=0" in the
+env\_build.xml file.
 
 The flag -D\_MPI sets up the message passing interface. This must be set
 for runs using a parallel environment. To get a better idea of what code
