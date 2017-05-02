@@ -88,7 +88,7 @@ BLCKY must divide evenly into the grid, and are used only for MPI grid
 decomposition. If BLCKX or BLCKY do not divide evenly into the grid,
 which determines the number of blocks in each direction, the model setup
 will exit from the setup script and print an error message to the
-**ice.bldlog\** (build log) file. To override these values, one must set
+**ice.bldlog** (build log) file. To override these values, one must set
 the variable **CICE\_AUTO\_DECOMP** to "false" in **env\_build.xml** and 
 then the variables **CICE\_BLCKX**, **CICE\_BLCKY**, and **CICE\_MBLCKS** 
 can be set manually. 
