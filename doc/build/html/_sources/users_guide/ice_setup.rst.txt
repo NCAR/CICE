@@ -47,7 +47,7 @@ The file that contains the ice model namelist is now located in
 **$CASE/CaseDocs**. The file containing the environment variables
 used for building the executable file for the ice model is in
 **$CASE/env\_build.xml**. The contents of the ice model namelist are
-described in section [namelist].
+described in section :ref:`namelist`.
 
 Building the CICE library
 ==========================

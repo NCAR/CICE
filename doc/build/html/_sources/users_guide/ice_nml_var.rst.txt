@@ -1,4 +1,4 @@
-.. _cice_namelists:
+.. _namelist:
 
 **********************
  CICE Namelists 
