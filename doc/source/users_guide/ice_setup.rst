@@ -71,8 +71,10 @@ information on these. The flags specific to the ice model are:
 
 ::
 
-    CPPDEFS :=  $(CPPDEFS) -DCESMCOUPLED -Dcoupled -Dncdf -DNCAT=5 -DNXGLOB=$()
-    -DNYGLOB=$() -DNTR_AERO=3 -DBLCKX=$() -DBLCKY=$() -DMXBLCKS=$()
+    CPPDEFS :=  $(CPPDEFS) -DCESMCOUPLED -Dcoupled -Dncdf -DNICECAT=5 -DNXGLOB=$()
+    -DNYGLOB=$() -DNTRAERO=3 -DNTRISO=0 -DNBGCLYR=0 -DNICELYR=8 -DNSNWLYR=3
+    -DTRAGE=1 -DTRFY=1 -DTRLVL=1 -DTRPND=1 -DTRBRI=0 -DTRBGCS=0
+    -DBLCKX=$() -DBLCKY=$() -DMXBLCKS=$()
 
 The options -DCESMCOUPLED and -Dcoupled are set to activate the coupling
 interface. This will include the source code in **ice\_comp\_mct.F90**,
@@ -99,14 +101,22 @@ OpenMP threads on an MPI task, or can simply be that a single MPI task
 handles a number of blocks. This is set automatically, but can be changed
 as described above.
 
-The flat -DNTR\_AERO=n flag turns on the aerosol deposition physics in
+The number of ice and snow layers are set at compile time via the CPP
+flags. They can technically be changed via the **CICE\_CONFIG\_OPTS**
+variable in env_build.xml, but it this is not recommended. We have provided
+an option to use the older CICE4 physics, inluding 4 ice levels and 1 snow level.
+
+The flag -DNTR\_AERO=n flag turns on the aerosol deposition physics in
 the sea ice where n is the number of tracer species and 0 turns off the
 tracers. More details on this are in the section on tracers. The default here
 is 3 and should only be changed when adding additional aerosol tracers. This can
 be turned off by setting **CICE\_CONFIG\_OPTS** to "-ntr_aero=0" in the
 env\_build.xml file.
 
-The flag -D\_MPI sets up the message passing interface. This must be set
-for runs using a parallel environment. To get a better idea of what code
-is included or excluded at compile time, grep for ifdef and ifndef in
-the source code or look at the **.f90** files in the /**obj** directory.
+The flag -DNTR\_ISO=n flag turns on the isotopes and is not yet supported.
+
+The flags -DBGCLYR, -DTRBRI, and -DTRBGCS are for the skeletal biogeochemistry.
+These have not been tested within CESM and more information can be found in the CICE
+reference guide :cite:`cice15`.
+
+The other tracer flags

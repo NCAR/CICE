@@ -63,9 +63,15 @@ and was released in March of 2015. CICE4 was an upgraded version of
 the Community Sea Ice Model, CSIM5, which was based on CICE3. 
 The major changes are:
 
--  The new mushy-layer thermodynamics (ktherm = 2) is the default :cite:`turner15`
+-  The new mushy-layer thermodynamics (ktherm = 2) is the default :cite:`turner15`.
 
--  The new level melt pond scheme (tr_lvl = .true.) is the default :cite:`hunke13`
+-  The new level melt pond scheme (tr_lvl = .true.) is the default :cite:`hunke13`.
+
+-  The default number of ice layers is now 8, where it used to be 4.
+
+-  The default number of snow layers is now 3, where it used to be 1.
+
+-  The freezing point at the sea ice-ocean interface is now salinity dependent following :cite:`assur58`.
 
 The CICE source code is based on the Los Alamos sea ice model CICE
 model version 5. The main source code is very similar in both
