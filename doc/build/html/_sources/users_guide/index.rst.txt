@@ -24,7 +24,7 @@ CICE User's Guide
    ice_restart.rst
    ice_stdout.rst
    ice_troubleshoot.rst
-   zreferences.rst
+   ice_references.rst
 
 Indices and tables
 ==================
