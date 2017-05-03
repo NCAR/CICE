@@ -13,7 +13,7 @@ try the following:
 
 -  Delete the executable directory and rebuild the model.
 
--  Make sure that there is a **Macros.\ :math:`<`\ OS\ :math:`>`** file
+-  Make sure that there is a **Macros.\< OS \>** file
    for your platform. Modify the directory paths for the libraries.
 
 -  Make sure all paths and file names are set correctly in the scripts.
@@ -109,8 +109,8 @@ Enabling the Debugger
 ============================================
 
 This section explains how to set some compiler options for debugging.
-For the coupled model, set DEBUG to TRUE in the **env\_run.xml** script.
-Before running the model, be sure to delete the object files so that the
-source code will be recompiled. If a core file is created, it will be in
-the executable directory. Use dbx to look at the core file. Useful
-information may also appear in the standard error and output files.
+For the coupled model, set DEBUG to TRUE in the **env\_build.xml** script.
+Before running the model, be sure to delete the object files or a clean build
+so that the source code will be recompiled. If a core file is created, it will be in
+the executable directory. Use some debugging tools for your platform to look 
+at the core file. Useful information may also appear in the standard error and output files.

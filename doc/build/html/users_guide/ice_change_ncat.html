@@ -91,19 +91,19 @@
 <p>The number of ice thickness categories affects ice model input files in
 three places:</p>
 <ul class="simple">
-<li>$NCAT in the run script</li>
+<li><code class="docutils literal"><span class="pre">$NICECAT</span></code> in the scripts</li>
 <li>The source code module <strong>ice_model_size.F90</strong></li>
 <li>The initial condition (restart) file in the input file directory</li>
 </ul>
-<p>The number of ice thickness categories is set in
-<strong>$CASE/env_build.xml</strong> using the xml variable CICE_CONFIG_OPTS.
-The default value is 5 categories. $NCAT is used to determine the CPP
-variable setting (NCAT) in <strong>ice_model_size.F90</strong>. $RES is the
-resolution of the grid, 100x116 (gx3) and 320x384 (gx1) for low and
-medium resolution grids, respectively.</p>
+<p>One must be very careful with changing this value as it impacts a number of
+places in the code. The number of ice thickness categories can be changed in
+<strong>$CASE/env_build.xml</strong> using the xml variable <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.
+One changes this by adding <code class="docutils literal"><span class="pre">-ncat</span> <span class="pre">5</span></code> to the variable <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.
+The default value is 5 categories. <code class="docutils literal"><span class="pre">$NICECAT</span></code> is used to determine the CPP
+variable setting <code class="docutils literal"><span class="pre">NICECAT</span></code> in <strong>ice_model_size.F90</strong>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To use one ice thickness category, the following changes will need to  be made in the namelist:</p>
+<p class="last">To use one ice thickness category, the following changes will need to be made in the namelist and also adding <code class="docutils literal"><span class="pre">-ncat</span> <span class="pre">1</span></code> to <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.</p>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">,</span> <span class="n">kitd</span>          <span class="o">=</span> <span class="mi">0</span>
 <span class="p">,</span> <span class="n">kstrength</span>     <span class="o">=</span> <span class="mi">0</span>
@@ -120,17 +120,18 @@ create an initial condition file for a different number of categories or
 layers, these steps should be followed:</p>
 <ul class="simple">
 <li>Set ncat to the desired number of categories in <strong>$CASE/env_build.xml</strong>.</li>
-<li>Set the namelist variable dumpfreq = ’m’ in <strong>$CASE/user_nl_cice</strong> to print out restart files monthly.</li>
-<li>Set the namelist variable restart = .false. in <strong>$CASE/user_nl_cice</strong> to use the initial conditions within the ice model.</li>
+<li>Set the namelist variable <code class="docutils literal"><span class="pre">dumpfreq</span> <span class="pre">=</span> <span class="pre">’m’</span></code> in <strong>$CASE/user_nl_cice</strong> to print out restart files monthly.</li>
+<li>Set the namelist variable <code class="docutils literal"><span class="pre">ice_ic='default'</span></code> in <strong>$CASE/user_nl_cice</strong> to use the initial conditions within the ice model.</li>
 <li>Run the model to equilibrium.</li>
 <li>The last restart file can be used as an initial condition file.</li>
-<li>Change the name of the last restart file to <em>iced.0001-01-01.$GRID</em>.</li>
+<li>Change the name of the last restart file to <strong>iced.0001-01-01.$GRID.nc</strong>.</li>
 <li>Copy the file into the input data directory or directly into the the
 executable directory.</li>
 <li>There are a few restart files available in <strong>$DIN_LOC_ROOT/ice/cice</strong>.</li>
 </ul>
-<p>Note that the date printed inside the binary restart file will not be
-the same as 0001-01-01. For coupled runs, $BASEDATE will be the starting
+<p><code class="docutils literal"><span class="pre">$GRID</span></code> is the name of the POP grid with resolution, <code class="docutils literal"><span class="pre">$RES</span></code> of 100x116 (gx3) and 320x384 (gx1) for low and
+medium resolution grids, respectively. Note that the date printed inside the binary restart file will not be
+the same as 0001-01-01. For coupled runs, <code class="docutils literal"><span class="pre">$BASEDATE</span></code> will be the starting
 o date and the date inside the file will not be used.</p>
 </div>
 

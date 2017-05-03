@@ -108,7 +108,7 @@ directory, or the standard output and error files for information. Also,
 try the following:</p>
 <ul class="simple">
 <li>Delete the executable directory and rebuild the model.</li>
-<li>Make sure that there is a <strong>Macros.:math:`&lt;`OS:math:`&gt;`</strong> file
+<li>Make sure that there is a <strong>Macros.&lt; OS &gt;</strong> file
 for your platform. Modify the directory paths for the libraries.</li>
 <li>Make sure all paths and file names are set correctly in the scripts.</li>
 <li>If changes were made to the <strong>ice_model_size.F90</strong> file in the
@@ -189,11 +189,11 @@ be changed.</p>
 <div class="section" id="enabling-the-debugger">
 <h2>11.6. Enabling the Debugger<a class="headerlink" href="#enabling-the-debugger" title="Permalink to this headline">¶</a></h2>
 <p>This section explains how to set some compiler options for debugging.
-For the coupled model, set DEBUG to TRUE in the <strong>env_run.xml</strong> script.
-Before running the model, be sure to delete the object files so that the
-source code will be recompiled. If a core file is created, it will be in
-the executable directory. Use dbx to look at the core file. Useful
-information may also appear in the standard error and output files.</p>
+For the coupled model, set DEBUG to TRUE in the <strong>env_build.xml</strong> script.
+Before running the model, be sure to delete the object files or a clean build
+so that the source code will be recompiled. If a core file is created, it will be in
+the executable directory. Use some debugging tools for your platform to look
+at the core file. Useful information may also appear in the standard error and output files.</p>
 </div>
 </div>
 

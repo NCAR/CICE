@@ -102,45 +102,51 @@ platform, and “out of the box”.  It includes a quick start guide for
 downloading the CESM2 source code and input datasets, and information
 on how to configure, build and run the model. The supported
 configurations and scripts for building the fully coupled model are
-also described in the CESM2 User’s Guide.  The CICE User’s Guide is
-intended for users interested in making modifications to the ice model
-scripts or namelists or running the uncoupled ice model.  Users
-interested in modifying the source code should see the CICE Code
-Reference/Developer’s Guide [cice15].</p>
-<p>CICE5.1.2 is the latest version of the Los Alamos Sea Ice Model, sometimes
-referred to as the Community Ice CodE [cice15]. It is the result of a community
-effort to develop a portable, efficient sea ice model that can be run
-coupled in a global climate model or uncoupled as a stand-alone ice
-model. It has been released as the sea ice component of the Community
-Earth System Model (CESM), a fully-coupled global climate model that
-provides simulations of the earths past, present and future climate
-states. CICE5 is supported on high- and low-resolution Greenland Pole
-and tripole grids, which are identical to those used by the Parallel
-Ocean Program (POP) ocean model. The high resolution version is best
-suited for simulating present-day and future climate scenarios while
-the low resolution option is used for paleoclimate simulations and
-debugging. An uncoupled version of CICE is available separately from
-Los Alamos National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
-<p>It provides a means of running the sea ice model independent of the
-other CESM components. It reads in atmospheric and ocean forcing,
-which eliminates the need for the flux coupler, and the atmosphere,
-land and ocean data models. It can be run on a reduced number of
-processors, or without MPI (Message Passing Interface) for researchers
-without access to these computer resources.</p>
+also described in the CESM2 User’s Guide.</p>
+<p><a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2.0/">http://www.cesm.ucar.edu/models/cesm2.0/</a></p>
+<p>The CICE User’s Guide is intended for users interested in making
+modifications to the ice model scripts or namelists within the CESM.
+Users interested in modifying the source code or using the standalone
+version should see the CICE Code Reference/Developer’s Guide
+[cice15].</p>
+<p>CICE5.1.2 is the latest version of the Los Alamos Sea Ice Model,
+sometimes referred to as the Community Ice CodE [cice15]. It is
+the result of a community effort to develop a portable, efficient sea
+ice model that can be run coupled in a global climate model or
+uncoupled as a stand-alone ice model. It has been released as the sea
+ice component of the Community Earth System Model (CESM), a
+fully-coupled global climate model that provides simulations of the
+earths past, present and future climate states. CICE5 is supported on
+high- and low-resolution Greenland Pole and tripole grids, which are
+identical to those used by the Parallel Ocean Program (POP) ocean
+model. The high resolution version is best suited for simulating
+present-day and future climate scenarios while the low resolution
+option is used for paleoclimate simulations and debugging. An
+uncoupled version of CICE is available separately from Los Alamos
+National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
+<p>The standalone CICE provides a means of running the sea ice model
+independent of the other CESM components. It can read in atmospheric
+and ocean forcing, which eliminates the need for the flux coupler, and
+the atmosphere, land and ocean data models. It can be run on a reduced
+number of processors, or without MPI (Message Passing Interface) for
+researchers without access to these computer resources.</p>
 <p>The physics in the uncoupled ice model are identical to those in the
 ice model used in the fully coupled system.  CICE is a
 dynamic-thermodynamic model that includes a subgrid-scale ice
 thickness distribution ([cice15]). It uses the energy conserving
-thermodynamics of [turner15], has multiple layers in each thickness category,
-and accounts for the influences of brine pockets within the ice
-cover. The ice dynamics utilizes the elastic-viscous-plastic (EVP)
-rheology of. Sea ice ridging follows and. A slab ocean mixed layer
-model is included. A Scientific Reference Guide [cice15] is available that contains
-more detailed information on the model physics.</p>
+thermodynamics of [turner15] or [bitz01], has multiple
+layers in each thickness category, and accounts for the influences of
+brine pockets within the ice cover. The ice dynamics utilizes the
+elastic-viscous-plastic (EVP) rheology of [hunk97]. Sea ice
+ridging has the options of [roth75b] and [thor75] or the
+newer ridging scheme of [lipscomb07].  A slab ocean
+mixed layer model is included.  A Scientific Reference Guide
+[cice15] is available that contains more detailed information on
+the model physics.</p>
 <p>An attempt has been made throughout this document to provide the
 following text convention. Variable names used in the code are
-typewritten. Subroutine names are given in <em>italic</em>, and file names
-are in <strong>boldface</strong>.</p>
+<code class="docutils literal"><span class="pre">typewritten</span></code>. Subroutine are given in <em>italic</em>,
+and file and directory names are in <strong>boldface</strong>.</p>
 <div class="section" id="whats-new-in-cice5">
 <h2>1.1. What’s new in CICE5?<a class="headerlink" href="#whats-new-in-cice5" title="Permalink to this headline">¶</a></h2>
 <p>CICE5 is very similar in code structure to the previous version CICE4
@@ -148,8 +154,8 @@ and was released in March of 2015. CICE4 was an upgraded version of
 the Community Sea Ice Model, CSIM5, which was based on CICE3.
 The major changes are:</p>
 <ul class="simple">
-<li>The new mushy-layer thermodynamics (ktherm = 2) is the default [turner15].</li>
-<li>The new level melt pond scheme (tr_lvl = .true.) is the default [hunke13].</li>
+<li>The new mushy-layer thermodynamics (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is the default [turner15].</li>
+<li>The new level melt pond scheme (<code class="docutils literal"><span class="pre">tr_lvl</span> <span class="pre">=</span> <span class="pre">.true.</span></code>) is the default [hunke13].</li>
 <li>The default number of ice layers is now 8, where it used to be 4.</li>
 <li>The default number of snow layers is now 3, where it used to be 1.</li>
 <li>The freezing point at the sea ice-ocean interface is now salinity dependent following [assur58].</li>

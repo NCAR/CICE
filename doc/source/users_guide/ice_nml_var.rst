@@ -5,7 +5,7 @@
 **********************
 
 CICE uses the same namelists for both the coupled and uncoupled models.
-This section describes the namelist variables in the namelist ice\_nml,
+This section describes the namelist variables in the namelists,
 which determine time management, output frequency, model physics, and
 filenames The ice namelists for the coupled model are now located in
 **$CASE/CaseDocs**.
@@ -30,8 +30,9 @@ While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
 CESM. For a full list of namelist variables, you should consult the CICE
 Reference Guide :cite:`cice15`. 
-Variables set by the driver include: dt, runid, runtype, istep0,
-days\_per\_year, restart and dumpfreq. These should be changed in the
+
+Variables set by the driver include: ``dt``, ``runid``, ``runtype``, ``istep0``,
+``days_per_year``, ``restart`` and ``dumpfreq``. These should be changed in the
 CESM configuration files.
 
 .. _setupnml:
@@ -83,7 +84,7 @@ CESM configuration files.
 Changing the timestep
 ---------------------
 
-dt is the timestep in seconds for the ice model thermodynamics. The
+``dt`` is the timestep in seconds for the ice model thermodynamics. The
 thermodynamics component is stable but not necessarily accurate for any
 value of the timestep. The value chosen for dt depends on the stability
 of the transport and the grid resolution. A conservative estimate of dt
@@ -94,7 +95,7 @@ for the transport using the upwind advection scheme is:
 Maximum values for dt for the two standard CESM POP grids, assuming
 :math:`max(u,v) = 0.5\ m/s`, are shown in :ref:`timestep`.
 The default timestep for CICE is 30 minutes for gx1, 
-which must be equal to the coupling interval (**ICE_NCPL** and **ATM_NCPL**) 
+which must be equal to the coupling interval (``NCPL_ICE`` and ``NCPL_ATM``) 
 set in the CESM configuration files **env\_run.xml**.
 
 .. _timestep:
@@ -122,44 +123,44 @@ The namelist variables that control the frequency of the model
 diagnostics, netCDF history, and restart files are shown in
 :ref:`setupnml`. By default, diagnostics are written out once
 every 48 timesteps to the ascii file **ice.log.$LID** (see section
-[stdout]). $LID is a time stamp that is set in the main script.
+:ref:`standard-output`). $LID is a time stamp that is set in the main script.
 
 The namelist variable histfreq controls the output frequency of the
 netCDF history files; writing monthly averages is the default. The
-content of the history files is described in section [history]. The
-value of hist\_avg determines if instantaneous or averaged variables are
-written at the frequency set by histfreq. If histfreq is set to ’1’ for
-instantaneous output, hist\_avg is set to .false. within the source code
+content of the history files is described in section :ref:`history-files`. The
+value of ``hist_avg`` determines if instantaneous or averaged variables are
+written at the frequency set by ``histfreq``. If ``histfreq`` is set to ``1`` for
+instantaneous output, ``hist_avg`` is set to ``.false.`` within the source code
 to avoid conflicts. The latest version of CICE allows for multiple
 history streams, currently set to a maximum of 5. The namelist
-variables, histfreq and histfreq\_n are now arrays which allow for
+variables, ``histfreq`` and ``histfreq_n`` are now arrays which allow for
 different frequency history file sets. More detail on this is available
-in [history].
+in :ref:`history-files`.
 
-The namelist variable pointer\_file is set to the name of the pointer
+The namelist variable ``pointer_file`` is set to the name of the pointer
 file containing the restart file name that will be read when model
 execution begins. The pointer file resides in the scripts directory and
 is created initially by the ice setup script but is overwritten every
 time a new restart file is created. It will contain the name of the
-latest restart file. The default filename *ice.restart\_file* shown in
+latest restart file. The default filename **ice.restart\_file** shown in
 :ref:`setupnml` will not work unless some modifications
 are made to the ice setup script and a file is created with this name
 and contains the name of a valid restart file; this variable must be set
 in the namelist. More information on restart pointer files can be found
 in Section .
 
-The variables dumpfreq and dumpfreq\_n control the output frequency of
+The variables ``dumpfreq`` and ``dumpfreq_n`` control the output frequency of
 the netCDF restart files; writing one restart file per year is the
 default and is set by the CESM driver. The default format for restart
 files is now netCDF, but this can be changed to binary through the
-namelist variable, restart\_format.
+namelist variable, ``restart_format``.
 
-If print\_points is .true., diagnostic data is printed out for two grid
+If ``print_points`` is ``.true.``, diagnostic data is printed out for two grid
 points, one near the north pole and one near the Weddell Sea. The points
-are set via namelist variables latpnt and lonpnt. This option can be
+are set via namelist variables ``latpnt`` and ``lonpnt``. This option can be
 helpful for debugging.
 
-incond\_dir, restart\_dir and history\_dir are the directories where the
+``incond_dir``, ``restart_dir`` and ``history_dir`` are the directories where the
 initial condition file, the restart files and the history files will be
 written, respectively. These values are set at the top of the setup
 script and have been modified from the default values to meet the
@@ -168,7 +169,7 @@ output file to be written to a separate directory. If the default values
 are used, all of the output files will be written to the executable
 directory.
 
-incond\_file, dump\_file and history\_file are the root filenames for
+``incond_file``, ``dump_file`` and ``history_file`` are the root filenames for
 the initial condition file, the restart files and the history files,
 respectively. These strings have been determined by the requirements of
 the CESM filenaming convention, so the default values are set by the
@@ -182,9 +183,9 @@ Some of the most commonly used namelist variables for the ice model physics
 are listed in the following tables. More information can be found in the 
 CICE reference guide at:
 
-The calculation of the ice velocities is subcycled ndte times per
+The calculation of the ice velocities is subcycled ``ndte`` times per
 timestep so that the elastic waves are damped before the next timestep.
-The subcycling timestep is calculated as dte = dt/ndte and must be
+The subcycling timestep is calculated as :math:`dte = dt/ndte` and must be
 sufficiently smaller than the damping timescale T, which needs to be
 sufficiently shorter than dt.
 
@@ -192,10 +193,10 @@ sufficiently shorter than dt.
 
 This relationship is discussed in ; also see , section 4.4. The best
 ratio for [dte : T : dt] is [1 : 40 : 120]. Typical combinations of dt
-and ndte are (3600., 120), (7200., 240) (10800., 120). The default ndte
-is 120 as set in **ice\_init.F90**.
+and ndte are (3600., 120), (7200., 240) (10800., 120). The default ``ndte``
+is ``120`` as set in **ice\_init.F90**.
 
-kitd determines the scheme used to redistribute sea ice within the ice
+``kitd`` determines the scheme used to redistribute sea ice within the ice
 thickness distribution (ITD) as the ice grows and melts. The linear
 remapping scheme is the default and approximates the thickness
 distribution in each category as a linear function (). The delta
@@ -203,42 +204,42 @@ function method represents *g(h)* in each category as a delta function
 (). This method can leave some categories mostly empty at any given time
 and cause jumps in the properties of *g(h)*.
 
-kdyn determines the ice dynamics used in the model. The default is the
-elastic-viscous-plastic (EVP) dynamics . If kdyn is set to o 0, the ice
+``kdyn`` determines the ice dynamics used in the model. The default is the
+elastic-viscous-plastic (EVP) dynamics . If ``kdyn`` is set to ``0``, the ice
 dynamics is inactive. In this case, ice velocities are not computed and
 ice is not transported. Since the initial ice velocities are read in
 from the restart file, the maximum and minimum velocities written to the
 log file will be non-zero in this case, but they are not used in any
 calculations.
 
-The value of kstrength determines which formulation is used to calculate
+The value of ``kstrength`` determines which formulation is used to calculate
 the strength of the pack ice. The calculation depends on mean ice
 thickness and open water fraction. The calculation of is based on
 energetics and should not be used if the ice that participates in
 ridging is not well resolved.
 
-advection determines the horizontal transport scheme used. The default
+``advection`` determines the horizontal transport scheme used. The default
 scheme is the incremental remapping method (). This method is less
 diffusive and is computationally efficient for large numbers of
 categories or tracers. The upwind scheme is also available. The upwind
 scheme is only first order accurate.
 
-A new thermodynamics option (ktherm = 2) is now the default. This is the
-so-called mushy-layer thermodyanmics of Turner and Hunke 2015. The basic
+A new thermodynamics option (``ktherm = 2``) is now the default. This is the
+so-called mushy-layer thermodyanmics of :cite:`turner15`. The basic
 idea of this is that prognostic salinity is now used in the vertical
 thermodynamic calculation where this used to be a constant profile. The
-older option of Bitz and Lipscomb 1999 (ktherm = 1) is still available.
+older option of Bitz and Lipscomb 1999 (``ktherm = 1``) is still available.
 
 The base values of the snow and ice albedos for the CCSM3 shortwave
 option are set in the namelist. The ice albedos are those for ice
-thicker than ahmax, which is currently set at 0.5 m. This thickness is a
+thicker than ``ahmax``, which is currently set at 0.5 m. This thickness is a
 parameter that can be changed in **ice\_shortwave.F90**. The snow
 albedos are for cold snow.
 
-For the new delta-Eddington shortwave radiative transfer scheme , the
+For the newer delta-Eddington shortwave radiative transfer scheme , the
 base albedos are computed based on the inherent optical properties of
 snow, sea ice, and melt ponds. These albedos are tunable through
-adjustments to the snow grain radius, R\_snw, temperature to transition
+adjustments to the snow grain radius, ``R_snw``, temperature to transition
 to melting snow, and maximum snow grain radius.
 
 .. _dynamics:
@@ -289,7 +290,7 @@ Tracer Namelist
 
 The namelist parameters listed in :ref:`tracers` are
 for adding tracers. The tracers should be added through the CESM
-driver scripts via the CICE\_CONFIG\_OPTS variable.
+driver scripts via the ``CICE_CONFIG_OPTS`` variable.
 
 .. _tracers:
 
@@ -331,11 +332,11 @@ Grid Namelist
 
 The namelist parameters listed in :ref:`grid` are for
 grid and mask information. During execution, the ice model reads grid
-and land mask information from the files grid\_file and kmt\_file that
+and land mask information from the files ``grid_file`` and ``kmt_file`` that
 should be located in the executable directory. There are commands in the
 scripts that copy these files from the input data directory, rename them
 from **global\_$ICE\_GRID.grid** and **global\_$ICE\_GRID.kmt** to the
-default filenames shown in Table .
+default filenames shown in :ref:`grid`.
 
 .. _grid:
 
@@ -360,8 +361,8 @@ Domain Namelist
 
 The namelist parameters listed in :ref:`domain` are
 for computational domain decomposition information. These are generally
-set in the build configure scripts through the variables CICE\_DECOMPTYPE and CICE\_DECOMSETTING
-based on the number of processors.
+set in the build configure scripts through the variables ``CICE_DECOMPTYPE`` 
+and ``CICE_DECOMPSETTING`` based on the number of processors.
 See the CESM scripts documentation.
 
 .. _domain:

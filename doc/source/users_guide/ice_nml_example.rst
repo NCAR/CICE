@@ -163,7 +163,7 @@ Example 2: History File Namelist
 -------------------------------------
 
 The next sets of namelists control what variables are written to the history
-file. Variables that are not output are set in the namelists icefields\*\_nml. 
+file. Variables that are not output are set in the namelists ``icefields*_nml``. 
 Some of the following fields are not written to the history file since they can be
 retrieved from the ocean history files. The melt and freeze onset fields
 are not used, since the information they contain may not be correct if

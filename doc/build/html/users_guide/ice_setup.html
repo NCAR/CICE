@@ -147,7 +147,7 @@ described in section <a class="reference internal" href="ice_nml_var.html#nameli
 <p>The <strong>cime_config/build_cpp</strong> script sets all compile time parameters, such
 as the horizontal grid, the sea ice mode (prognostic or prescribed),
 tracers, etc. However, to change the CPP variables, one needs to add these to
-the <strong>CICE_CONFIG_OPTS</strong> variable in the env_build.xml file. Additional options
+the <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code> variable in the <strong>env_build.xml</strong> file. Additional options
 can be set here, such as the decomposition and the number of tasks.</p>
 </div>
 <div class="section" id="cice-preprocessor-flags">
@@ -162,43 +162,50 @@ information on these. The flags specific to the ice model are:</p>
 -DBLCKX=$() -DBLCKY=$() -DMXBLCKS=$()
 </pre></div>
 </div>
-<p>The options -DCESMCOUPLED and -Dcoupled are set to activate the coupling
+<p>The options <code class="docutils literal"><span class="pre">-DCESMCOUPLED</span></code> and <code class="docutils literal"><span class="pre">-Dcoupled</span></code> are set to activate the coupling
 interface. This will include the source code in <strong>ice_comp_mct.F90</strong>,
 for example. In coupled runs, the CESM coupler multiplies the fluxes by
 the ice area, so they are divided by the ice area in CICE to get the
 correct fluxes. Note that the <strong>ice_forcing.F90</strong> module is not used in
 coupled runs.</p>
-<p>The options -DBLCKX=$(CICE_BLCKX) and -DBLCKY=$(CICE_BLCKY) set the
+<p>The options <code class="docutils literal"><span class="pre">-DBLCKX=$(CICE_BLCKX)</span></code> and <code class="docutils literal"><span class="pre">-DBLCKY=$(CICE_BLCKY)</span></code> set the
 block sizes used in each grid direction. These values are set
-automatically in the scripts for the coupled model. Note that BLCKX and
-BLCKY must divide evenly into the grid, and are used only for MPI grid
-decomposition. If BLCKX or BLCKY do not divide evenly into the grid,
+automatically in the scripts for the coupled model. Note that <code class="docutils literal"><span class="pre">CICE_BLCKX</span></code> and
+<code class="docutils literal"><span class="pre">CICE_BLCKY</span></code> must divide evenly into the grid, and are used only for MPI grid
+decomposition. If <code class="docutils literal"><span class="pre">CICE_BLCKX</span></code> or <code class="docutils literal"><span class="pre">CICE_BLCKY</span></code> do not divide evenly into the grid,
 which determines the number of blocks in each direction, the model setup
 will exit from the setup script and print an error message to the
 <strong>ice.bldlog</strong> (build log) file. To override these values, one must set
-the variable <strong>CICE_AUTO_DECOMP</strong> to &#8220;false&#8221; in <strong>env_build.xml</strong> and
-then the variables <strong>CICE_BLCKX</strong>, <strong>CICE_BLCKY</strong>, and <strong>CICE_MBLCKS</strong>
+the variable <code class="docutils literal"><span class="pre">CICE_AUTO_DECOMP</span></code> to <code class="docutils literal"><span class="pre">false</span></code> in <strong>env_build.xml</strong> and
+then the variables <code class="docutils literal"><span class="pre">CICE_BLCKX</span></code>, <code class="docutils literal"><span class="pre">CICE_BLCKY</span></code>, and <code class="docutils literal"><span class="pre">CICE_MBLCKS</span></code>
 can be set manually.</p>
-<p>The flag -DMXBLCKS is essentially the threading option. This controls
+<p>The flag <code class="docutils literal"><span class="pre">-DMXBLCKS</span></code> is essentially the threading option. This controls
 the number of “blocks” per processor. This can describe the number of
 OpenMP threads on an MPI task, or can simply be that a single MPI task
 handles a number of blocks. This is set automatically, but can be changed
 as described above.</p>
+<p>The number of categories <code class="docutils literal"><span class="pre">-DNICECAT</span></code> can be changed at build time. There is
+a separate discussion of this in <a class="reference internal" href="ice_change_ncat.html#ice-thickness-categories"><span class="std std-ref">CICE Thickness Categories</span></a>.</p>
 <p>The number of ice and snow layers are set at compile time via the CPP
-flags. They can technically be changed via the <strong>CICE_CONFIG_OPTS</strong>
-variable in env_build.xml, but it this is not recommended. We have provided
-an option to use the older CICE4 physics, inluding 4 ice levels and 1 snow level.</p>
-<p>The flag -DNTR_AERO=n flag turns on the aerosol deposition physics in
+flags. They can technically be changed via the <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>
+variable in <strong>env_build.xml</strong>, but it this is not recommended. We have provided
+an option to use the older CICE4 physics, inluding 4 ice levels and 1 snow level.
+This option also turns on <code class="docutils literal"><span class="pre">ktherm=1</span></code> and <code class="docutils literal"><span class="pre">tr_pond_cesm=.true.</span></code> To use the
+older CICE4 physics options, one should add/change <code class="docutils literal"><span class="pre">-phys</span> <span class="pre">cice4</span></code> in the XML variable
+<code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.</p>
+<p>The flag <code class="docutils literal"><span class="pre">-DNTR\_AERO=n</span></code> flag turns on the aerosol deposition physics in
 the sea ice where n is the number of tracer species and 0 turns off the
 tracers. More details on this are in the section on tracers. The default here
 is 3 and should only be changed when adding additional aerosol tracers. This can
-be turned off by setting <strong>CICE_CONFIG_OPTS</strong> to &#8220;-ntr_aero=0&#8221; in the
-env_build.xml file.</p>
-<p>The flag -DNTR_ISO=n flag turns on the isotopes and is not yet supported.</p>
-<p>The flags -DBGCLYR, -DTRBRI, and -DTRBGCS are for the skeletal biogeochemistry.
+be turned off by setting <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code> to <code class="docutils literal"><span class="pre">-ntr_aero=0</span></code> in the
+<strong>env_build.xml</strong> file.</p>
+<p>The flag <code class="docutils literal"><span class="pre">-DNTR\_ISO=n</span></code> flag turns on the isotopes and is not yet supported.</p>
+<p>The flags <code class="docutils literal"><span class="pre">-DBGCLYR</span></code>, <code class="docutils literal"><span class="pre">-DTRBRI</span></code>, and <code class="docutils literal"><span class="pre">-DTRBGCS</span></code> are for the skeletal biogeochemistry.
 These have not been tested within CESM and more information can be found in the CICE
 reference guide [cice15].</p>
-<p>The other tracer flags</p>
+<p>The other tracer flags, <code class="docutils literal"><span class="pre">-DTRAGE</span></code>, <code class="docutils literal"><span class="pre">-DTRFY</span></code>, <code class="docutils literal"><span class="pre">-DTRLVL</span></code>, <code class="docutils literal"><span class="pre">-DTRPND</span></code> are for the age, first-year ice,
+level ice, and melt pond tracers. These are either on or off using 1 or 0. By default, all are
+turned on. More information on these can be found in the CICE reference guide [cice15].</p>
 </div>
 </div>
 </div>

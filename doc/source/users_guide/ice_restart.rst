@@ -39,7 +39,7 @@ information to find a restart file from which initialization data is
 read. The pointer files are written to and then read from the executable
 directory. For startup runs, a pointer is created by the ice setup
 script Whenever a restart file is written, the existing restart pointer
-file is overwritten. The namelist variable pointer\_file contains the
+file is overwritten. The namelist variable ``pointer_file`` contains the
 name of the pointer file. Pointer files seldom need editing. The
 contents are usually maintained by the setup script and the component
 model.
