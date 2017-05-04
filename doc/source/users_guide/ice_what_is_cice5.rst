@@ -73,7 +73,7 @@ The major changes are:
 
 -  The new mushy-layer thermodynamics (``ktherm = 2``) is the default :cite:`turner15`.
 
--  The new level melt pond scheme (``tr_lvl = .true.``) is the default :cite:`hunke13`.
+-  The new level melt pond scheme (``tr_pond_lvl = .true.``) is the default :cite:`hunke13`.
 
 -  The default number of ice layers is now 8, where it used to be 4.
 
