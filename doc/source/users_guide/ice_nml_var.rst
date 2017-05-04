@@ -228,7 +228,7 @@ A new thermodynamics option (``ktherm = 2``) is now the default. This is the
 so-called mushy-layer thermodyanmics of :cite:`turner15`. The basic
 idea of this is that prognostic salinity is now used in the vertical
 thermodynamic calculation where this used to be a constant profile. The
-older option of Bitz and Lipscomb 1999 (``ktherm = 1``) is still available.
+older option of :cite:`bitz99`, (``ktherm = 1``) is still available.
 
 The base values of the snow and ice albedos for the CCSM3 shortwave
 option are set in the namelist. The ice albedos are those for ice
