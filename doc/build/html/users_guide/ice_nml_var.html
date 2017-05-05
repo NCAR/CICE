@@ -126,7 +126,7 @@ namelist is shown in Section <a class="reference internal" href="ice_nml_example
 While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
 CESM. For a full list of namelist variables, you should consult the CICE
-Reference Guide [cice15].</p>
+Reference Guide <a class="reference internal" href="ice_references.html#cice15" id="id1">[HLT+15]</a>.</p>
 <p>Variables set by the driver include: <code class="docutils literal"><span class="pre">dt</span></code>, <code class="docutils literal"><span class="pre">runid</span></code>, <code class="docutils literal"><span class="pre">runtype</span></code>, <code class="docutils literal"><span class="pre">istep0</span></code>,
 <code class="docutils literal"><span class="pre">days_per_year</span></code>, <code class="docutils literal"><span class="pre">restart</span></code> and <code class="docutils literal"><span class="pre">dumpfreq</span></code>. These should be changed in the
 CESM configuration files.</p>
@@ -409,10 +409,10 @@ diffusive and is computationally efficient for large numbers of
 categories or tracers. The upwind scheme is also available. The upwind
 scheme is only first order accurate.</p>
 <p>A new thermodynamics option (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is now the default. This is the
-so-called mushy-layer thermodyanmics of [turner15]. The basic
+so-called mushy-layer thermodyanmics of <a class="reference internal" href="ice_references.html#turner15" id="id2">[TH15]</a>. The basic
 idea of this is that prognostic salinity is now used in the vertical
 thermodynamic calculation where this used to be a constant profile. The
-older option of [bitz99], (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">1</span></code>) is still available.</p>
+older option of <a class="reference internal" href="ice_references.html#bitz99" id="id3">[BL99]</a>, (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">1</span></code>) is still available.</p>
 <p>The base values of the snow and ice albedos for the CCSM3 shortwave
 option are set in the namelist. The ice albedos are those for ice
 thicker than <code class="docutils literal"><span class="pre">ahmax</span></code>, which is currently set at 0.5 m. This thickness is a

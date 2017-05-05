@@ -87,3 +87,4 @@ versions, but the drivers are significantly different. If there are
 some topics that are not covered in the CICE documentation, users are
 encouraged to look at the CICE documentation. It is available at Los
 Alamos National Laboratory at: http://oceans11.lanl.gov/trac/CICE.
+

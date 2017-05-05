@@ -397,4 +397,3 @@ distribution consists of five ice categories.
     f_yieldstress12 = "xxxxx"
     f_yieldstress22 = "xxxxx"
   /
-
