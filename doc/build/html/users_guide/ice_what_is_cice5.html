@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. What is CICE5 &#8212; cicedoc  documentation</title>
+    <title>1. What is CICE5 &mdash; cicedoc  documentation</title>
     
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -18,8 +18,7 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
+        HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -27,8 +26,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="cicedoc  documentation" href="../index.html" />
+    <link rel="up" title="CICE User’s Guide" href="index.html" />
     <link rel="next" title="2. Configuring and Building CICE" href="ice_setup.html" />
     <link rel="prev" title="CICE User’s Guide" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -49,8 +48,8 @@
         <li class="right" >
           <a href="index.html" title="CICE User’s Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -72,15 +71,15 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/users_guide/ice_what_is_cice5.rst.txt"
+      <li><a href="../_sources/users_guide/ice_what_is_cice5.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -96,15 +95,14 @@
             
   <div class="section" id="what-is-cice5">
 <span id="overview"></span><h1>1. What is CICE5<a class="headerlink" href="#what-is-cice5" title="Permalink to this headline">¶</a></h1>
-<p>This User’s Guide accompanies the CESM2.0 User’s Guide, and is
+<p>This CICE User’s Guide accompanies the CESM2.0 User’s Guide, and is
 intended for those who would like to run CICE coupled, on a supported
 platform, and “out of the box”.  It includes a quick start guide for
 downloading the CESM2 source code and input datasets, and information
 on how to configure, build and run the model. The supported
 configurations and scripts for building the fully coupled model are
-also described in the CESM2 User’s Guide.</p>
-<p><a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2.0/">http://www.cesm.ucar.edu/models/cesm2.0/</a></p>
-<p>The CICE User’s Guide is intended for users interested in making
+also described in the CESM2 User’s Guide: <a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2.0/">http://www.cesm.ucar.edu/models/cesm2.0/</a> .
+The CICE User’s Guide is intended for users interested in making
 modifications to the ice model scripts or namelists within the CESM.
 Users interested in modifying the source code or using the standalone
 version should see the CICE Code Reference/Developer’s Guide
@@ -113,26 +111,24 @@ version should see the CICE Code Reference/Developer’s Guide
 sometimes referred to as the Community Ice CodE <a class="reference internal" href="ice_references.html#cice15" id="id2">[HLT+15]</a>. It is
 the result of a community effort to develop a portable, efficient sea
 ice model that can be run coupled in a global climate model or
-uncoupled as a stand-alone ice model. It has been released as the sea
+uncoupled as a standalone ice model. CICE5 has been released as the sea
 ice component of the Community Earth System Model (CESM), a
-fully-coupled global climate model that provides simulations of the
-earths past, present and future climate states. CICE5 is supported on
-high- and low-resolution Greenland Pole and tripole grids, which are
-identical to those used by the Parallel Ocean Program (POP) ocean
-model. The high resolution version is best suited for simulating
+fully-coupled global climate model that provides simulations of
+Earth&#8217;s past, present, and future climate states. CICE5 in the CESM is
+supported on high- and low-resolution Greenland Pole and tripole grids,
+which are identical to those used by the Parallel Ocean Program (POP)
+ocean model. The high resolution version is best suited for simulating
 present-day and future climate scenarios while the low resolution
-option is used for paleoclimate simulations and debugging. An
-uncoupled version of CICE is available separately from Los Alamos
-National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
-<p>The standalone CICE provides a means of running the sea ice model
+option is used for paleoclimate simulations and debugging.</p>
+<p>An uncoupled version of CICE is available separately from Los Alamos
+National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a> . This standalone
+CICE configuration provides a means of running the sea ice model
 independent of the other CESM components. It can read in atmospheric
 and ocean forcing, which eliminates the need for the flux coupler, and
 the atmosphere, land and ocean data models. It can be run on a reduced
 number of processors, or without MPI (Message Passing Interface) for
 researchers without access to these computer resources.</p>
-<p>The physics in the uncoupled ice model are identical to those in the
-ice model used in the fully coupled system.  CICE is a
-dynamic-thermodynamic model that includes a subgrid-scale ice
+<p>CICE is a dynamic-thermodynamic model that includes a subgrid-scale ice
 thickness distribution (<a class="reference internal" href="ice_references.html#cice15" id="id3">[HLT+15]</a>). It uses the energy conserving
 thermodynamics of <a class="reference internal" href="ice_references.html#turner15" id="id4">[TH15]</a> or [bitz01], has multiple
 layers in each thickness category, and accounts for the influences of
@@ -142,11 +138,12 @@ ridging has the options of [roth75b] and [thor75] or the
 newer ridging scheme of [lipscomb07].  A slab ocean
 mixed layer model is included.  A Scientific Reference Guide
 <a class="reference internal" href="ice_references.html#cice15" id="id10">[HLT+15]</a> is available that contains more detailed information on
-the model physics.</p>
-<p>An attempt has been made throughout this document to provide the
-following text convention. Variable names used in the code are
-<code class="docutils literal"><span class="pre">typewritten</span></code>. Subroutine are given in <em>italic</em>,
-and file and directory names are in <strong>boldface</strong>.</p>
+the model physics. The physics available in the uncoupled ice model
+are identical to those in the ice model used in the fully coupled system.</p>
+<p>This document uses the following text conventions:
+Variable names used in the code are <code class="docutils literal"><span class="pre">typewritten</span></code>.
+Subroutine are given in <em>italic</em>.
+File and directory names are in <strong>boldface</strong>.</p>
 <div class="section" id="whats-new-in-cice5">
 <h2>1.1. What’s new in CICE5?<a class="headerlink" href="#whats-new-in-cice5" title="Permalink to this headline">¶</a></h2>
 <p>CICE5 is very similar in code structure to the previous version CICE4
@@ -156,16 +153,16 @@ The major changes are:</p>
 <ul class="simple">
 <li>The new mushy-layer thermodynamics (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is the default <a class="reference internal" href="ice_references.html#turner15" id="id11">[TH15]</a>.</li>
 <li>The new level melt pond scheme (<code class="docutils literal"><span class="pre">tr_pond_lvl</span> <span class="pre">=</span> <span class="pre">.true.</span></code>) is the default [hunke13].</li>
-<li>The default number of ice layers is now 8, where it used to be 4.</li>
-<li>The default number of snow layers is now 3, where it used to be 1.</li>
+<li>The default number of ice layers is now 8 (previously 4).</li>
+<li>The default number of snow layers is now 3 (previously 3).</li>
 <li>The freezing point at the sea ice-ocean interface is now salinity dependent following [assur58].</li>
 </ul>
-<p>The CICE source code is based on the Los Alamos sea ice model CICE
-model version 5. The main source code is very similar in both
-versions, but the drivers are significantly different. If there are
-some topics that are not covered in the CICE documentation, users are
-encouraged to look at the CICE documentation. It is available at Los
-Alamos National Laboratory at: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
+<p>The CICE source code used in the CESM is based on the Los Alamos sea
+ice model CICE model version 5. The main source code is very similar
+in both versions, but the drivers are significantly different. If there
+are topics that are not covered in this CICE documentation, users are
+encouraged to look at the CICE documentation available at:
+<a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a>.</p>
 </div>
 </div>
 
@@ -187,13 +184,13 @@ Alamos National Laboratory at: <a class="reference external" href="http://oceans
         <li class="right" >
           <a href="index.html" title="CICE User’s Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, David Bailey.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+        &copy; Copyright 2017, David Bailey and Alice DuVivier.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
     </div>
   </body>
 </html>
