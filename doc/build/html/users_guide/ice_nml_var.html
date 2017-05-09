@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. CICE Namelists &mdash; cicedoc  documentation</title>
+    <title>3. CICE Namelists &#8212; cicedoc  documentation</title>
     
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -18,7 +18,8 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
-    <link rel="top" title="cicedoc  documentation" href="../index.html" />
-    <link rel="up" title="CICE User’s Guide" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. CICE Namelist Examples" href="ice_nml_example.html" />
     <link rel="prev" title="2. Configuring and Building CICE" href="ice_setup.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -48,8 +49,8 @@
         <li class="right" >
           <a href="ice_setup.html" title="2. Configuring and Building CICE"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -78,15 +79,15 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/users_guide/ice_nml_var.txt"
+      <li><a href="../_sources/users_guide/ice_nml_var.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -121,14 +122,152 @@ are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
 namelist is shown in Section <a class="reference internal" href="ice_nml_example.html#cice-namelist-examples"><span class="std std-ref">CICE Namelist Examples</span></a>.</p>
-<p>The main run management namelist options are shown in <span class="xref std std-ref">setupnml</span>.
+<p>The main run management namelist options are shown in <a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>.
 While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
 CESM. For a full list of namelist variables, you should consult the CICE
-Reference Guide <a class="reference internal" href="ice_references.html#cice15" id="id1">[HLT+15]</a>.</p>
+Reference Guide <a class="reference internal" href="zreferences.html#cice15" id="id1">[6]</a>.</p>
 <p>Variables set by the driver include: <code class="docutils literal"><span class="pre">dt</span></code>, <code class="docutils literal"><span class="pre">runid</span></code>, <code class="docutils literal"><span class="pre">runtype</span></code>, <code class="docutils literal"><span class="pre">istep0</span></code>,
 <code class="docutils literal"><span class="pre">days_per_year</span></code>, <code class="docutils literal"><span class="pre">restart</span></code> and <code class="docutils literal"><span class="pre">dumpfreq</span></code>. These should be changed in the
 CESM configuration files.</p>
+<table border="1" class="colwidths-given docutils" id="id4">
+<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>bfbflag</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Require bit-for-bit global sums.</td>
+</tr>
+<tr class="row-odd"><td>days_per_year</td>
+<td>integer</td>
+<td>365</td>
+<td>Standard number of days per year for calendar. Does interact
+with Gregorian calendar setting (set by driver).</td>
+</tr>
+<tr class="row-even"><td>diagfreq</td>
+<td>integer</td>
+<td>24</td>
+<td>Frequency of diagnostics written
+(min, max, hemispheric sums) to standard output
+24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps
+1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep
+0 =<span class="math">\(&gt;\)</span> no diagnostics written</td>
+</tr>
+<tr class="row-odd"><td>dumpfreq</td>
+<td>character</td>
+<td>&#8216;x&#8217;</td>
+<td>Unit for frequency of dump files. Currently set by driver.</td>
+</tr>
+<tr class="row-even"><td>dumpfreq_n</td>
+<td>integer</td>
+<td>1</td>
+<td>Frequency of dumpfreq dump files. Set by driver.</td>
+</tr>
+<tr class="row-odd"><td>hist_avg</td>
+<td>logical</td>
+<td>.true.</td>
+<td>If true, averaged history information
+is written out at a frequency determined by histfreq.
+If false, instantaneous values are written in all streams.</td>
+</tr>
+<tr class="row-even"><td>histfreq</td>
+<td>char array</td>
+<td>’m’,’x’,’x’,’x’,’x’</td>
+<td>Unit for frequency of output written to history streams
+’D’ or ’d’ writes daily data
+’H’ or ’h’ writes hourly data
+’M’ or ’m’ writes monthly data
+’Y’ or ’y’ writes yearly data
+’1’ writes every timestep
+’x’ no history data is written</td>
+</tr>
+<tr class="row-odd"><td>histfreq</td>
+<td>integer</td>
+<td>1,1,1,1,1</td>
+<td>Frequency of histfreq history data is written to each stream.</td>
+</tr>
+<tr class="row-even"><td>history_file</td>
+<td>character</td>
+<td>&#8216;unknown&#8217;</td>
+<td>History file prefix. Set by driver.</td>
+</tr>
+<tr class="row-odd"><td>ice_ic</td>
+<td>character</td>
+<td>default</td>
+<td>Filename for initial and branch runs. Set by driver scripts.
+’default’ uses default initialization
+’none’ initializes with no ice</td>
+</tr>
+<tr class="row-even"><td>latpnt</td>
+<td>float arr</td>
+<td>90.0, -65.0</td>
+<td>Latitudes for diagnostic points (print_points)</td>
+</tr>
+<tr class="row-odd"><td>lonpnt</td>
+<td>float arr</td>
+<td>0.0, -45.0</td>
+<td>Longitudes for diagnostic points (print_points)</td>
+</tr>
+<tr class="row-even"><td>lcdf64</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Use 64-bit offset in netcdf files</td>
+</tr>
+<tr class="row-odd"><td>ndtd</td>
+<td>integer</td>
+<td>1</td>
+<td>Number of dynamic timesteps per thermodynamic timestep.</td>
+</tr>
+<tr class="row-even"><td>pointer_file</td>
+<td>character</td>
+<td>’rpointer.ice’</td>
+<td>Pointer file that contains the name of the restart file.</td>
+</tr>
+<tr class="row-odd"><td>print_global</td>
+<td>logical</td>
+<td>.true.</td>
+<td>Print global diagnostics.</td>
+</tr>
+<tr class="row-even"><td>print_points</td>
+<td>logical</td>
+<td>.true.</td>
+<td>Print diagnostics at latpnt and lonpnt.</td>
+</tr>
+<tr class="row-odd"><td>restart_ext</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Write ghost cells as a part of restarts.</td>
+</tr>
+<tr class="row-even"><td>restart_file</td>
+<td>character</td>
+<td>none</td>
+<td>Restart file prefix. Set by driver.</td>
+</tr>
+<tr class="row-odd"><td>use_leap_years</td>
+<td>logical</td>
+<td>.false.</td>
+<td>Calendar set by driver. Do not use.</td>
+</tr>
+<tr class="row-even"><td>year_init</td>
+<td>integer</td>
+<td>1</td>
+<td>Used in leap year calculation. Do not change.</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="changing-the-timestep">
 <h2>3.1. Changing the timestep<a class="headerlink" href="#changing-the-timestep" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">dt</span></code> is the timestep in seconds for the ice model thermodynamics. The
@@ -143,8 +282,8 @@ for the transport using the upwind advection scheme is:</p>
 The default timestep for CICE is 30 minutes for gx1,
 which must be equal to the coupling interval (<code class="docutils literal"><span class="pre">NCPL_ICE</span></code> and <code class="docutils literal"><span class="pre">NCPL_ATM</span></code>)
 set in the CESM configuration files <strong>env_run.xml</strong>.</p>
-<table border="1" class="docutils" id="id4">
-<span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id5">
+<span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="60%" />
@@ -180,7 +319,7 @@ user when the model integrates past that point.</p>
 <h2>3.2. Writing Output<a class="headerlink" href="#writing-output" title="Permalink to this headline">¶</a></h2>
 <p>The namelist variables that control the frequency of the model
 diagnostics, netCDF history, and restart files are shown in
-<span class="xref std std-ref">setupnml</span>. By default, diagnostics are written out once
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>. By default, diagnostics are written out once
 every 48 timesteps to the ascii file <strong>ice.log.$LID</strong> (see section
 <a class="reference internal" href="ice_stdout.html#standard-output"><span class="std std-ref">Stdout Output</span></a>). $LID is a time stamp that is set in the main script.</p>
 <p>The namelist variable histfreq controls the output frequency of the
@@ -200,7 +339,7 @@ execution begins. The pointer file resides in the scripts directory and
 is created initially by the ice setup script but is overwritten every
 time a new restart file is created. It will contain the name of the
 latest restart file. The default filename <strong>ice.restart_file</strong> shown in
-<span class="xref std std-ref">setupnml</span> will not work unless some modifications
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a> will not work unless some modifications
 are made to the ice setup script and a file is created with this name
 and contains the name of a valid restart file; this variable must be set
 in the namelist. More information on restart pointer files can be found
@@ -270,10 +409,10 @@ diffusive and is computationally efficient for large numbers of
 categories or tracers. The upwind scheme is also available. The upwind
 scheme is only first order accurate.</p>
 <p>A new thermodynamics option (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is now the default. This is the
-so-called mushy-layer thermodyanmics of <a class="reference internal" href="ice_references.html#turner15" id="id2">[TH15]</a>. The basic
+so-called mushy-layer thermodyanmics of <a class="reference internal" href="zreferences.html#turner15" id="id2">[10]</a>. The basic
 idea of this is that prognostic salinity is now used in the vertical
 thermodynamic calculation where this used to be a constant profile. The
-older option of <a class="reference internal" href="ice_references.html#bitz99" id="id3">[BL99]</a>, (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">1</span></code>) is still available.</p>
+older option of <a class="reference internal" href="zreferences.html#bitz99" id="id3">[3]</a>, (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">1</span></code>) is still available.</p>
 <p>The base values of the snow and ice albedos for the CCSM3 shortwave
 option are set in the namelist. The ice albedos are those for ice
 thicker than <code class="docutils literal"><span class="pre">ahmax</span></code>, which is currently set at 0.5 m. This thickness is a
@@ -284,8 +423,8 @@ base albedos are computed based on the inherent optical properties of
 snow, sea ice, and melt ponds. These albedos are tunable through
 adjustments to the snow grain radius, <code class="docutils literal"><span class="pre">R_snw</span></code>, temperature to transition
 to melting snow, and maximum snow grain radius.</p>
-<table border="1" class="docutils" id="id5">
-<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id6">
+<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -347,8 +486,8 @@ to melting snow, and maximum snow grain radius.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils" id="id6">
-<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id7">
+<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -380,8 +519,8 @@ to melting snow, and maximum snow grain radius.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils" id="id7">
-<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id8">
+<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="16%" />
 <col width="9%" />
@@ -487,8 +626,8 @@ to melting snow, and maximum snow grain radius.</p>
 <p>The namelist parameters listed in <a class="reference internal" href="#tracers"><span class="std std-ref">Table 6: Tracer Namelist</span></a> are
 for adding tracers. The tracers should be added through the CESM
 driver scripts via the <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code> variable.</p>
-<table border="1" class="docutils" id="id8">
-<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id9">
+<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -545,8 +684,8 @@ driver scripts via the <code class="docutils literal"><span class="pre">CICE_CON
 <h2>3.5. Prescribed Ice Namelist<a class="headerlink" href="#prescribed-ice-namelist" title="Permalink to this headline">¶</a></h2>
 <p>The namelist parameters listed in <a class="reference internal" href="#prescribed"><span class="std std-ref">Table 7: Prescribed Ice Namelist</span></a> are for the prescribed ice
 option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
-<table border="1" class="docutils" id="id9">
-<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id10">
+<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -613,8 +752,8 @@ should be located in the executable directory. There are commands in the
 scripts that copy these files from the input data directory, rename them
 from <strong>global_$ICE_GRID.grid</strong> and <strong>global_$ICE_GRID.kmt</strong> to the
 default filenames shown in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Settings Namelist</span></a>.</p>
-<table border="1" class="docutils" id="id10">
-<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id11">
+<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -634,19 +773,19 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 <td>displaced_pole</td>
 <td>Determines grid type.</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>displaced_pole</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>tripole</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>rectangular</td>
 </tr>
 <tr class="row-even"><td>grid_format</td>
@@ -681,8 +820,8 @@ for computational domain decomposition information. These are generally
 set in the build configure scripts through the variables <code class="docutils literal"><span class="pre">CICE_DECOMPTYPE</span></code>
 and <code class="docutils literal"><span class="pre">CICE_DECOMPSETTING</span></code> based on the number of processors.
 See the CESM scripts documentation.</p>
-<table border="1" class="docutils" id="id11">
-<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id12">
+<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -702,29 +841,29 @@ See the CESM scripts documentation.</p>
 <td>square-pop</td>
 <td>Approximate block shapes</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>slenderX1</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>slenderX2</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>square-ice</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>square-pop</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>blocks</td>
 </tr>
 <tr class="row-even"><td>distribution_type</td>
@@ -732,34 +871,34 @@ See the CESM scripts documentation.</p>
 <td>cartesian</td>
 <td>How domain is split into blocks and distributed onto processors</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>cartesian</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>rake</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>roundrobin</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>sectcart</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>sectrobin</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>spacecurve</td>
 </tr>
 <tr class="row-odd"><td>distribution_wght</td>
@@ -767,24 +906,24 @@ See the CESM scripts documentation.</p>
 <td>erfc</td>
 <td>How blocks are weighted when using space-filling curves</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>block</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>latitude</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>erfc</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 <td>file</td>
 </tr>
 <tr class="row-even"><td>distribution_wght_file</td>
@@ -829,13 +968,13 @@ See the CESM scripts documentation.</p>
         <li class="right" >
           <a href="ice_setup.html" title="2. Configuring and Building CICE"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, David Bailey and Alice DuVivier.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+        &#169; Copyright 2017, David Bailey and Alice DuVivier.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

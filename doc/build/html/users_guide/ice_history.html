@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. CICE History Files &mdash; cicedoc  documentation</title>
+    <title>8. CICE History Files &#8212; cicedoc  documentation</title>
     
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -18,7 +18,8 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
-    <link rel="top" title="cicedoc  documentation" href="../index.html" />
-    <link rel="up" title="CICE User’s Guide" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. CICE Restart Files" href="ice_restart.html" />
     <link rel="prev" title="7. CICE Output" href="ice_output_files.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -48,8 +49,8 @@
         <li class="right" >
           <a href="ice_output_files.html" title="7. CICE Output"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -73,15 +74,15 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/users_guide/ice_history.txt"
+      <li><a href="../_sources/users_guide/ice_history.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -121,12 +122,100 @@ directory. Changes to the frequency and averaging will affect all output
 fields. The best description of the history data comes from the file
 itself using the netCDF command <code class="docutils literal"><span class="pre">ncdump</span> <span class="pre">-h</span> <span class="pre">filename.nc</span></code>. Variables
 containing grid information are written to every file and are listed in
-<span class="xref std std-ref">gridhist</span>. In addition to the
+<a class="reference internal" href="#gridhist"><span class="std std-ref">Table 10: Grid History Variables</span></a>. In addition to the
 history files, a netCDF file containing a snapshot of the initial ice
 state can be created at the start of each run by setting the namelist
 variable <code class="docutils literal"><span class="pre">write_ic=.true.</span></code> The file name is
 <strong>$CASE.cice.i.yyyy-mm-dd-sssss.nc</strong> and is written in the executable
 directory.</p>
+<table border="1" class="colwidths-auto docutils" id="id1">
+<span id="gridhist"></span><caption><span class="caption-text">Table 10: Grid History Variables</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="14%" />
+<col width="68%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Units</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>time</td>
+<td>model time</td>
+<td>days</td>
+</tr>
+<tr class="row-odd"><td>time_bounds</td>
+<td>boundaries for time-averaging interval</td>
+<td>days</td>
+</tr>
+<tr class="row-even"><td>TLON</td>
+<td>T grid center longitude</td>
+<td>degrees</td>
+</tr>
+<tr class="row-odd"><td>TLAT</td>
+<td>T grid center latitude</td>
+<td>degrees</td>
+</tr>
+<tr class="row-even"><td>ULON</td>
+<td>U grid center longitude</td>
+<td>degrees</td>
+</tr>
+<tr class="row-odd"><td>ULAT</td>
+<td>U grid center latitude</td>
+<td>degrees</td>
+</tr>
+<tr class="row-even"><td>tmask</td>
+<td>ocean grid mask (0=land, 1=ocean)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>tarea</td>
+<td>T grid cell area</td>
+<td>m<span class="math">\(^{2}\)</span></td>
+</tr>
+<tr class="row-even"><td>uarea</td>
+<td>U grid cell area</td>
+<td>m<span class="math">\(^{2}\)</span></td>
+</tr>
+<tr class="row-odd"><td>dxt</td>
+<td>T cell width through middle</td>
+<td>m</td>
+</tr>
+<tr class="row-even"><td>dyt</td>
+<td>T cell height through middle</td>
+<td>m</td>
+</tr>
+<tr class="row-odd"><td>dxu</td>
+<td>U cell width through middle</td>
+<td>m</td>
+</tr>
+<tr class="row-even"><td>dyu</td>
+<td>U cell height through middle</td>
+<td>m</td>
+</tr>
+<tr class="row-odd"><td>HTN</td>
+<td>T cell width North side</td>
+<td>m</td>
+</tr>
+<tr class="row-even"><td>HTE</td>
+<td>T cell width East side</td>
+<td>m</td>
+</tr>
+<tr class="row-odd"><td>ANGLET</td>
+<td>angle grid makes with latitude line on T grid</td>
+<td>radians</td>
+</tr>
+<tr class="row-even"><td>ANGLE</td>
+<td>angle grid makes with latitude line on U grid</td>
+<td>radians</td>
+</tr>
+<tr class="row-odd"><td>ice_present</td>
+<td>fraction of time-averaging interval that any ice is present</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="caveats-regarding-averaged-fields">
 <h2>8.1. Caveats Regarding Averaged Fields<a class="headerlink" href="#caveats-regarding-averaged-fields" title="Permalink to this headline">¶</a></h2>
 <p>In computing the monthly averages for output to the history files, most
@@ -185,7 +274,7 @@ the namelist variable histfreq. Data averaging is invoked by the
 namelist variable <code class="docutils literal"><span class="pre">hist_avg</span></code>. The averages are constructed by
 accumulating the running sums of all variables in memory at each
 timestep. The options for both of these variables are described in
-<span class="xref std std-ref">setupnml</span>. If <code class="docutils literal"><span class="pre">hist_avg</span></code> is true, and <code class="docutils literal"><span class="pre">histfreq</span></code> is set to
+<a class="reference internal" href="ice_nml_var.html#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>. If <code class="docutils literal"><span class="pre">hist_avg</span></code> is true, and <code class="docutils literal"><span class="pre">histfreq</span></code> is set to
 monthly, for example, monthly averaged data is written out on the last
 day of the month.</p>
 </div>
@@ -205,8 +294,8 @@ history file, add</p>
 </div>
 <p>to the namelist. An incomplete list of history variables is available in
 <a class="reference internal" href="#history"><span class="std std-ref">Table 11: History Variables</span></a>.</p>
-<table border="1" class="docutils" id="id1">
-<span id="history"></span><caption><span class="caption-text">Table 11: History Variables</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<table border="1" class="colwidths-given docutils" id="id2">
+<span id="history"></span><caption><span class="caption-text">Table 11: History Variables</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="60%" />
@@ -469,11 +558,11 @@ history file, add</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_sig1</span></code></td>
 <td>normalized principal stress component</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_sig2</span></code></td>
 <td>normalized principal stress component</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_daidtt</span></code></td>
 <td>area tendency due to thermodynamics</td>
@@ -493,11 +582,11 @@ history file, add</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_mlt_onset</span></code></td>
 <td>melt onset date</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_frz_onset</span></code></td>
 <td>freeze onset date</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -522,13 +611,13 @@ history file, add</p>
         <li class="right" >
           <a href="ice_output_files.html" title="7. CICE Output"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, David Bailey and Alice DuVivier.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+        &#169; Copyright 2017, David Bailey and Alice DuVivier.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>

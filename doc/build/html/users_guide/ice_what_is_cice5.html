@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. What is CICE5 &mdash; cicedoc  documentation</title>
+    <title>1. What is CICE5 &#8212; cicedoc  documentation</title>
     
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -18,7 +18,8 @@
         VERSION:     '',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
-    <link rel="top" title="cicedoc  documentation" href="../index.html" />
-    <link rel="up" title="CICE User’s Guide" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Configuring and Building CICE" href="ice_setup.html" />
     <link rel="prev" title="CICE User’s Guide" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -48,8 +49,8 @@
         <li class="right" >
           <a href="index.html" title="CICE User’s Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -71,15 +72,15 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/users_guide/ice_what_is_cice5.txt"
+      <li><a href="../_sources/users_guide/ice_what_is_cice5.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -106,9 +107,9 @@ The CICE User’s Guide is intended for users interested in making
 modifications to the ice model scripts or namelists within the CESM.
 Users interested in modifying the source code or using the standalone
 version should see the CICE Code Reference/Developer’s Guide
-<a class="reference internal" href="ice_references.html#cice15" id="id1">[HLT+15]</a>.</p>
+<a class="reference internal" href="zreferences.html#cice15" id="id1">[6]</a>.</p>
 <p>CICE5.1.2 is the latest version of the Los Alamos Sea Ice Model,
-sometimes referred to as the Community Ice CodE <a class="reference internal" href="ice_references.html#cice15" id="id2">[HLT+15]</a>. It is
+sometimes referred to as the Community Ice CodE <a class="reference internal" href="zreferences.html#cice15" id="id2">[6]</a>. It is
 the result of a community effort to develop a portable, efficient sea
 ice model that can be run coupled in a global climate model or
 uncoupled as a standalone ice model. CICE5 has been released as the sea
@@ -129,15 +130,15 @@ the atmosphere, land and ocean data models. It can be run on a reduced
 number of processors, or without MPI (Message Passing Interface) for
 researchers without access to these computer resources.</p>
 <p>CICE is a dynamic-thermodynamic model that includes a subgrid-scale ice
-thickness distribution (<a class="reference internal" href="ice_references.html#cice15" id="id3">[HLT+15]</a>). It uses the energy conserving
-thermodynamics of <a class="reference internal" href="ice_references.html#turner15" id="id4">[TH15]</a> or [bitz01], has multiple
+thickness distribution (<a class="reference internal" href="zreferences.html#cice15" id="id3">[6]</a>). It uses the energy conserving
+thermodynamics of <a class="reference internal" href="zreferences.html#turner15" id="id4">[10]</a> or <a class="reference internal" href="zreferences.html#bitz01" id="id5">[2]</a>, has multiple
 layers in each thickness category, and accounts for the influences of
 brine pockets within the ice cover. The ice dynamics utilizes the
-elastic-viscous-plastic (EVP) rheology of [hunk97]. Sea ice
-ridging has the options of [roth75b] and [thor75] or the
-newer ridging scheme of [lipscomb07].  A slab ocean
+elastic-viscous-plastic (EVP) rheology of <a class="reference internal" href="zreferences.html#hunk97" id="id6">[4]</a>. Sea ice
+ridging has the options of <a class="reference internal" href="zreferences.html#roth75b" id="id7">[8]</a> and <a class="reference internal" href="zreferences.html#thor75" id="id8">[9]</a> or the
+newer ridging scheme of <a class="reference internal" href="zreferences.html#lipscomb07" id="id9">[7]</a>.  A slab ocean
 mixed layer model is included.  A Scientific Reference Guide
-<a class="reference internal" href="ice_references.html#cice15" id="id10">[HLT+15]</a> is available that contains more detailed information on
+<a class="reference internal" href="zreferences.html#cice15" id="id10">[6]</a> is available that contains more detailed information on
 the model physics. The physics available in the uncoupled ice model
 are identical to those in the ice model used in the fully coupled system.</p>
 <p>This document uses the following text conventions:
@@ -151,11 +152,11 @@ and was released in March of 2015. CICE4 was an upgraded version of
 the Community Sea Ice Model, CSIM5, which was based on CICE3.
 The major changes are:</p>
 <ul class="simple">
-<li>The new mushy-layer thermodynamics (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is the default <a class="reference internal" href="ice_references.html#turner15" id="id11">[TH15]</a>.</li>
-<li>The new level melt pond scheme (<code class="docutils literal"><span class="pre">tr_pond_lvl</span> <span class="pre">=</span> <span class="pre">.true.</span></code>) is the default [hunke13].</li>
+<li>The new mushy-layer thermodynamics (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is the default <a class="reference internal" href="zreferences.html#turner15" id="id11">[10]</a>.</li>
+<li>The new level melt pond scheme (<code class="docutils literal"><span class="pre">tr_pond_lvl</span> <span class="pre">=</span> <span class="pre">.true.</span></code>) is the default <a class="reference internal" href="zreferences.html#hunke13" id="id12">[5]</a>.</li>
 <li>The default number of ice layers is now 8 (previously 4).</li>
 <li>The default number of snow layers is now 3 (previously 3).</li>
-<li>The freezing point at the sea ice-ocean interface is now salinity dependent following [assur58].</li>
+<li>The freezing point at the sea ice-ocean interface is now salinity dependent following <a class="reference internal" href="zreferences.html#assur58" id="id13">[1]</a>.</li>
 </ul>
 <p>The CICE source code used in the CESM is based on the Los Alamos sea
 ice model CICE model version 5. The main source code is very similar
@@ -184,13 +185,13 @@ encouraged to look at the CICE documentation available at:
         <li class="right" >
           <a href="index.html" title="CICE User’s Guide"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2017, David Bailey and Alice DuVivier.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+        &#169; Copyright 2017, David Bailey and Alice DuVivier.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
