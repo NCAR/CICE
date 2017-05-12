@@ -51,8 +51,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'cicedoc'
-copyright = u'2017, David Bailey and Alice DuVivier'
-author = u'David Bailey and Alice DuVivier'
+copyright = u'2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm'
+author = u'David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -132,7 +132,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'cicedoc.tex', u'cicedoc Documentation',
-     u'David Bailey and Alice DuVivier', 'manual'),
+     u'David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm', 'manual'),
 ]
 
 
