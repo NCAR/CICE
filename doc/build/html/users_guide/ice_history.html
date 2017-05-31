@@ -100,11 +100,10 @@
 <span id="history-files"></span><h1>8. CICE History Files<a class="headerlink" href="#cice-history-files" title="Permalink to this headline">¶</a></h1>
 <p>History files contain gridded data values written at specified times
 during a model run. By default, the history files will be written to
-the directory <code class="docutils literal"><span class="pre">history_dir</span></code> defined in the namelist. The netCDF file
-names are prepended by the character string given by <code class="docutils literal"><span class="pre">history_file</span></code> in
-the <strong>ice_in</strong> namelist. This character string has been set according to
-CESM Output Filename Requirements. If <code class="docutils literal"><span class="pre">history_file</span></code> is not set in the
-namelist, the default character string ’iceh’ is used. The user can
+the directory run directory defined in the CESM driver. The netCDF file
+names are prepended by the character string set by the CESM driver.
+This character string has been set according to
+CESM Output Filename Requirements.  The user can
 specify the frequency at which the data are written. Options are also
 available to record averaged or instantaneous data. The form of the
 history file names are as follows:</p>
@@ -112,27 +111,31 @@ history file names are as follows:</p>
 <li>Yearly averaged: <strong>$CASE.cice.h?.yyyy.nc</strong></li>
 <li>Monthly averaged: <strong>$CASE.cice.h?.yyyy-mm.nc</strong></li>
 <li>Daily averaged: <strong>$CASE.cice.h?.yyyy-mm-dd.nc</strong></li>
-<li>Instantaneous (<code class="docutils literal"><span class="pre">histfreq</span></code> = ’y’, ’m’, or ’d’):  <strong>$CASE.cice.h?.yyyy-mm-dd-sssss.nc</strong></li>
+<li>Hourly averaged: <strong>$CASE.cice.h?.yyyy-mm-dd-sssss.nc</strong></li>
+<li>Instantaneous (<code class="docutils literal"><span class="pre">hist_avg</span></code> = .true.):  <strong>$CASE.cice.h?.yyyy-mm-dd-sssss.nc</strong></li>
 <li>Instantaneous (written every dt, <code class="docutils literal"><span class="pre">histfreq</span></code> = 1): <strong>$CASE.cice.h?.yyyy-mm-dd-sssss.nc</strong></li>
 </ul>
-<p>$CASE is set in the main setup script. Note that the ? denotes the
+<p>$CASE is set in the main setup script. Note that the <strong>?</strong> denotes the
 multiple stream option where the first stream is just .h. and subsequent
 streams are h1, h2, etc. All history files are written in the executable
 directory. Changes to the frequency and averaging will affect all output
 fields. The best description of the history data comes from the file
 itself using the netCDF command <code class="docutils literal"><span class="pre">ncdump</span> <span class="pre">-h</span> <span class="pre">filename.nc</span></code>. Variables
 containing grid information are written to every file and are listed in
-<a class="reference internal" href="#gridhist"><span class="std std-ref">Table 10: Grid History Variables</span></a>. In addition to the
+<a class="reference internal" href="#gridhistreq"><span class="std std-ref">Table 10: Required Grid History Variables</span></a>. There are additional optional grid variables available
+in <a class="reference internal" href="#gridhistopt"><span class="std std-ref">Table 11: Optional Grid History Variables</span></a>. In addition to the
 history files, a netCDF file containing a snapshot of the initial ice
 state can be created at the start of each run by setting the namelist
 variable <code class="docutils literal"><span class="pre">write_ic=.true.</span></code> The file name is
 <strong>$CASE.cice.i.yyyy-mm-dd-sssss.nc</strong> and is written in the executable
-directory.</p>
+directory. Note that variables without the <code class="docutils literal"><span class="pre">f_</span></code> string in front are
+always written with every run <a class="reference internal" href="#gridhistreq"><span class="std std-ref">Table 10: Required Grid History Variables</span></a>, while the optional
+ones are namelist options <a class="reference internal" href="#gridhistopt"><span class="std std-ref">Table 11: Optional Grid History Variables</span></a>.</p>
 <table border="1" class="colwidths-auto docutils" id="id1">
-<span id="gridhist"></span><caption><span class="caption-text">Table 10: Grid History Variables</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<span id="gridhistreq"></span><caption><span class="caption-text">Table 10: Required Grid History Variables</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="14%" />
-<col width="68%" />
+<col width="16%" />
+<col width="66%" />
 <col width="18%" />
 </colgroup>
 <thead valign="bottom">
@@ -142,77 +145,109 @@ directory.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>time</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">time</span></code></td>
 <td>model time</td>
 <td>days</td>
 </tr>
-<tr class="row-odd"><td>time_bounds</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">time_bounds</span></code></td>
 <td>boundaries for time-averaging interval</td>
 <td>days</td>
 </tr>
-<tr class="row-even"><td>TLON</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">TLON</span></code></td>
 <td>T grid center longitude</td>
 <td>degrees</td>
 </tr>
-<tr class="row-odd"><td>TLAT</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">TLAT</span></code></td>
 <td>T grid center latitude</td>
 <td>degrees</td>
 </tr>
-<tr class="row-even"><td>ULON</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">ULON</span></code></td>
 <td>U grid center longitude</td>
 <td>degrees</td>
 </tr>
-<tr class="row-odd"><td>ULAT</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ULAT</span></code></td>
 <td>U grid center latitude</td>
 <td>degrees</td>
 </tr>
-<tr class="row-even"><td>tmask</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">NCAT</span></code></td>
+<td>category maximum thickness</td>
+<td>m</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">VGRIDi</span></code></td>
+<td>vertical ice levels</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">VGRIDs</span></code></td>
+<td>vertical snow levels</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="colwidths-auto docutils" id="id2">
+<span id="gridhistopt"></span><caption><span class="caption-text">Table 11: Optional Grid History Variables</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="17%" />
+<col width="65%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Units</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_tmask</span></code></td>
 <td>ocean grid mask (0=land, 1=ocean)</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>tarea</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_blkmask</span></code></td>
+<td>ice block mask</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_tarea</span></code></td>
 <td>T grid cell area</td>
 <td>m<span class="math">\(^{2}\)</span></td>
 </tr>
-<tr class="row-even"><td>uarea</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_uarea</span></code></td>
 <td>U grid cell area</td>
 <td>m<span class="math">\(^{2}\)</span></td>
 </tr>
-<tr class="row-odd"><td>dxt</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_dxt</span></code></td>
 <td>T cell width through middle</td>
 <td>m</td>
 </tr>
-<tr class="row-even"><td>dyt</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_dyt</span></code></td>
 <td>T cell height through middle</td>
 <td>m</td>
 </tr>
-<tr class="row-odd"><td>dxu</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_dxu</span></code></td>
 <td>U cell width through middle</td>
 <td>m</td>
 </tr>
-<tr class="row-even"><td>dyu</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_dyu</span></code></td>
 <td>U cell height through middle</td>
 <td>m</td>
 </tr>
-<tr class="row-odd"><td>HTN</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_HTN</span></code></td>
 <td>T cell width North side</td>
 <td>m</td>
 </tr>
-<tr class="row-even"><td>HTE</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_HTE</span></code></td>
 <td>T cell width East side</td>
 <td>m</td>
 </tr>
-<tr class="row-odd"><td>ANGLET</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_ANGLET</span></code></td>
 <td>angle grid makes with latitude line on T grid</td>
 <td>radians</td>
 </tr>
-<tr class="row-even"><td>ANGLE</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_ANGLE</span></code></td>
 <td>angle grid makes with latitude line on U grid</td>
 <td>radians</td>
 </tr>
-<tr class="row-odd"><td>ice_present</td>
-<td>fraction of time-averaging interval that any ice is present</td>
-<td>&#160;</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_bounds</span></code></td>
+<td>corner points of grid cells</td>
+<td>degrees</td>
 </tr>
 </tbody>
 </table>
@@ -227,13 +262,13 @@ the field when ice is present. Some of the fields affected are:</p>
 <ul class="simple">
 <li>Flat, Fsens - latent and sensible heat fluxes</li>
 <li>evap - evaporative water flux</li>
-<li>Fhnet - ice/ocn net heat flux</li>
+<li>Fhocn - ice/ocn net heat flux</li>
 <li>Fswabs - snow/ice/ocn absorbed solar flux</li>
 <li>strairx, strairy - zonal and meridional atm/ice stress</li>
 <li>strcorx, strcory - zonal and meridional coriolis stress</li>
 </ul>
 <p>For some fields, a non-zero value is set where there is no ice. For
-example, Tsfc has the freezing point averaged in, and Flwout has
+example, Tsfc has the freezing point averaged in, and Flwup has
 <span class="math">\(\sigma T_f^4\)</span> averaged in. At lower latitudes, these values can
 be erroneous.</p>
 <p>To aid in the interpretation of the fields, a field called
@@ -250,7 +285,7 @@ calculating budgets. The division by the ice area also creates large
 values of the fluxes at the ice edge. The affected fields are:</p>
 <ul class="simple">
 <li>Flat, Fsens - latent and sensible heat fluxes</li>
-<li>Flwout - outgoing longwave</li>
+<li>Flwup - outgoing longwave</li>
 <li>evap - evaporative water flux</li>
 <li>Fresh - ice/ocn fresh water flux</li>
 <li>Fhnet - ice/ocn net heat flux</li>
@@ -293,9 +328,10 @@ history file, add</p>
 </pre></div>
 </div>
 <p>to the namelist. An incomplete list of history variables is available in
-<a class="reference internal" href="#history"><span class="std std-ref">Table 11: History Variables</span></a>.</p>
-<table border="1" class="colwidths-given docutils" id="id2">
-<span id="history"></span><caption><span class="caption-text">Table 11: History Variables</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<a class="reference internal" href="#history"><span class="std std-ref">Table 12: History Variables</span></a>. Note that there is a new flag <code class="docutils literal"><span class="pre">f_CMIP</span></code> that will turn on
+all of the SIMIP variables.</p>
+<table border="1" class="colwidths-given docutils" id="id3">
+<span id="history"></span><caption><span class="caption-text">Table 12: History Variables</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
 <col width="60%" />
@@ -309,16 +345,16 @@ history file, add</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_hi</span></code></td>
-<td>grid box mean ice thickness</td>
+<td>ice volume per unit area</td>
 <td>m</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_hs</span></code></td>
-<td>grid box mean snow thickness</td>
+<td>snow volume per unit area</td>
 <td>m</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fs</span></code></td>
-<td>grid box mean snow fraction</td>
-<td>%</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_snowfrac</span></code></td>
+<td>snow fraction</td>
+<td>1</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_Tsfc</span></code></td>
 <td>snow/ice surface temperature</td>
@@ -326,26 +362,34 @@ history file, add</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_aice</span></code></td>
 <td>ice concentration (aggregate)</td>
-<td>%</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_aicen</span></code></td>
-<td>ice concentration (category)</td>
-<td>%</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_vicen</span></code></td>
-<td>ice volume (category)</td>
-<td>m</td>
+<td>1</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_uvel</span></code></td>
-<td>zonal ice velocity</td>
-<td>cm s<span class="math">\(^{-1}\)</span></td>
+<td>x component ice velocity</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_vvel</span></code></td>
-<td>meridional ice velocity</td>
-<td>cm s<span class="math">\(^{-1}\)</span></td>
+<td>y component ice velocity</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fswdn</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_uatm</span></code></td>
+<td>x component wind velocity</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_vatm</span></code></td>
+<td>y component wind velocity</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_sice</span></code></td>
+<td>bulk ice salinity</td>
+<td>ppt</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fswdn</span></code></td>
 <td>downwelling solar flux</td>
+<td>W m<span class="math">\(^{-2}\)</span></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fswup</span></code></td>
+<td>upward reflected solar flux</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_flwdn</span></code></td>
@@ -377,31 +421,87 @@ history file, add</p>
 <td>g kg<span class="math">\(^{-1}\)</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_uocn</span></code></td>
-<td>zonal ocean current</td>
-<td>cm s<span class="math">\(^{-1}\)</span></td>
+<td>x component ocean current</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_vocn</span></code></td>
-<td>meridional ocean current</td>
-<td>cm s<span class="math">\(^{-1}\)</span></td>
+<td>y component ocean current</td>
+<td>m s<span class="math">\(^{-1}\)</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_frzmlt</span></code></td>
 <td>freeze/melt potential</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fswabs</span></code></td>
-<td>absorbed solar flux sent to coupler</td>
+<td>total absorbed solar flux sent to coupler</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fswabs_ai</span></code></td>
-<td>absorbed solar flux in snow/ocn/ice</td>
+<td>total absorbed solar flux in snow/ocn/ice</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_aldvr</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fswint_ai</span></code></td>
+<td>internal absorbed solar flux in snow/ice</td>
+<td>W m<span class="math">\(^{-2}\)</span></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fswfac</span></code></td>
+<td>shortwave scaling factor</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_coszen</span></code></td>
+<td>cosine of the zenith angle</td>
+<td>radians</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_albsni</span></code></td>
+<td>snow ice broadband albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_alvdr</span></code></td>
+<td>visible direct albedo sent to coupler</td>
+<td>%</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_alidr</span></code></td>
+<td>near-infrared direct albedo sent to coupler</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_alvdf</span></code></td>
+<td>visible diffuse albedo sent to coupler</td>
+<td>%</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_alidf</span></code></td>
+<td>near-infrared diffuse albedo sent to coupler</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_alvdr_ai</span></code></td>
 <td>visible direct albedo</td>
 <td>%</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_aldvi</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_alidr_ai</span></code></td>
 <td>near-infrared direct albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_alvdf_ai</span></code></td>
+<td>visible diffuse albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_alidf_ai</span></code></td>
+<td>near-infrared diffuse albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_albsni</span></code></td>
+<td>snow ice broadband albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_albsno</span></code></td>
+<td>snow broadband albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_albpnd</span></code></td>
+<td>pond broadband albedo</td>
+<td>%</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_albice</span></code></td>
+<td>bare ice broadband albedo</td>
 <td>%</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_flat</span></code></td>
@@ -420,11 +520,11 @@ history file, add</p>
 <td>ice/atm sensible heat flux</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_flwout</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_flwup</span></code></td>
 <td>outgoing longwave flux sent to coupler</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_flwout_ai</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_flwup_ai</span></code></td>
 <td>ice/atm outgoing longwave flux</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
@@ -436,28 +536,36 @@ history file, add</p>
 <td>ice/atm evaporative water flux</td>
 <td>cm day<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_Tref</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_Tair</span></code></td>
+<td>air temperature</td>
+<td>C</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_Tref</span></code></td>
 <td>2 m reference temperature</td>
 <td>C</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_Qref</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_Qref</span></code></td>
 <td>2 m reference specific humidity</td>
 <td>g/kg</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_congel</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_congel</span></code></td>
 <td>basal ice growth</td>
 <td>cm day<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_frazil</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_frazil</span></code></td>
 <td>frazil ice growth</td>
 <td>cm day<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_snoice</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_snoice</span></code></td>
 <td>snow-ice formation</td>
 <td>cm day<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_meltb</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_meltb</span></code></td>
 <td>basal ice melt</td>
+<td>cm day<span class="math">\(^{-1}\)</span></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_melts</span></code></td>
+<td>surface snow melt</td>
 <td>cm day<span class="math">\(^{-1}\)</span></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">f_meltt</span></code></td>
@@ -484,11 +592,11 @@ history file, add</p>
 <td>ice to ocn salt flux</td>
 <td>kg m<span class="math">\(^{-2}\)</span> day<span class="math">\(^{-1}\)</span></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fhnet</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_fhocn</span></code></td>
 <td>ice/ocn net heat flux sent to coupler</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fhnet_ai</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_fhocn_ai</span></code></td>
 <td>ice/ocn net heat flux</td>
 <td>W m<span class="math">\(^{-2}\)</span></td>
 </tr>
@@ -587,6 +695,22 @@ history file, add</p>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_frz_onset</span></code></td>
 <td>freeze onset date</td>
 <td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_icepresent</span></code></td>
+<td>fraction of time with ice present in grid cell</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_aicen</span></code></td>
+<td>ice concentration (category)</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">f_vicen</span></code></td>
+<td>ice volume (category)</td>
+<td>m</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">f_vsnon</span></code></td>
+<td>snow volume (category)</td>
+<td>m</td>
 </tr>
 </tbody>
 </table>
