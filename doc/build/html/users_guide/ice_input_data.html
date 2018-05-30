@@ -2,16 +2,12 @@
 
 <!doctype html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>5. CICE Input Data &#8212; cicedoc  documentation</title>
-    
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,7 +21,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +32,7 @@
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +46,7 @@
           <a href="ice_nml_example.html" title="4. CICE Namelist Examples"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -88,7 +84,10 @@
             
   <div class="section" id="cice-input-data">
 <span id="id1"></span><h1>5. CICE Input Data<a class="headerlink" href="#cice-input-data" title="Permalink to this headline">¶</a></h1>
-<p>The coupled CICE model requires a minimum of two files to run:</p>
+<p><strong>All runs</strong></p>
+<p>The coupled CICE model requires a minimum of two files to run.
+Both are set in the <code class="docutils literal"><span class="pre">&amp;grid_nml</span></code> section of the namelist (see <a class="reference internal" href="ice_nml_var.html#grid"><span class="std std-ref">Table 8: Grid Namelist Options</span></a>)
+for more information</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">grid_file</span></code> is a binary or netcdf file containing grid information such as the latitude, longitude, grid cell area, etc.</li>
 <li><code class="docutils literal"><span class="pre">kmt_file</span></code> is a binary or netcdf file containing land mask information. This points to the ocean model KMT file or the depths of the ocean columns.</li>
@@ -99,15 +98,16 @@ directory. These files are read directly from the system input data
 directory and not copied to the executable directory. Currently, only
 the POP resolutions of gx3, gx1, tx1, and tx0.1 grids are supported for the ice and
 ocean models. Note that these files can now be used in netCDF format.</p>
-<p>A third namelist variable that is required for initial or hybrid runs is the
-<code class="docutils literal"><span class="pre">ice_ic</span></code> variable.</p>
+<p><strong>Initial and Hybrid runs</strong></p>
+<p>For initial or hybrid runs, a third variable is required and is set in
+the <code class="docutils literal"><span class="pre">&amp;setup_nml</span></code> section of the namelist (see <a class="reference internal" href="ice_nml_var.html#setupnml"><span class="std std-ref">Table 1: Setup Namelist Options</span></a>).</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">ice_ic</span> <span class="pre">=</span> <span class="pre">'none'</span></code> initializes the sea ice to zero everywhere</li>
-<li><code class="docutils literal"><span class="pre">ice_ic</span> <span class="pre">=</span> <span class="pre">'default'</span></code> initializes the sea ice to 100% concentration with <span class="math">\(2 m\)</span> or <span class="math">\(1 m\)</span> thickness in the Northern and Southern Hemispheres respectively where the SST is below the freezing point.</li>
-<li><code class="docutils literal"><span class="pre">ice_ic</span> <span class="pre">=</span> <span class="pre">'filename.nc'</span></code> will read the state information from an initial file named &#8220;filename.nc&#8221;</li>
+<li><code class="docutils literal"><span class="pre">ice_ic</span> <span class="pre">=</span> <span class="pre">'default'</span></code> initializes the sea ice to 100% concentration where the SST is below the freezing point to a thickness of 2 m in the Northern Hemisphere or 1 m in the Southern Hemisphere.</li>
+<li><code class="docutils literal"><span class="pre">ice_ic</span> <span class="pre">=</span> <span class="pre">'filename.nc'</span></code> will read the state information from an initial file named “filename.nc”. The resolution of this file must match that in <code class="docutils literal"><span class="pre">grid_file</span></code>, as set above.</li>
 </ul>
-<p>For the third option, the initial file resolution must match that of the <code class="docutils literal"><span class="pre">grid_file</span></code>
-specified as above. Restart or branch runs are discussed later.</p>
+<p><strong>Restart and Branch runs</strong></p>
+<p>Restart or branch runs are discussed later.</p>
 </div>
 
 
@@ -129,12 +129,12 @@ specified as above. Restart or branch runs are discussed later.</p>
           <a href="ice_nml_example.html" title="4. CICE Namelist Examples"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

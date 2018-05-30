@@ -2,16 +2,12 @@
 
 <!doctype html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>4. CICE Namelist Examples &#8212; cicedoc  documentation</title>
-    
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,7 +21,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +32,7 @@
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +46,7 @@
           <a href="ice_nml_var.html" title="3. CICE Namelists"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -119,37 +115,40 @@ Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</s
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">setup_nml</span>
   <span class="n">bfbflag</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">days_per_year</span> <span class="o">=</span> <span class="mi">365</span>
-  <span class="n">diagfreq</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">diagfreq</span> <span class="o">=</span> <span class="mi">24</span>
   <span class="n">dumpfreq</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
   <span class="n">hist_avg</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">histfreq</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span>
   <span class="n">histfreq_n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
   <span class="n">history_file</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
-  <span class="n">ice_ic</span> <span class="o">=</span> <span class="s2">&quot;b.e20.B1850.f09_g16.pi_control.all.144.cice.r.0035-01-01-00000.nc&quot;</span>
-  <span class="n">latpnt</span> <span class="o">=</span> <span class="mf">69.8359</span><span class="p">,</span> <span class="o">-</span><span class="mf">65.0</span>
+  <span class="n">history_precision</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="n">ice_ic</span> <span class="o">=</span> <span class="s2">&quot;b.e20.B1850.f09_g17.pi_control.all.297.cice.r.0130-01-01-00000.nc&quot;</span>
+  <span class="n">latpnt</span> <span class="o">=</span> <span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">65.0</span>
   <span class="n">lcdf64</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
-  <span class="n">lonpnt</span> <span class="o">=</span> <span class="mf">271.392</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span>
+  <span class="n">lonpnt</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span>
   <span class="n">ndtd</span> <span class="o">=</span> <span class="mi">1</span>
   <span class="n">pointer_file</span> <span class="o">=</span> <span class="s2">&quot;./rpointer.ice&quot;</span>
   <span class="n">print_global</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
-  <span class="n">print_points</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">print_points</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_ext</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_file</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
   <span class="n">restart_format</span> <span class="o">=</span> <span class="s2">&quot;pio&quot;</span>
+  <span class="n">write_ic</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">year_init</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">grid_nml</span>
-  <span class="n">grid_file</span> <span class="o">=</span> <span class="s1">&#39;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/horiz_grid_20010402.ieeer8&#39;</span>
+  <span class="n">grid_file</span> <span class="o">=</span> <span class="s2">&quot;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/horiz_grid_20010402.ieeer8&quot;</span>
   <span class="n">grid_format</span> <span class="o">=</span> <span class="s2">&quot;bin&quot;</span>
   <span class="n">grid_type</span> <span class="o">=</span> <span class="s2">&quot;displaced_pole&quot;</span>
   <span class="n">gridcpl_file</span> <span class="o">=</span> <span class="s2">&quot;unknown_gridcpl_file&quot;</span>
   <span class="n">kcatbound</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">kmt_file</span> <span class="o">=</span> <span class="s1">&#39;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/topography_20161215.ieeei4&#39;</span>
+  <span class="n">kmt_file</span> <span class="o">=</span> <span class="s2">&quot;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/topography_20161215.ieeei4&quot;</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">tracer_nml</span>
   <span class="n">restart_aero</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_age</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_fy</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_iso</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_pond_cesm</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">restart_pond_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
@@ -157,6 +156,7 @@ Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</s
   <span class="n">tr_aero</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">tr_fy</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">tr_iage</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_iso</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">tr_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">tr_pond_cesm</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
   <span class="n">tr_pond_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
@@ -191,11 +191,11 @@ Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</s
   <span class="n">albicev</span> <span class="o">=</span> <span class="mf">0.75</span>
   <span class="n">albsnowi</span> <span class="o">=</span> <span class="mf">0.73</span>
   <span class="n">albsnowv</span> <span class="o">=</span> <span class="mf">0.98</span>
-  <span class="n">dt_mlt</span> <span class="o">=</span> <span class="mf">1.5</span>
+  <span class="n">dt_mlt</span> <span class="o">=</span> <span class="mf">1.50</span>
   <span class="n">kalg</span> <span class="o">=</span> <span class="mf">0.0</span>
   <span class="n">r_ice</span> <span class="o">=</span> <span class="mf">0.0</span>
   <span class="n">r_pnd</span> <span class="o">=</span> <span class="mf">0.0</span>
-  <span class="n">r_snw</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="n">r_snw</span> <span class="o">=</span> <span class="mf">1.25</span>
   <span class="n">rsnw_mlt</span> <span class="o">=</span> <span class="mf">1500.</span>
   <span class="n">shortwave</span> <span class="o">=</span> <span class="s2">&quot;dEdd&quot;</span>
 <span class="o">/</span>
@@ -224,7 +224,7 @@ Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</s
   <span class="n">maskhalo_dyn</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">maskhalo_remap</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
   <span class="n">ns_boundary_type</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span>
-  <span class="n">processor_shape</span> <span class="o">=</span> <span class="s2">&quot;square-pop&quot;</span>
+  <span class="n">processor_shape</span> <span class="o">=</span> <span class="s2">&quot;square-ice&quot;</span>
 <span class="o">/</span>
 <span class="o">&amp;</span><span class="n">zbgc_nml</span>
   <span class="n">bgc_data_dir</span> <span class="o">=</span> <span class="s2">&quot;unknown_bgc_data_dir&quot;</span>
@@ -506,12 +506,12 @@ distribution consists of five ice categories.</p>
           <a href="ice_nml_var.html" title="3. CICE Namelists"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

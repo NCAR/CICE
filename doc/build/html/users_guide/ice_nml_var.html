@@ -2,16 +2,12 @@
 
 <!doctype html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>3. CICE Namelists &#8212; cicedoc  documentation</title>
-    
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,7 +21,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +32,7 @@
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +46,7 @@
           <a href="ice_setup.html" title="2. Configuring and Building CICE"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -104,9 +100,9 @@
   <div class="section" id="cice-namelists">
 <span id="namelist"></span><h1>3. CICE Namelists<a class="headerlink" href="#cice-namelists" title="Permalink to this headline">¶</a></h1>
 <p>CICE uses the same namelists for both the coupled and uncoupled models.
-This section describes the namelist variables in the namelists,
+This section describes the namelist variables,
 which determine time management, output frequency, model physics, and
-filenames The ice namelists for the coupled model are now located in
+filenames. The ice namelists for the coupled model are now located in
 <strong>$CASE/CaseDocs</strong>.</p>
 <p>A script reads the input namelist at runtime, and writes the namelist
 information to the file <strong>ice_in</strong> in the directory where the model
@@ -122,7 +118,7 @@ are for the coupled model, which is set up for a production run. Only a
 few of these variables are required to be set in the namelist; these
 values are noted in the paragraphs below. An example of the default
 namelist is shown in Section <a class="reference internal" href="ice_nml_example.html#cice-namelist-examples"><span class="std std-ref">CICE Namelist Examples</span></a>.</p>
-<p>The main run management namelist options are shown in <a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>.
+<p>The main run management namelist options are shown in <a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist Options</span></a>.
 While additional namelist variables are
 available in the uncoupled version, they are set by the driver in
 CESM. For a full list of namelist variables, you should consult the CICE
@@ -130,8 +126,8 @@ Reference Guide <a class="reference internal" href="zreferences.html#cice15" id=
 <p>Variables set by the driver include: <code class="docutils literal"><span class="pre">dt</span></code>, <code class="docutils literal"><span class="pre">runid</span></code>, <code class="docutils literal"><span class="pre">runtype</span></code>, <code class="docutils literal"><span class="pre">istep0</span></code>,
 <code class="docutils literal"><span class="pre">days_per_year</span></code>, <code class="docutils literal"><span class="pre">restart</span></code> and <code class="docutils literal"><span class="pre">dumpfreq</span></code>. These should be changed in the
 CESM configuration files.</p>
-<table border="1" class="colwidths-given docutils" id="id7">
-<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id7">
+<span id="setupnml"></span><caption><span class="caption-text">Table 1: Setup Namelist Options</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -139,128 +135,162 @@ CESM configuration files.</p>
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">Default Value</th>
+<th class="head">Default</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ice_ic</span></code></td>
+<tr class="row-even"><td>&amp;setup_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ice_ic</span></code></td>
 <td>character</td>
 <td>default</td>
-<td>Filename for initial and branch runs. Set by driver scripts.</td>
+<td>Filename for initial and branch runs. Set by driver scripts</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">pointer_file</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">pointer_file</span></code></td>
 <td>character</td>
 <td>’rpointer.ice’</td>
-<td>Pointer file that contains the name of the restart file.</td>
+<td>Pointer file that contains the name of the restart file</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_file</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_file</span></code></td>
 <td>character</td>
 <td>none</td>
 <td>Restart file prefix. Set by driver.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_format</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_format</span></code></td>
 <td>character</td>
 <td>none</td>
-<td>Restart file format. bin = binary, nc = netcdf,
-pio = use pio library (default)</td>
+<td>Restart file format. bin = binary, nc = netcdf, pio = use pio library (default).</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_ext</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_ext</span></code></td>
 <td>logical</td>
 <td>.false.</td>
-<td>Write ghost cells as a part of restarts.</td>
+<td>Write ghost cells as a part of restarts</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">history_file</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">history_file</span></code></td>
 <td>character</td>
-<td>&#8216;unknown&#8217;</td>
-<td>History file prefix. Set by driver.
-’default’ uses default initialization
-’none’ initializes with no ice</td>
+<td>‘unknown’</td>
+<td>History file prefix. Set by driver. ’default’ uses default initialization. ’none’ initializes with no ice.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">days_per_year</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">days_per_year</span></code></td>
 <td>integer</td>
 <td>365</td>
-<td>Standard number of days per year for calendar. Does interact
-with Gregorian calendar setting (set by driver).</td>
+<td>Standard number of days per year for calendar. Does interact with Gregorian calendar setting. Set by driver.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">year_init</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">year_init</span></code></td>
 <td>integer</td>
 <td>1</td>
-<td>Used in leap year calculation. Do not change.</td>
+<td>Used in leap year calculation. Do not change</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ndtd</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ndtd</span></code></td>
 <td>integer</td>
 <td>1</td>
-<td>Number of dynamic timesteps per thermodynamic timestep.</td>
+<td>Number of dynamic timesteps per thermodynamic timestep</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">histfreq</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">histfreq</span></code></td>
 <td>char array</td>
 <td>’m’,’x’,’x’,’x’,’x’</td>
-<td>Unit for frequency of output written to history streams
-’H’ or ’h’ writes hourly data
-’D’ or ’d’ writes daily data
-’M’ or ’m’ writes monthly data
-’Y’ or ’y’ writes yearly data
-’1’ writes every timestep
-’x’ no history data is written</td>
+<td>Unit for frequency of output written to history streams</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">histfreq_n</span></code></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’H’ or ’h’ writes hourly data</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’D’ or ’d’ writes daily data</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’M’ or ’m’ writes monthly data</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’Y’ or ’y’ writes yearly data</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’1’ writes every timestep</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>’x’ no history data is written</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">histfreq_n</span></code></td>
 <td>integer</td>
 <td>1,1,1,1,1</td>
-<td>Frequency of histfreq history data is written to each stream.</td>
+<td>Frequency of histfreq history data is written to each stream</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">dumpfreq</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">dumpfreq</span></code></td>
 <td>character</td>
-<td>&#8216;x&#8217;</td>
-<td>Unit for frequency of dump files. Currently set by driver.</td>
+<td>‘x’</td>
+<td>Unit for frequency of dump files. Set by driver.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">dumpfreq_n</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">dumpfreq_n</span></code></td>
 <td>integer</td>
 <td>1</td>
 <td>Frequency of dumpfreq dump files. Set by driver.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hist_avg</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hist_avg</span></code></td>
 <td>logical</td>
 <td>.true.</td>
-<td>If true, averaged history information
-is written out at a frequency determined by histfreq.
-If false, instantaneous values are written in all streams.</td>
+<td>If true, averaged history information is written out at a frequency determined by histfreq. If false, instantaneous values are written in all streams.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">write_ic</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">write_ic</span></code></td>
 <td>logical</td>
 <td>.true.</td>
-<td>If true, write initial conditions.</td>
+<td>If true, write initial conditions</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">diagfreq</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">diagfreq</span></code></td>
 <td>integer</td>
 <td>24</td>
-<td>Frequency of diagnostics written
-(min, max, hemispheric sums) to standard output
-24 =<span class="math">\(&gt;\)</span> writes once every 24 timesteps
-1 =<span class="math">\(&gt;\)</span> diagnostics written each timestep
-0 =<span class="math">\(&gt;\)</span> no diagnostics written</td>
+<td>Frequency of diagnostics written (min, max, hemispheric sums) to standard output.</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>‘24’ = diagnostics written once every 24 timesteps</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>‘1’ = diagnostics written each timestep</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>‘0’ = no diagnostics written</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">print_global</span></code></td>
 <td>logical</td>
 <td>.true.</td>
-<td>Print global diagnostics.</td>
+<td>Print global diagnostics</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">print_points</span></code></td>
 <td>logical</td>
 <td>.true.</td>
-<td>Print diagnostics at latpnt and lonpnt.</td>
+<td>Print diagnostics at latpnt and lonpnt</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">latpnt</span></code></td>
 <td>float arr</td>
 <td>90.0, -65.0</td>
-<td>Latitudes for diagnostic points (print_points)</td>
+<td>Latitudes for diagnostic points (<code class="docutils literal"><span class="pre">print_points</span></code>)</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">lonpnt</span></code></td>
 <td>float arr</td>
 <td>0.0, -45.0</td>
-<td>Longitudes for diagnostic points (print_points)</td>
+<td>Longitudes for diagnostic points (<code class="docutils literal"><span class="pre">print_points</span></code>)</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">lcdf64</span></code></td>
 <td>logical</td>
@@ -270,7 +300,7 @@ If false, instantaneous values are written in all streams.</td>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">bfbflag</span></code></td>
 <td>logical</td>
 <td>.false.</td>
-<td>Require bit-for-bit global sums.</td>
+<td>Require bit-for-bit global sums</td>
 </tr>
 </tbody>
 </table>
@@ -282,13 +312,13 @@ value of the timestep. The value chosen for <code class="docutils literal"><span
 of the transport and the grid resolution. A conservative estimate of <code class="docutils literal"><span class="pre">dt</span></code>
 for the transport using the upwind advection scheme is:</p>
 <div class="math">
-\[\Delta t &lt; \frac{min(\Delta x, \Delta y)}{4 max(u, v)} .\]</div>
+\[\Delta t &lt; \frac{min(\Delta x, \Delta y)}{4 * max(u, v)} .\]</div>
 <p>Maximum values for <code class="docutils literal"><span class="pre">dt</span></code> for the two standard CESM POP grids, assuming
 <span class="math">\(max(u,v) = 0.5\ m/s\)</span>, are shown in <a class="reference internal" href="#timestep"><span class="std std-ref">Table 2: Recommended timesteps</span></a>.
 The default timestep for CICE is 30 minutes for gx1,
 which must be equvialent to the coupling interval (<code class="docutils literal"><span class="pre">NCPL_ICE</span></code> and <code class="docutils literal"><span class="pre">NCPL_ATM</span></code>)
 set in the CESM configuration files <strong>env_run.xml</strong>.</p>
-<table border="1" class="colwidths-given docutils" id="id8">
+<table border="1" class="docutils" id="id8">
 <span id="timestep"></span><caption><span class="caption-text">Table 2: Recommended timesteps</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="20%" />
@@ -296,17 +326,23 @@ set in the CESM configuration files <strong>env_run.xml</strong>.</p>
 <col width="20%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Grid</th>
-<th class="head"><span class="math">\(min(Delta x, Delta y)\)</span></th>
-<th class="head"><span class="math">\(max Delta t\)</span></th>
+<tr class="row-odd"><th class="head">&#160;</th>
+<th class="head">&#160;</th>
+<th class="head">&#160;</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>gx3</td>
+<tr class="row-even"><td>Grid</td>
+<td><blockquote class="first last">
+<div><span class="math">\(min(\Delta x, \Delta y)\)</span></div></blockquote>
+</td>
+<td><span class="math">\(max {\Delta} t\)</span></td>
+</tr>
+<tr class="row-odd"><td>gx3</td>
 <td>28845.9 m</td>
 <td>4.0 hr</td>
 </tr>
-<tr class="row-odd"><td>gx1</td>
+<tr class="row-even"><td>gx1</td>
 <td>8558.2 m</td>
 <td>1.2 hr</td>
 </tr>
@@ -325,10 +361,10 @@ user when the model integrates past that point.</p>
 <h2>3.2. Writing Output<a class="headerlink" href="#writing-output" title="Permalink to this headline">¶</a></h2>
 <p>The namelist variables that control the frequency of the model
 diagnostics, netCDF history, and restart files are shown in
-<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a>. By default, diagnostics are written out once
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist Options</span></a>. By default, diagnostics are written out once
 every 48 timesteps to the ascii file <strong>ice.log.$LID</strong> (see section
 <a class="reference internal" href="ice_stdout.html#standard-output"><span class="std std-ref">Stdout Output</span></a>). $LID is a time stamp that is set in the main script.</p>
-<p>The namelist variable histfreq controls the output frequency of the
+<p>The namelist variable <code class="docutils literal"><span class="pre">histfreq</span></code> controls the output frequency of the
 netCDF history files; writing monthly averages is the default. The
 content of the history files is described in section <a class="reference internal" href="ice_history.html#history-files"><span class="std std-ref">CICE History Files</span></a>. The
 value of <code class="docutils literal"><span class="pre">hist_avg</span></code> determines if instantaneous or averaged variables are
@@ -345,7 +381,7 @@ execution begins. The pointer file resides in the scripts directory and
 is created initially by the ice setup script but is overwritten every
 time a new restart file is created. It will contain the name of the
 latest restart file. The default filename <strong>ice.restart_file</strong> shown in
-<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist</span></a> will not work unless some modifications
+<a class="reference internal" href="#setupnml"><span class="std std-ref">Table 1: Setup Namelist Options</span></a> will not work unless some modifications
 are made to the ice setup script and a file is created with this name
 and contains the name of a valid restart file; this variable must be set
 in the namelist. More information on restart pointer files can be found
@@ -355,10 +391,10 @@ the netCDF restart files; writing one restart file per year is the
 default and is set by the CESM driver. The default format for all reads and
 writes of files in CESM is now pio, but this can be changed to binary or
 netCDF through the namelist variable, <code class="docutils literal"><span class="pre">restart_format</span></code>.</p>
-<p>The Parallel Input/Output libraries or &#8220;PIO&#8221; are used within the CESM for more
+<p>The Parallel Input/Output libraries or “PIO” are used within the CESM for more
 efficient reading and writing. PIO includes options for binary, netCDF version3,
-parallel netCDF, or netCDF version 4 parallel. More on this can be found here:</p>
-<p><a class="reference external" href="http://ncar.github.io/ParallelIO/">http://ncar.github.io/ParallelIO/</a></p>
+parallel netCDF, or netCDF version 4 parallel. More on this can be found here:
+<a class="reference external" href="http://ncar.github.io/ParallelIO/">http://ncar.github.io/ParallelIO/</a></p>
 <p>If <code class="docutils literal"><span class="pre">print_points</span></code> is <code class="docutils literal"><span class="pre">.true.</span></code>, diagnostic data is printed out for two grid
 points, one near the north pole and one near the Weddell Sea. The points
 are set via namelist variables <code class="docutils literal"><span class="pre">latpnt</span></code> and <code class="docutils literal"><span class="pre">lonpnt</span></code>. This option can be
@@ -376,36 +412,36 @@ sufficiently smaller than the damping timescale T, which needs to be
 sufficiently shorter than dt.</p>
 <div class="math">
 \[dte &lt; T &lt; dt\]</div>
-<p>This relationship is discussed in <a class="reference internal" href="zreferences.html#cice15" id="id3">[6]</a>. The best
-ratio for [dte : T : dt] is [1 : 40 : 120]. Typical combinations of dt
-and ndte are (3600., 120), (7200., 240) (10800., 120). The default <code class="docutils literal"><span class="pre">ndte</span></code>
+<p>This relationship is discussed in <a class="reference internal" href="zreferences.html#cice15" id="id3">[6]</a>. The best ratio for
+<span class="math">\([dte:T:dt]\)</span> is [1:40:120]. Typical combinations of (<code class="docutils literal"><span class="pre">dt</span></code>, <code class="docutils literal"><span class="pre">ndte</span></code>)
+are (3600., 120), (7200., 240) (10800., 120). The default <code class="docutils literal"><span class="pre">ndte</span></code>
 is <code class="docutils literal"><span class="pre">120</span></code> as set in <strong>ice_init.F90</strong>.</p>
 <p><code class="docutils literal"><span class="pre">kitd</span></code> determines the scheme used to redistribute sea ice within the ice
 thickness distribution (ITD) as the ice grows and melts. The linear
 remapping scheme is the default and approximates the thickness
-distribution in each category as a linear function (). The delta
-function method represents <em>g(h)</em> in each category as a delta function
-(). This method can leave some categories mostly empty at any given time
+distribution in each category as a linear function. The delta
+function method represents <em>g(h)</em> in each category as a delta function.
+This method can leave some categories mostly empty at any given time
 and cause jumps in the properties of <em>g(h)</em>.</p>
 <p><code class="docutils literal"><span class="pre">kdyn</span></code> determines the ice dynamics used in the model. The default is the
-elastic-viscous-plastic (EVP) dynamics . If <code class="docutils literal"><span class="pre">kdyn</span></code> is set to <code class="docutils literal"><span class="pre">0</span></code>, the ice
-dynamics is inactive. In this case, ice velocities are not computed and
-ice is not transported. Since the initial ice velocities are read in
-from the restart file, the maximum and minimum velocities written to the
-log file will be non-zero in this case, but they are not used in any
+elastic-viscous-plastic (EVP) dynamics (<code class="docutils literal"><span class="pre">kdyn</span></code> = 1). If <code class="docutils literal"><span class="pre">kdyn</span></code> is set
+to <code class="docutils literal"><span class="pre">0</span></code>, the ice dynamics is inactive. In this case, ice velocities are
+not computed and ice is not transported. Since the initial ice velocities
+are read in from the restart file, the maximum and minimum velocities written
+to the log file will be non-zero in this case, but they are not used in any
 calculations.</p>
 <p>The value of <code class="docutils literal"><span class="pre">kstrength</span></code> determines which formulation is used to calculate
 the strength of the pack ice. The calculation depends on mean ice
-thickness and open water fraction. The calculation of is based on
+thickness and open water fraction. The calculation is based on
 energetics and should not be used if the ice that participates in
 ridging is not well resolved.</p>
 <p>The variable <code class="docutils literal"><span class="pre">advection</span></code> determines the horizontal transport scheme used. The default
-scheme is the incremental remapping method (). This method is less
+scheme is the incremental remapping method (<code class="docutils literal"><span class="pre">advection</span></code> = “remap”). This method is less
 diffusive and is computationally efficient for large numbers of
-categories or tracers. The upwind scheme is also available. The upwind
+categories or tracers than other options. The upwind scheme is also available, but this
 scheme is only first order accurate.</p>
-<table border="1" class="colwidths-given docutils" id="id9">
-<span id="dynamics"></span><caption><span class="caption-text">Table 3: CICE Dynamics Settings</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id9">
+<span id="dynamics"></span><caption><span class="caption-text">Table 3: Dynamics Namelist Options</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -420,47 +456,52 @@ scheme is only first order accurate.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kdyn</span></code></td>
+<tr class="row-even"><td>&amp;dynamics_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kdyn</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">revised_evp</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">revised_evp</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Revised EVP formulation</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ndte</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ndte</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Number of sub-cycles in EVP dynamics.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">advection</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">advection</span></code></td>
 <td>Character</td>
 <td>remap</td>
 <td>Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kstrength</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kstrength</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Determines pressure formulation, 0 = parameterization, 1 = parameterization</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">krdg_partic</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">krdg_partic</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Ridging participation function, 0 = Thorndike, 1 = Expontential</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">krdg_redist</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">krdg_redist</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Ridging distribution function, 0 = Hibler , 1 = Expontential</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">mu_rdg</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">mu_rdg</span></code></td>
 <td>Real</td>
 <td>4.0</td>
 <td>e-folding scale of ridged ice</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Cf</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">cf</span></code></td>
 <td>Real</td>
 <td>17.0</td>
 <td>Ratio of ridging work to PE change</td>
@@ -474,8 +515,8 @@ thermodynamic calculation where this used to be a constant profile. The
 CESM1 and older option of <a class="reference internal" href="zreferences.html#bitz99" id="id5">[3]</a>, (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">1</span></code>) is still available.
 There are several additional thermodynamic options not listed that go with
 <code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>, that are described more thoroughly in <a class="reference internal" href="zreferences.html#cice15" id="id6">[6]</a>.</p>
-<table border="1" class="colwidths-given docutils" id="id10">
-<span id="thermo"></span><caption><span class="caption-text">Table 4: CICE Thermodynamic Settings</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id10">
+<span id="thermo"></span><caption><span class="caption-text">Table 4: Thermodynamics Namelist Options</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -490,17 +531,22 @@ There are several additional thermodynamic options not listed that go with
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kitd</span></code></td>
+<tr class="row-even"><td>&amp;thermo_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kitd</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Determines ITD conversion, 0 = delta scheme, 1=linear remapping</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ktherm</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">ktherm</span></code></td>
 <td>Integer</td>
 <td>1</td>
 <td>Determines ice thermodynamics, 1 = BL99, 2 = mushy layer</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">conduct</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">conduct</span></code></td>
 <td>Character</td>
 <td>MU71</td>
 <td>Determines conductivity formulation used with ktherm = 1, MU71, bubbly</td>
@@ -513,8 +559,8 @@ snow, sea ice, and melt ponds. These albedos are most commonly changed through
 adjustments to the snow grain radius, <code class="docutils literal"><span class="pre">R_snw</span></code>, temperature to transition
 to melting snow, <code class="docutils literal"><span class="pre">dT_mlt_in</span></code>, and maximum snow grain radius, <code class="docutils literal"><span class="pre">rsnw_mlt_in</span></code>. Note, the older CCSM3
 radiation scheme is still available through <code class="docutils literal"><span class="pre">shortwave</span> <span class="pre">=</span> <span class="pre">default</span></code>.</p>
-<table border="1" class="colwidths-given docutils" id="id11">
-<span id="shortwave"></span><caption><span class="caption-text">Table 5: CICE Radiation Settings</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id11">
+<span id="shortwave"></span><caption><span class="caption-text">Table 5: Radiation Namelist Options</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="16%" />
 <col width="9%" />
@@ -526,77 +572,84 @@ radiation scheme is still available through <code class="docutils literal"><span
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">CESM-CAM4 gx3</th>
-<th class="head">CESM-CAM4 gx1</th>
-<th class="head">CESM-CAM5 gx1</th>
+<th class="head">Default: CESM-CAM4 gx3</th>
+<th class="head">Default: CESM-CAM4 gx1</th>
+<th class="head">Default: CESM-CAM5 gx1</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">shortwave</span></code></td>
+<tr class="row-even"><td>&amp;shortwave_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">shortwave</span></code></td>
 <td>Character</td>
 <td>dEdd</td>
 <td>dEdd</td>
 <td>dEdd</td>
-<td>Shortwave Radiative Transfer Scheme,  ’default’ = CCSM3 Shortwave, ’dEdd’ = delta-Eddington Shortwave</td>
+<td>Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">albicev</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">albicev</span></code></td>
 <td>Real</td>
 <td>0.68</td>
 <td>0.75</td>
 <td>0.75</td>
 <td>Visible ice albedo (CCSM3)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">albicei</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">albicei</span></code></td>
 <td>Real</td>
 <td>0.30</td>
 <td>0.45</td>
 <td>0.45</td>
 <td>Near-infrared ice albedo (CCSM3)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">albsnowv</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">albsnowv</span></code></td>
 <td>Real</td>
 <td>0.91</td>
 <td>0.98</td>
 <td>0.98</td>
 <td>Visible snow albedo (CCSM3)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">albsnowi</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">albsnowi</span></code></td>
 <td>Real</td>
 <td>0.63</td>
 <td>0.73</td>
 <td>0.73</td>
 <td>Near-infrared snow albedo (CCSM3)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">R_ice</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">r_ice</span></code></td>
 <td>Real</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>Base ice tuning parameter (dEdd)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">R_pnd</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">r_pnd</span></code></td>
 <td>Real</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>Base pond tuning parameter (dEdd)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">R_snw</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">r_snw</span></code></td>
 <td>Real</td>
 <td>-2.0</td>
 <td>1.5</td>
 <td>1.75</td>
 <td>Base snow grain radius tuning parameter (dEdd)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">dT_mlt_in</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">dt_mlt</span></code></td>
 <td>Real</td>
 <td>2.0</td>
 <td>1.5</td>
 <td>1.0</td>
 <td>Snow melt onset temperature parameter (dEdd)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">rsnw_mlt_in</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">rsnw_mlt</span></code></td>
 <td>Real</td>
 <td><ol class="first last arabic simple" start="2000">
 <li></li>
@@ -617,11 +670,11 @@ radiation scheme is still available through <code class="docutils literal"><span
 </div>
 <div class="section" id="tracer-namelist">
 <h2>3.4. Tracer Namelist<a class="headerlink" href="#tracer-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in <a class="reference internal" href="#tracers"><span class="std std-ref">Table 6: Tracer Namelist</span></a> are
+<p>The namelist parameters listed in <a class="reference internal" href="#tracers"><span class="std std-ref">Table 6: Tracer Namelist Options</span></a> are
 for adding tracers. The tracers should be added through the CESM
 driver scripts via the <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code> variable.</p>
-<table border="1" class="colwidths-given docutils" id="id12">
-<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id12">
+<span id="tracers"></span><caption><span class="caption-text">Table 6: Tracer Namelist Options</span><a class="headerlink" href="#id12" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -629,79 +682,84 @@ driver scripts via the <code class="docutils literal"><span class="pre">CICE_CON
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">Default Value</th>
+<th class="head">Default</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_aero</span></code></td>
+<tr class="row-even"><td>&amp;tracer_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_aero</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Aerosol physics and tracer</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_aero</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_aero</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize aerosols to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_iage</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_iage</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Ice age passive tracer</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_age</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_age</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize iage to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_FY</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_FY</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>First-year ice area passive tracer</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_FY</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_FY</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize first-year ice to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_lvl</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_lvl</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Level ice area passive tracer</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_lvl</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_lvl</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize level ice to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_pond_cesm</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_pond_cesm</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>The older CESM melt pond option.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_pond_cesm</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_pond_cesm</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize CESM ponds to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_pond_lvl</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_pond_lvl</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>The Hunke et al. level ice pond formulation</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_pond_lvl</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_pond_lvl</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize level ponds to zero or from file.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tr_pond_topo</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tr_pond_topo</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>The Felthem et al. topographic pond formulation</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">restart_pond_topo</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">restart_pond_topo</span></code></td>
 <td>Logical</td>
 <td>.false.</td>
 <td>Initialize topgraphic ponds to zero or from file.</td>
@@ -711,10 +769,10 @@ driver scripts via the <code class="docutils literal"><span class="pre">CICE_CON
 </div>
 <div class="section" id="prescribed-ice-namelist">
 <h2>3.5. Prescribed Ice Namelist<a class="headerlink" href="#prescribed-ice-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in <a class="reference internal" href="#prescribed"><span class="std std-ref">Table 7: Prescribed Ice Namelist</span></a> are for the prescribed ice
+<p>The namelist parameters listed in <a class="reference internal" href="#prescribed"><span class="std std-ref">Table 7: Prescribed Ice Namelist Options</span></a> are for the prescribed ice
 option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
-<table border="1" class="colwidths-given docutils" id="id13">
-<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id13">
+<span id="prescribed"></span><caption><span class="caption-text">Table 7: Prescribed Ice Namelist Options</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -722,9 +780,9 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">Default Value</th>
+<th class="head">Default</th>
 <th class="head">Description</th>
 </tr>
 </thead>
@@ -756,7 +814,7 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">stream_domfilename</span></code></td>
 <td>Character</td>
-<td>none</td>
+<td>none’</td>
 <td>Prescribed ice stream data file</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">stream_fldfilename</span></code></td>
@@ -774,15 +832,15 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
 </div>
 <div class="section" id="grid-namelist">
 <h2>3.6. Grid Namelist<a class="headerlink" href="#grid-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Settings Namelist</span></a> are for
+<p>The namelist parameters listed in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Namelist Options</span></a> are for
 grid and mask information. During execution, the ice model reads grid
 and land mask information from the files <code class="docutils literal"><span class="pre">grid_file</span></code> and <code class="docutils literal"><span class="pre">kmt_file</span></code> that
 should be located in the executable directory. There are commands in the
 scripts that copy these files from the input data directory, rename them
 from <strong>global_$ICE_GRID.grid</strong> and <strong>global_$ICE_GRID.kmt</strong> to the
-default filenames shown in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Settings Namelist</span></a>.</p>
-<table border="1" class="colwidths-given docutils" id="id14">
-<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Settings Namelist</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
+default filenames shown in <a class="reference internal" href="#grid"><span class="std std-ref">Table 8: Grid Namelist Options</span></a>.</p>
+<table border="1" class="docutils" id="id14">
+<span id="grid"></span><caption><span class="caption-text">Table 8: Grid Namelist Options</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -790,54 +848,59 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">Default Value</th>
+<th class="head">Default</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">grid_type</span></code></td>
+<tr class="row-even"><td>&amp;grid_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">grid_type</span></code></td>
 <td>Character</td>
 <td>displaced_pole</td>
 <td>Determines grid type.</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>displaced_pole</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>tripole</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>rectangular</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">grid_format</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">grid_format</span></code></td>
 <td>Character</td>
 <td>binary</td>
 <td>Grid file format (binary or netCDF)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">grid_file</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">grid_file</span></code></td>
 <td>Character</td>
 <td>data.domain.grid</td>
 <td>Input filename containing grid information.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">gridcpl_file</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">gridcpl_file</span></code></td>
 <td>Character</td>
 <td>data.domain.grid</td>
 <td>Input filename containing grid information if coupling grid is different than computational grid.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kmt_file</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">kmt_file</span></code></td>
 <td>Character</td>
 <td>data.domain.kmt</td>
 <td>Input filename containing land mask information.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kcatbound</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kcatbound</span></code></td>
 <td>Integer</td>
 <td>0</td>
 <td>How category boundaries are set (0 or 1)</td>
@@ -849,13 +912,13 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 </div>
 <div class="section" id="domain-namelist">
 <h2>3.7. Domain Namelist<a class="headerlink" href="#domain-namelist" title="Permalink to this headline">¶</a></h2>
-<p>The namelist parameters listed in <a class="reference internal" href="#domain"><span class="std std-ref">Table 9: Domain Settings Namelist</span></a> are
+<p>The namelist parameters listed in <a class="reference internal" href="#domain"><span class="std std-ref">Table 9: Domain Namelist Options</span></a> are
 for computational domain decomposition information. These are generally
 set in the build configure scripts through the variables <code class="docutils literal"><span class="pre">CICE_DECOMPTYPE</span></code>
 and <code class="docutils literal"><span class="pre">CICE_DECOMPSETTING</span></code> based on the number of processors.
 See the CESM scripts documentation.</p>
-<table border="1" class="colwidths-given docutils" id="id15">
-<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Settings Namelist</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id15">
+<span id="domain"></span><caption><span class="caption-text">Table 9: Domain Namelist Options</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="19%" />
 <col width="12%" />
@@ -863,129 +926,134 @@ See the CESM scripts documentation.</p>
 <col width="58%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Variable Name</th>
 <th class="head">Type</th>
-<th class="head">Default Value</th>
+<th class="head">Default</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">processor_shape</span></code></td>
+<tr class="row-even"><td>&amp;domain_nml</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">processor_shape</span></code></td>
 <td>Character</td>
-<td>square-pop</td>
+<td>square-ice</td>
 <td>Approximate block shapes</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>slenderX1</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>slenderX2</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>square-ice</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>square-pop</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>blocks</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_type</span></code></td>
 <td>Character</td>
-<td>cartesian</td>
+<td>spacecurve</td>
 <td>How domain is split into blocks and distributed onto processors</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>cartesian</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>rake</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>roundrobin</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>sectcart</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>sectrobin</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>spacecurve</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_wght</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_wght</span></code></td>
 <td>Character</td>
-<td>erfc</td>
+<td>latitude</td>
 <td>How blocks are weighted when using space-filling curves</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>block</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>latitude</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
+<tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>erfc</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
+<tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
 <td>file</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_wght_file</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_wght_file</span></code></td>
 <td>Character</td>
 <td>none</td>
 <td>File containing space-filling curve weights when using file weighting</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ew_boundary_type</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">ew_boundary_type</span></code></td>
 <td>Character</td>
 <td>cyclic</td>
 <td>Boundary conditions in E-W direction</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ns_boundary_type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ns_boundary_type</span></code></td>
 <td>Character</td>
 <td>open</td>
 <td>Boundary conditions in N-S direction</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_dyn</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_dyn</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in dynamics.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_remap</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_remap</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in remapping.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_bound</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_bound</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in state bound.</td>
@@ -1018,12 +1086,12 @@ See the CESM scripts documentation.</p>
           <a href="ice_setup.html" title="2. Configuring and Building CICE"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

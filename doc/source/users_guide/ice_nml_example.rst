@@ -32,37 +32,40 @@ Note that modifications to the CICE namelist go in **$CASE/user\_nl\_cice**.
   &setup_nml
     bfbflag = .false.
     days_per_year = 365
-    diagfreq = 1
+    diagfreq = 24
     dumpfreq = "x"
     hist_avg = .true.
     histfreq = "m", "x", "x", "x", "x"
     histfreq_n = 1, 0, 0, 0, 0
     history_file = "unknown"
-    ice_ic = "b.e20.B1850.f09_g16.pi_control.all.144.cice.r.0035-01-01-00000.nc"
-    latpnt = 69.8359, -65.0
+    history_precision = 4
+    ice_ic = "b.e20.B1850.f09_g17.pi_control.all.297.cice.r.0130-01-01-00000.nc"
+    latpnt = 90.0, -65.0
     lcdf64 = .true.
-    lonpnt = 271.392, -45.0
+    lonpnt = 0.0, -45.0
     ndtd = 1
     pointer_file = "./rpointer.ice"
     print_global = .true.
-    print_points = .true.
+    print_points = .false.
     restart_ext = .false.
     restart_file = ""
     restart_format = "pio"
+    write_ic = .false.
     year_init = 1
   /
   &grid_nml
-    grid_file = '/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/horiz_grid_20010402.ieeer8'
+    grid_file = "/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/horiz_grid_20010402.ieeer8"
     grid_format = "bin"
     grid_type = "displaced_pole"
     gridcpl_file = "unknown_gridcpl_file"
     kcatbound = 0
-    kmt_file = '/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/topography_20161215.ieeei4'
+    kmt_file = "/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/topography_20161215.ieeei4"
   /
   &tracer_nml
     restart_aero = .false.
     restart_age = .false.
     restart_fy = .false.
+    restart_iso = .false.
     restart_lvl = .false.
     restart_pond_cesm = .false.
     restart_pond_lvl = .false.
@@ -70,6 +73,7 @@ Note that modifications to the CICE namelist go in **$CASE/user\_nl\_cice**.
     tr_aero = .true.
     tr_fy = .true.
     tr_iage = .true.
+    tr_iso = .false.
     tr_lvl = .true.
     tr_pond_cesm = .false.
     tr_pond_lvl = .true.
@@ -104,11 +108,11 @@ Note that modifications to the CICE namelist go in **$CASE/user\_nl\_cice**.
     albicev = 0.75
     albsnowi = 0.73
     albsnowv = 0.98
-    dt_mlt = 1.5
+    dt_mlt = 1.50
     kalg = 0.0
     r_ice = 0.0
     r_pnd = 0.0
-    r_snw = 1.0
+    r_snw = 1.25
     rsnw_mlt = 1500.
     shortwave = "dEdd"
   /
@@ -137,7 +141,7 @@ Note that modifications to the CICE namelist go in **$CASE/user\_nl\_cice**.
     maskhalo_dyn = .true.
     maskhalo_remap = .true.
     ns_boundary_type = "open"
-    processor_shape = "square-pop"
+    processor_shape = "square-ice"
   /
   &zbgc_nml
     bgc_data_dir = "unknown_bgc_data_dir"

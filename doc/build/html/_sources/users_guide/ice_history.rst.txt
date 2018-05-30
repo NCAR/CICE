@@ -38,47 +38,42 @@ directory. Note that variables without the ``f_`` string in front are
 always written with every run :ref:`gridhistreq`, while the optional
 ones are namelist options :ref:`gridhistopt`. 
 
-.. _gridhistreq: 
+.. _gridhistreq:
 
-.. table:: Table 10: Required Grid History Variables
-   :widths: auto
+.. csv-table:: Table 10: Required Grid History Variables
+   :header: "Field","Description","Units"
+   :widths: 20,50,10
 
-   ===============    ============================================================   ================
-   Field              Description                                                    Units             
-   ===============    ============================================================   ================
-   ``time``           model time                                                     days              
-   ``time_bounds``    boundaries for time-averaging interval                         days              
-   ``TLON``           T grid center longitude                                        degrees           
-   ``TLAT``           T grid center latitude                                         degrees           
-   ``ULON``           U grid center longitude                                        degrees           
-   ``ULAT``           U grid center latitude                                         degrees           
-   ``NCAT``           category maximum thickness                                     m
-   ``VGRIDi``         vertical ice levels
-   ``VGRIDs``         vertical snow levels
-   ===============    ============================================================   ================
+   "``time``","model time","days"              
+   "``time_bounds``","boundaries for time-averaging interval","days"              
+   "``TLON``","T grid center longitude","degrees"           
+   "``TLAT``","T grid center latitude","degrees"           
+   "``ULON``","U grid center longitude","degrees"           
+   "``ULAT``","U grid center latitude","degrees"           
+   "``NCAT``","category maximum thickness","m"
+   "``VGRIDi``","vertical ice levels",""
+   "``VGRIDs``","vertical snow levels",""
 
 .. _gridhistopt: 
 
-.. table:: Table 11: Optional Grid History Variables
-   :widths: auto
+.. csv-table:: Table 11: Optional Grid History Variables
+   :header: "Field","Description","Units"
+   :widths: 20,50,10
 
-   ================    ============================================================   ================
-   Field               Description                                                    Units             
-   ================    ============================================================   ================
-   ``f_tmask``         ocean grid mask (0=land, 1=ocean)                                                        
-   ``f_blkmask``       ice block mask                                                        
-   ``f_tarea``         T grid cell area                                               m\ :math:`^{2}`   
-   ``f_uarea``         U grid cell area                                               m\ :math:`^{2}`   
-   ``f_dxt``           T cell width through middle                                    m                 
-   ``f_dyt``           T cell height through middle                                   m                 
-   ``f_dxu``           U cell width through middle                                    m                 
-   ``f_dyu``           U cell height through middle                                   m                 
-   ``f_HTN``           T cell width North side                                        m                 
-   ``f_HTE``           T cell width East side                                         m                 
-   ``f_ANGLET``        angle grid makes with latitude line on T grid                  radians           
-   ``f_ANGLE``         angle grid makes with latitude line on U grid                  radians           
-   ``f_bounds``        corner points of grid cells                                    degrees
-   ================    ============================================================   ================
+   "``f_tmask``","ocean grid mask (0=land, 1=ocean)",""                                                        
+   "``f_blkmask``","ice block mask",""                                                        
+   "``f_tarea``","T grid cell area","m\ :math:`^{2}`"   
+   "``f_uarea``","U grid cell area","m\ :math:`^{2}`"  
+   "``f_dxt``","T cell width through middle","m"                 
+   "``f_dyt``","T cell height through middle","m"                 
+   "``f_dxu``","U cell width through middle","m"                
+   "``f_dyu``","U cell height through middle","m"                 
+   "``f_HTN``","T cell width North side","m"                 
+   "``f_HTE``","T cell width East side","m"                 
+   "``f_ANGLET``","angle grid makes with latitude line on T grid","radians"           
+   "``f_ANGLE``","angle grid makes with latitude line on U grid","radians"           
+   "``f_bounds``","corner points of grid cells","degrees"
+
 
 Caveats Regarding Averaged Fields
 ----------------------------------------
@@ -148,7 +143,7 @@ Changing Frequency and Averaging
 
 The frequency at which data are written to a history file as well as the
 interval over which the time average is to be performed is controlled by
-the namelist variable histfreq. Data averaging is invoked by the
+the namelist variable ``histfreq``. Data averaging is invoked by the
 namelist variable ``hist_avg``. The averages are constructed by
 accumulating the running sums of all variables in memory at each
 timestep. The options for both of these variables are described in 

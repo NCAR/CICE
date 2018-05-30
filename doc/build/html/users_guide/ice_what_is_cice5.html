@@ -2,16 +2,12 @@
 
 <!doctype html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>1. What is CICE5 &#8212; cicedoc  documentation</title>
-    
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,7 +21,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +32,7 @@
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +46,7 @@
           <a href="index.html" title="CICE User’s Guide"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -65,7 +61,7 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">CICE User&#8217;s Guide</a></p>
+                        title="previous chapter">CICE User’s Guide</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="ice_setup.html"
                         title="next chapter">2. Configuring and Building CICE</a></p>
@@ -115,22 +111,22 @@ ice model that can be run coupled in a global climate model or
 uncoupled as a standalone ice model. CICE5 has been released as the sea
 ice component of the Community Earth System Model (CESM), a
 fully-coupled global climate model that provides simulations of
-Earth&#8217;s past, present, and future climate states. CICE5 in the CESM is
+Earth’s past, present, and future climate states. CICE5 in the CESM is
 supported on high- and low-resolution Greenland Pole and tripole grids,
 which are identical to those used by the Parallel Ocean Program (POP)
 ocean model. The high resolution version is best suited for simulating
 present-day and future climate scenarios while the low resolution
 option is used for paleoclimate simulations and debugging.</p>
-<p>An uncoupled version of CICE is available separately from Los Alamos
-National Laboratory: <a class="reference external" href="http://oceans11.lanl.gov/trac/CICE">http://oceans11.lanl.gov/trac/CICE</a> . This standalone
-CICE configuration provides a means of running the sea ice model
+<p>An uncoupled version of CICE5.1.2 is available separately:
+<a class="reference external" href="https://github.com/CICE-Consortium/CICE-svn-trunk">https://github.com/CICE-Consortium/CICE-svn-trunk</a> . This
+standalone CICE configuration provides a means of running the sea ice model
 independent of the other CESM components. It can read in atmospheric
 and ocean forcing, which eliminates the need for the flux coupler, and
 the atmosphere, land and ocean data models. It can be run on a reduced
 number of processors, or without MPI (Message Passing Interface) for
 researchers without access to these computer resources.</p>
 <p>CICE is a dynamic-thermodynamic model that includes a subgrid-scale ice
-thickness distribution (<a class="reference internal" href="zreferences.html#cice15" id="id3">[6]</a>). It uses the energy conserving
+thickness distribution <a class="reference internal" href="zreferences.html#cice15" id="id3">[6]</a>. It uses the energy conserving
 thermodynamics of <a class="reference internal" href="zreferences.html#turner15" id="id4">[10]</a> or <a class="reference internal" href="zreferences.html#bitz01" id="id5">[2]</a>, has multiple
 layers in each thickness category, and accounts for the influences of
 brine pockets within the ice cover. The ice dynamics utilizes the
@@ -155,11 +151,11 @@ The major changes are:</p>
 <li>The new mushy-layer thermodynamics (<code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>) is the default <a class="reference internal" href="zreferences.html#turner15" id="id11">[10]</a>.</li>
 <li>The new level melt pond scheme (<code class="docutils literal"><span class="pre">tr_pond_lvl</span> <span class="pre">=</span> <span class="pre">.true.</span></code>) is the default <a class="reference internal" href="zreferences.html#hunke13" id="id12">[5]</a>.</li>
 <li>The default number of ice layers is now 8 (previously 4).</li>
-<li>The default number of snow layers is now 3 (previously 3).</li>
+<li>The default number of snow layers is now 3 (previously 1).</li>
 <li>The freezing point at the sea ice-ocean interface is now salinity dependent following <a class="reference internal" href="zreferences.html#assur58" id="id13">[1]</a>.</li>
 </ul>
-<p>The CICE source code used in the CESM is based on the Los Alamos sea
-ice model CICE model version 5. The main source code is very similar
+<p>The CICE source code used in the CESM is based on the Los Alamos Sea
+Ice Model CICE model version 5. The main source code is very similar
 in both versions, but the drivers are significantly different. If there
 are topics that are not covered in this CICE documentation, users are
 encouraged to look at the CICE documentation available at:
@@ -186,12 +182,12 @@ encouraged to look at the CICE documentation available at:
           <a href="index.html" title="CICE User’s Guide"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

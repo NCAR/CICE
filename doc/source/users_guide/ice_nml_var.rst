@@ -5,9 +5,9 @@
 **********************
 
 CICE uses the same namelists for both the coupled and uncoupled models.
-This section describes the namelist variables in the namelists,
+This section describes the namelist variables,
 which determine time management, output frequency, model physics, and
-filenames The ice namelists for the coupled model are now located in
+filenames. The ice namelists for the coupled model are now located in
 **$CASE/CaseDocs**.
 
 A script reads the input namelist at runtime, and writes the namelist
@@ -37,51 +37,43 @@ CESM configuration files.
 
 .. _setupnml:
 
-.. table:: Table 1: Setup Namelist
+.. csv-table:: Table 1: Setup Namelist Options
+   :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ==================    ==========  ====================        ============================================================  
-   Variable              Type        Default Value               Description
-   ==================    ==========  ====================        ============================================================
-   ``ice_ic``            character   default                     Filename for initial and branch runs. Set by driver scripts.
-   ``pointer_file``      character   ’rpointer.ice’              Pointer file that contains the name of the restart file.
-   ``restart_file``      character   none                        Restart file prefix. Set by driver.
-   ``restart_format``    character   none                        Restart file format. bin \= binary, nc \= netcdf,
-                                                                 pio \= use pio library (default)
-   ``restart_ext``       logical     .false.                     Write ghost cells as a part of restarts.
-   ``history_file``      character   'unknown'                   History file prefix. Set by driver.
-                                                                 ’default’ uses default initialization 
-                                                                 ’none’ initializes with no ice  
-   ``days_per_year``     integer     365                         Standard number of days per year for calendar. Does interact
-                                                                 with Gregorian calendar setting (set by driver).
-   ``year_init``         integer     1                           Used in leap year calculation. Do not change.
-   ``ndtd``              integer     1                           Number of dynamic timesteps per thermodynamic timestep.
-   ``histfreq``          char array  ’m’,’x’,’x’,’x’,’x’         Unit for frequency of output written to history streams 
-                                                                 ’H’ or ’h’ writes hourly data
-                                                                 ’D’ or ’d’ writes daily data
-                                                                 ’M’ or ’m’ writes monthly data
-                                                                 ’Y’ or ’y’ writes yearly data
-                                                                 ’1’ writes every timestep
-                                                                 ’x’ no history data is written  
-   ``histfreq_n``        integer     1,1,1,1,1                   Frequency of histfreq history data is written to each stream.
-   ``dumpfreq``          character   'x'                         Unit for frequency of dump files. Currently set by driver.
-   ``dumpfreq_n``        integer     1                           Frequency of dumpfreq dump files. Set by driver.
-   ``hist_avg``          logical     .true.                      If true, averaged history information 
-                                                                 is written out at a frequency determined by histfreq. 
-                                                                 If false, instantaneous values are written in all streams.
-   ``write_ic``          logical     .true.                      If true, write initial conditions.
-   ``diagfreq``          integer     24                          Frequency of diagnostics written
-                                                                 (min, max, hemispheric sums) to standard output
-                                                                 24 =\ :math:`>` writes once every 24 timesteps 
-                                                                 1 =\ :math:`>` diagnostics written each timestep
-                                                                 0 =\ :math:`>` no diagnostics written
-   ``print_global``      logical     .true.                      Print global diagnostics.
-   ``print_points``      logical     .true.                      Print diagnostics at latpnt and lonpnt.
-   ``latpnt``            float arr   90.0, -65.0                 Latitudes for diagnostic points (print\_points)
-   ``lonpnt``            float arr   0.0, -45.0                  Longitudes for diagnostic points (print\_points)
-   ``lcdf64``            logical     .false.                     Use 64-bit offset in netcdf files
-   ``bfbflag``           logical     .false.                     Require bit-for-bit global sums.
-   ==================    ==========  ====================        ============================================================ 
+   "&setup_nml","","",""
+   "``ice_ic``","character","default","Filename for initial and branch runs. Set by driver scripts"
+   "``pointer_file``","character","’rpointer.ice’","Pointer file that contains the name of the restart file"
+   "``restart_file``","character","none","Restart file prefix. Set by driver."
+   "``restart_format``","character","none","Restart file format. bin \= binary, nc \= netcdf, pio \= use pio library (default)."
+   "``restart_ext``","logical",".false.","Write ghost cells as a part of restarts"
+   "``history_file``","character","'unknown'","History file prefix. Set by driver. ’default’ uses default initialization. ’none’ initializes with no ice."  
+   "``days_per_year``","integer","365","Standard number of days per year for calendar. Does interact with Gregorian calendar setting. Set by driver."
+   "``year_init``","integer","1","Used in leap year calculation. Do not change"
+   "``ndtd``","integer","1","Number of dynamic timesteps per thermodynamic timestep"
+   "``histfreq``","char array","’m’,’x’,’x’,’x’,’x’","Unit for frequency of output written to history streams" 
+   "","","","’H’ or ’h’ writes hourly data"
+   "","","","’D’ or ’d’ writes daily data"
+   "","","","’M’ or ’m’ writes monthly data"
+   "","","","’Y’ or ’y’ writes yearly data"
+   "","","","’1’ writes every timestep"
+   "","","","’x’ no history data is written"  
+   "``histfreq_n``","integer","1,1,1,1,1","Frequency of histfreq history data is written to each stream"
+   "``dumpfreq``","character","'x'","Unit for frequency of dump files. Set by driver."
+   "``dumpfreq_n``","integer","1","Frequency of dumpfreq dump files. Set by driver."
+   "``hist_avg``","logical",".true.","If true, averaged history information is written out at a frequency determined by histfreq. If false, instantaneous values are written in all streams."
+   "``write_ic``","logical",".true.","If true, write initial conditions"
+   "``diagfreq``","integer","24","Frequency of diagnostics written (min, max, hemispheric sums) to standard output."
+   "","","","'24' = diagnostics written once every 24 timesteps"
+   "","","","'1' = diagnostics written each timestep"
+   "","","","'0' = no diagnostics written"
+   "``print_global``","logical",".true.","Print global diagnostics"
+   "``print_points``","logical",".true.","Print diagnostics at latpnt and lonpnt"
+   "``latpnt``","float arr","90.0, -65.0","Latitudes for diagnostic points (``print_points``)"
+   "``lonpnt``","float arr","0.0, -45.0","Longitudes for diagnostic points (``print_points``)"
+   "``lcdf64``","logical",".false.","Use 64-bit offset in netcdf files"
+   "``bfbflag``","logical",".false.","Require bit-for-bit global sums"
+
 
 Changing the timestep
 ---------------------
@@ -92,7 +84,7 @@ value of the timestep. The value chosen for ``dt`` depends on the stability
 of the transport and the grid resolution. A conservative estimate of ``dt``
 for the transport using the upwind advection scheme is:
 
-.. math:: \Delta t < \frac{min(\Delta x, \Delta y)}{4 max(u, v)} .
+.. math:: \Delta t < \frac{min(\Delta x, \Delta y)}{4 * max(u, v)} .
 
 Maximum values for ``dt`` for the two standard CESM POP grids, assuming
 :math:`max(u,v) = 0.5\ m/s`, are shown in :ref:`timestep`.
@@ -103,11 +95,12 @@ set in the CESM configuration files **env\_run.xml**.
 .. _timestep:
 
 .. csv-table:: Table 2: Recommended timesteps
-   :header: "Grid",":math:`min(\Delta x, \Delta y)`",":math:`max \Delta t`"
+   :header: "","",""
    :widths: 20,60,20
 
-   gx3,28845.9 m,4.0 hr
-   gx1,8558.2 m,1.2 hr
+   "Grid"," :math:`min(\Delta x, \Delta y)`",":math:`max {\Delta} t`"
+   "gx3","28845.9 m","4.0 hr"
+   "gx1","8558.2 m","1.2 hr"
 
 Occasionally, ice velocities are calculated that are larger than what is
 assumed when the model timestep is chosen. This causes a CFL violation
@@ -127,7 +120,7 @@ diagnostics, netCDF history, and restart files are shown in
 every 48 timesteps to the ascii file **ice.log.$LID** (see section
 :ref:`standard-output`). $LID is a time stamp that is set in the main script.
 
-The namelist variable histfreq controls the output frequency of the
+The namelist variable ``histfreq`` controls the output frequency of the
 netCDF history files; writing monthly averages is the default. The
 content of the history files is described in section :ref:`history-files`. The
 value of ``hist_avg`` determines if instantaneous or averaged variables are
@@ -160,7 +153,6 @@ netCDF through the namelist variable, ``restart_format``.
 The Parallel Input/Output libraries or "PIO" are used within the CESM for more
 efficient reading and writing. PIO includes options for binary, netCDF version3,
 parallel netCDF, or netCDF version 4 parallel. More on this can be found here:
-
 http://ncar.github.io/ParallelIO/
 
 If ``print_points`` is ``.true.``, diagnostic data is printed out for two grid
@@ -183,54 +175,55 @@ sufficiently shorter than dt.
 
 .. math:: dte < T < dt
 
-This relationship is discussed in :cite:`cice15`. The best
-ratio for [dte : T : dt] is [1 : 40 : 120]. Typical combinations of dt
-and ndte are (3600., 120), (7200., 240) (10800., 120). The default ``ndte``
+This relationship is discussed in :cite:`cice15`. The best ratio for 
+:math:`[dte:T:dt]` is [1:40:120]. Typical combinations of (``dt``, ``ndte``) 
+are (3600., 120), (7200., 240) (10800., 120). The default ``ndte``
 is ``120`` as set in **ice\_init.F90**.
 
 ``kitd`` determines the scheme used to redistribute sea ice within the ice
 thickness distribution (ITD) as the ice grows and melts. The linear
 remapping scheme is the default and approximates the thickness
-distribution in each category as a linear function (). The delta
-function method represents *g(h)* in each category as a delta function
-(). This method can leave some categories mostly empty at any given time
+distribution in each category as a linear function. The delta
+function method represents *g(h)* in each category as a delta function. 
+This method can leave some categories mostly empty at any given time
 and cause jumps in the properties of *g(h)*.
 
 ``kdyn`` determines the ice dynamics used in the model. The default is the
-elastic-viscous-plastic (EVP) dynamics . If ``kdyn`` is set to ``0``, the ice
-dynamics is inactive. In this case, ice velocities are not computed and
-ice is not transported. Since the initial ice velocities are read in
-from the restart file, the maximum and minimum velocities written to the
-log file will be non-zero in this case, but they are not used in any
+elastic-viscous-plastic (EVP) dynamics (``kdyn`` = 1). If ``kdyn`` is set 
+to ``0``, the ice dynamics is inactive. In this case, ice velocities are 
+not computed and ice is not transported. Since the initial ice velocities 
+are read in from the restart file, the maximum and minimum velocities written 
+to the log file will be non-zero in this case, but they are not used in any
 calculations.
 
 The value of ``kstrength`` determines which formulation is used to calculate
 the strength of the pack ice. The calculation depends on mean ice
-thickness and open water fraction. The calculation of is based on
+thickness and open water fraction. The calculation is based on
 energetics and should not be used if the ice that participates in
 ridging is not well resolved.
 
 The variable ``advection`` determines the horizontal transport scheme used. The default
-scheme is the incremental remapping method (). This method is less
+scheme is the incremental remapping method (``advection`` = "remap"). This method is less
 diffusive and is computationally efficient for large numbers of
-categories or tracers. The upwind scheme is also available. The upwind
+categories or tracers than other options. The upwind scheme is also available, but this 
 scheme is only first order accurate.
 
 .. _dynamics:
 
-.. csv-table:: Table 3: CICE Dynamics Settings
+.. csv-table:: Table 3: Dynamics Namelist Options
    :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``kdyn``,"Integer","1","Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics"
-   ``revised_evp``,"Logical",".false.","Revised EVP formulation"
-   ``ndte``, "Integer", "1","Number of sub-cycles in EVP dynamics."
-   ``advection``,"Character","remap","Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection"
-   ``kstrength``,"Integer","1","Determines pressure formulation, 0 = parameterization, 1 = parameterization"
-   ``krdg_partic``,"Integer","1","Ridging participation function, 0 = Thorndike, 1 = Expontential"
-   ``krdg_redist``,"Integer","1","Ridging distribution function, 0 = Hibler , 1 = Expontential"
-   ``mu_rdg``,"Real","4.0","e-folding scale of ridged ice"
-   ``Cf``,"Real","17.0","Ratio of ridging work to PE change"
+   "&dynamics_nml","","",""
+   "``kdyn``","Integer","1","Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics"
+   "``revised_evp``","Logical",".false.","Revised EVP formulation"
+   "``ndte``", "Integer", "1","Number of sub-cycles in EVP dynamics."
+   "``advection``","Character","remap","Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection"
+   "``kstrength``","Integer","1","Determines pressure formulation, 0 = parameterization, 1 = parameterization"
+   "``krdg_partic``","Integer","1","Ridging participation function, 0 = Thorndike, 1 = Expontential"
+   "``krdg_redist``","Integer","1","Ridging distribution function, 0 = Hibler , 1 = Expontential"
+   "``mu_rdg``","Real","4.0","e-folding scale of ridged ice"
+   "``cf``","Real","17.0","Ratio of ridging work to PE change"
 
 A new thermodynamics option (``ktherm = 2``) is now the default. This is the
 so-called mushy-layer thermodyanmics of :cite:`turner15`. The basic
@@ -242,13 +235,14 @@ There are several additional thermodynamic options not listed that go with
 
 .. _thermo:
 
-.. csv-table:: Table 4: CICE Thermodynamic Settings
+.. csv-table:: Table 4: Thermodynamics Namelist Options
    :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``kitd``,"Integer","1","Determines ITD conversion, 0 = delta scheme, 1=linear remapping"
-   ``ktherm``,"Integer","1","Determines ice thermodynamics, 1 = BL99, 2 = mushy layer"
-   ``conduct``,"Character","MU71","Determines conductivity formulation used with ktherm = 1, MU71, bubbly"
+   "&thermo_nml","","",""
+   "``kitd``","Integer","1","Determines ITD conversion, 0 = delta scheme, 1=linear remapping"
+   "``ktherm``","Integer","1","Determines ice thermodynamics, 1 = BL99, 2 = mushy layer"
+   "``conduct``","Character","MU71","Determines conductivity formulation used with ktherm = 1, MU71, bubbly"
 
 For the newer delta-Eddington shortwave radiative transfer scheme ``shortwave = dEdd``, the
 base albedos are computed based on the inherent optical properties of
@@ -259,20 +253,21 @@ radiation scheme is still available through ``shortwave = default``.
 
 .. _shortwave:
 
-.. csv-table:: Table 5: CICE Radiation Settings
-   :header: "Variable Name","Type","CESM-CAM4 gx3","CESM-CAM4 gx1","CESM-CAM5 gx1","Description"
+.. csv-table:: Table 5: Radiation Namelist Options
+   :header: "Variable Name","Type","Default: CESM-CAM4 gx3","Default: CESM-CAM4 gx1","Default: CESM-CAM5 gx1","Description"
    :widths: 20,12,12,12,12,60
 
-   ``shortwave``,"Character","dEdd","dEdd","dEdd","Shortwave Radiative Transfer Scheme,  ’default’ = CCSM3 Shortwave, ’dEdd’ = delta-Eddington Shortwave"
-   ``albicev``,"Real",0.68,0.75,0.75,"Visible ice albedo (CCSM3)"
-   ``albicei``,"Real",0.30,0.45,0.45,"Near-infrared ice albedo (CCSM3)"
-   ``albsnowv``,"Real",0.91,0.98,0.98,"Visible snow albedo (CCSM3)"
-   ``albsnowi``,"Real",0.63,0.73,0.73,"Near-infrared snow albedo (CCSM3)"
-   ``R_ice``,"Real",0.0,0.0,0.0,"Base ice tuning parameter (dEdd)"
-   ``R_pnd``,"Real",0.0,0.0,0.0,"Base pond tuning parameter (dEdd)"
-   ``R_snw``,"Real",-2.0,1.5,1.75,"Base snow grain radius tuning parameter (dEdd)"
-   ``dT_mlt_in``,"Real",2.0,1.5,1.0,"Snow melt onset temperature parameter (dEdd)"
-   ``rsnw_mlt_in``,"Real",2000.,1500.,1000.,"Snow melt maximum radius (dEdd)"
+   "&shortwave_nml","","","","",""
+   "``shortwave``","Character","dEdd","dEdd","dEdd","Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave"
+   "``albicev``","Real",0.68,0.75,0.75,"Visible ice albedo (CCSM3)"
+   "``albicei``","Real",0.30,0.45,0.45,"Near-infrared ice albedo (CCSM3)"
+   "``albsnowv``","Real",0.91,0.98,0.98,"Visible snow albedo (CCSM3)"
+   "``albsnowi``","Real",0.63,0.73,0.73,"Near-infrared snow albedo (CCSM3)"
+   "``r_ice``","Real",0.0,0.0,0.0,"Base ice tuning parameter (dEdd)"
+   "``r_pnd``","Real",0.0,0.0,0.0,"Base pond tuning parameter (dEdd)"
+   "``r_snw``","Real",-2.0,1.5,1.75,"Base snow grain radius tuning parameter (dEdd)"
+   "``dt_mlt``","Real",2.0,1.5,1.0,"Snow melt onset temperature parameter (dEdd)"
+   "``rsnw_mlt``","Real",2000.,1500.,1000.,"Snow melt maximum radius (dEdd)"
 
 Tracer Namelist
 ---------------
@@ -283,24 +278,25 @@ driver scripts via the ``CICE_CONFIG_OPTS`` variable.
 
 .. _tracers:
 
-.. csv-table:: Table 6: Tracer Namelist
-   :header: "Variable","Type","Default Value","Description"
+.. csv-table:: Table 6: Tracer Namelist Options
+   :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``tr_aero``,Logical,.true.,"Aerosol physics and tracer"
-   ``restart_aero``,Logical,.false.,"Initialize aerosols to zero or from file."
-   ``tr_iage``,Logical,.true.,"Ice age passive tracer"
-   ``restart_age``,Logical,.false.,"Initialize iage to zero or from file."
-   ``tr_FY``,Logical,.true.,"First-year ice area passive tracer"
-   ``restart_FY``,Logical,.false.,"Initialize first-year ice to zero or from file."
-   ``tr_lvl``,Logical,.false.,"Level ice area passive tracer"
-   ``restart_lvl``,Logical,.false.,"Initialize level ice to zero or from file."
-   ``tr_pond_cesm``,Logical,.false.,"The older CESM melt pond option."
-   ``restart_pond_cesm``,Logical,.false.,"Initialize CESM ponds to zero or from file."
-   ``tr_pond_lvl``,Logical,.true.,"The Hunke et al. level ice pond formulation"
-   ``restart_pond_lvl``,Logical,.false.,"Initialize level ponds to zero or from file."
-   ``tr_pond_topo``,Logical,.true.,"The Felthem et al. topographic pond formulation"
-   ``restart_pond_topo``,Logical,.false.,"Initialize topgraphic ponds to zero or from file."
+   "&tracer_nml","","",""
+   "``tr_aero``","Logical",".true.","Aerosol physics and tracer"
+   "``restart_aero``","Logical",".false.","Initialize aerosols to zero or from file."
+   "``tr_iage``","Logical",".true.","Ice age passive tracer"
+   "``restart_age``","Logical",".false.","Initialize iage to zero or from file."
+   "``tr_FY``","Logical",".true.","First-year ice area passive tracer"
+   "``restart_FY``","Logical",".false.","Initialize first-year ice to zero or from file."
+   "``tr_lvl``","Logical",".false.","Level ice area passive tracer"
+   "``restart_lvl``","Logical",".false.","Initialize level ice to zero or from file."
+   "``tr_pond_cesm``","Logical",".false.","The older CESM melt pond option."
+   "``restart_pond_cesm``","Logical",".false.","Initialize CESM ponds to zero or from file."
+   "``tr_pond_lvl``","Logical",".true.","The Hunke et al. level ice pond formulation"
+   "``restart_pond_lvl``","Logical",".false.","Initialize level ponds to zero or from file."
+   "``tr_pond_topo``","Logical",".true.","The Felthem et al. topographic pond formulation"
+   "``restart_pond_topo``","Logical",".false.","Initialize topgraphic ponds to zero or from file."
 
 Prescribed Ice Namelist
 -----------------------
@@ -310,18 +306,18 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].
 
 .. _prescribed:
 
-.. csv-table:: Table 7: Prescribed Ice Namelist
-   :header: "Variable","Type","Default Value","Description"
+.. csv-table:: Table 7: Prescribed Ice Namelist Options
+   :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``prescribed_ice``,Logical,.false.,"Flag to turn on prescribed ice"
-   ``prescribed_ice_fill``,Logical,.false.,"Flag to turn fill option"
-   ``stream_year_first``,Integer,1,"First year of prescribed ice data"
-   ``stream_year_last``,Integer,1,"Last year of prescribed ice data"
-   ``model_year_align``,Integer,1,"Year in model run that aligns with stream\_year\_first"
-   ``stream_domfilename``,Character,none,"Prescribed ice stream data file"
-   ``stream_fldfilename``,Character,none,"Prescribed ice stream data file"
-   ``stream_fldvarname``,Character,ice\_cov,"Ice fraction field name"
+   "``prescribed_ice``","Logical",".false.","Flag to turn on prescribed ice"
+   "``prescribed_ice_fill``","Logical",".false.","Flag to turn fill option"
+   "``stream_year_first``","Integer","1","First year of prescribed ice data"
+   "``stream_year_last``","Integer","1","Last year of prescribed ice data"
+   "``model_year_align``","Integer","1","Year in model run that aligns with stream\_year\_first"
+   "``stream_domfilename``","Character","none'","Prescribed ice stream data file"
+   "``stream_fldfilename``","Character","none","Prescribed ice stream data file"
+   "``stream_fldvarname``","Character","ice\_cov","Ice fraction field name"
 
 Grid Namelist
 -------------
@@ -336,19 +332,20 @@ default filenames shown in :ref:`grid`.
 
 .. _grid:
 
-.. csv-table:: Table 8: Grid Settings Namelist
-   :header: "Variable","Type","Default Value","Description"
+.. csv-table:: Table 8: Grid Namelist Options
+   :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``grid_type``,Character,"displaced\_pole","Determines grid type."
+   "&grid_nml","","",""
+   "``grid_type``","Character","displaced\_pole","Determines grid type."
    " "," "," ","displaced\_pole"
    " "," "," ","tripole"
    " "," "," ","rectangular"
-   ``grid_format``,Character,binary,"Grid file format (binary or netCDF)"
-   ``grid_file``,Character,data.domain.grid,"Input filename containing grid information."
-   ``gridcpl_file``,Character,data.domain.grid,"Input filename containing grid information if coupling grid is different than computational grid."
-   ``kmt_file``,Character,data.domain.kmt,"Input filename containing land mask information."
-   ``kcatbound``,Integer,0,"How category boundaries are set (0 or 1)"
+   "``grid_format``","Character","binary","Grid file format (binary or netCDF)"
+   "``grid_file``","Character","data.domain.grid","Input filename containing grid information."
+   "``gridcpl_file``","Character","data.domain.grid","Input filename containing grid information if coupling grid is different than computational grid."
+   "``kmt_file``","Character","data.domain.kmt","Input filename containing land mask information."
+   "``kcatbound``","Integer","0","How category boundaries are set (0 or 1)"
 
 For coupled runs, supported grids include the ’displaced\_pole’ grids
 (gx3 and gx1) and the ’tripole’ grids.
@@ -364,34 +361,35 @@ See the CESM scripts documentation.
 
 .. _domain:
 
-.. csv-table:: Table 9: Domain Settings Namelist
-   :header: "Variable","Type","Default Value","Description"
+.. csv-table:: Table 9: Domain Namelist Options
+   :header: "Variable Name","Type","Default","Description"
    :widths: 20,12,12,60
 
-   ``processor_shape``,Character,square-pop,"Approximate block shapes"
+   "&domain_nml","","",""
+   "``processor_shape``","Character","square-ice","Approximate block shapes"
    "","","","slenderX1"
    "","","","slenderX2"
    "","","","square-ice"
    "","","","square-pop"
    "","","","blocks"
-   ``distribution_type``,Character,cartesian,"How domain is split into blocks and distributed onto processors"
+   "``distribution_type``","Character","spacecurve","How domain is split into blocks and distributed onto processors"
    "","","","cartesian"
    "","","","rake"
    "","","","roundrobin"
    "","","","sectcart"
    "","","","sectrobin"
    "","","","spacecurve"
-   ``distribution_wght``,Character,erfc,"How blocks are weighted when using space-filling curves"
+   "``distribution_wght``","Character","latitude","How blocks are weighted when using space-filling curves"
    "","","","block"
    "","","","latitude"
    "","","","erfc"
    "","","","file"
-   ``distribution_wght_file``,Character,none,"File containing space-filling curve weights when using file weighting"
-   ``ew_boundary_type``,Character,cyclic,"Boundary conditions in E-W direction"
-   ``ns_boundary_type``,Character,open,"Boundary conditions in N-S direction"
-   ``maskhalo_dyn``,Logical,.true.,"Use masked halos in dynamics."
-   ``maskhalo_remap``,Logical,.true.,"Use masked halos in remapping."
-   ``maskhalo_bound``,Logical,.true.,"Use masked halos in state bound."
+   "``distribution_wght_file``","Character","none","File containing space-filling curve weights when using file weighting"
+   "``ew_boundary_type``","Character","cyclic","Boundary conditions in E-W direction"
+   "``ns_boundary_type``","Character","open","Boundary conditions in N-S direction"
+   "``maskhalo_dyn``","Logical",".true.","Use masked halos in dynamics."
+   "``maskhalo_remap``","Logical",".true.","Use masked halos in remapping."
+   "``maskhalo_bound``","Logical",".true.","Use masked halos in state bound."
 
 PIO Namelist
 ------------

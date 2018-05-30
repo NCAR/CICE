@@ -2,16 +2,12 @@
 
 <!doctype html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>11. Troubleshooting &#8212; cicedoc  documentation</title>
-    
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -25,7 +21,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +32,7 @@
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -50,7 +46,7 @@
           <a href="ice_stdout.html" title="10. Stdout Output"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -111,7 +107,7 @@ try the following:</p>
 <li>Make sure that there is a <strong>Macros.&lt; OS &gt;</strong> file
 for your platform. Modify the directory paths for the libraries.</li>
 <li>Make sure all paths and file names are set correctly in the scripts.</li>
-<li>If changes were made to the <strong>ice_model_size.F90</strong> file in the
+<li>If changes were made to the <strong>ice_domain_size.F90</strong> file in the
 source code directory, they will be overwritten by the file in
 <strong>input_templates</strong>.</li>
 </ul>
@@ -133,19 +129,20 @@ looks like:</p>
 </pre></div>
 </div>
 <p>The dynamics timestep should be reduced to integrate past this problem.
-Set</p>
+In <strong>user_nl_cice</strong> set</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ndtd</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>in <strong>user_nl_cice</strong> and restart the model. When the job completes set the
+<p>and restart the model. When the job completes set the
 value back to 1.</p>
 </div>
 <div class="section" id="thermodynamic-iteration-error">
 <h2>11.3. Thermodynamic Iteration Error<a class="headerlink" href="#thermodynamic-iteration-error" title="Permalink to this headline">¶</a></h2>
 <p>This error is written from <strong>ice_therm_vertical.F90</strong> when the ice
 model temperature iteration is not converging in the thermodynamics.
-This is usually a problem with the forcing, but sometimes can be
-indicative of a timestep problem in the ice.</p>
+This is usually a problem with the forcing from the atmosphere or ocean,
+but sometimes can be indicative of a timestep problem in the ice.
+Check the forcing files at point i,j first.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Thermo</span> <span class="n">iteration</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">converge</span>
 <span class="n">istep1</span><span class="p">,</span> <span class="n">my_task</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span>
 </pre></div>
@@ -216,12 +213,12 @@ at the core file. Useful information may also appear in the standard error and o
           <a href="ice_stdout.html" title="10. Stdout Output"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >CICE User&#8217;s Guide</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

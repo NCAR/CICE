@@ -13,9 +13,9 @@ that an uncoupled ice model will correct in several years. The initial
 conditions from a restart file are created from an equilibrium
 solution, and provide more realistic information that is necessary if
 coupling to an active ocean model. The frequency at which restart
-files are created is controlled by the namelist parameter dumpfreq.
+files are created is controlled by the namelist parameter ``dumpfreq``.
 The names of these files are proceeded by the namelist parameter
-dump\_file and, by default are written out yearly to the executable
+``dump_file`` and, by default are written out yearly to the executable
 directory. To change the directory where these files are located,
 modify the variable $RSTDIR at the top of the setup script. The names
 of the restart files follow the CESM Output Filename Requirements. The

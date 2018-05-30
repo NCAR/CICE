@@ -18,7 +18,7 @@ try the following:
 
 -  Make sure all paths and file names are set correctly in the scripts.
 
--  If changes were made to the **ice\_model\_size.F90** file in the
+-  If changes were made to the **ice\_domain\_size.F90** file in the
    source code directory, they will be overwritten by the file in
    **input\_templates**.
 
@@ -42,13 +42,13 @@ looks like:
       60:(shr_mpi_abort):remap transport: negative area 0
 
 The dynamics timestep should be reduced to integrate past this problem.
-Set
+In **user\_nl\_cice** set
 
 ::
 
      ndtd = 2
 
-in **user\_nl\_cice** and restart the model. When the job completes set the
+and restart the model. When the job completes set the
 value back to 1.
 
 Thermodynamic Iteration Error
@@ -56,8 +56,9 @@ Thermodynamic Iteration Error
 
 This error is written from **ice\_therm\_vertical.F90** when the ice
 model temperature iteration is not converging in the thermodynamics.
-This is usually a problem with the forcing, but sometimes can be
-indicative of a timestep problem in the ice.
+This is usually a problem with the forcing from the atmosphere or ocean, 
+but sometimes can be indicative of a timestep problem in the ice.
+Check the forcing files at point i,j first.
 
 ::
 

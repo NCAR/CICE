@@ -31,9 +31,9 @@ ocean model. The high resolution version is best suited for simulating
 present-day and future climate scenarios while the low resolution
 option is used for paleoclimate simulations and debugging. 
 
-An uncoupled version of CICE is available separately from Los Alamos
-National Laboratory: http://oceans11.lanl.gov/trac/CICE . This standalone 
-CICE configuration provides a means of running the sea ice model
+An uncoupled version of CICE5.1.2 is available separately:
+https://github.com/CICE-Consortium/CICE-svn-trunk . This 
+standalone CICE configuration provides a means of running the sea ice model
 independent of the other CESM components. It can read in atmospheric
 and ocean forcing, which eliminates the need for the flux coupler, and
 the atmosphere, land and ocean data models. It can be run on a reduced
@@ -41,7 +41,7 @@ number of processors, or without MPI (Message Passing Interface) for
 researchers without access to these computer resources.
 
 CICE is a dynamic-thermodynamic model that includes a subgrid-scale ice
-thickness distribution (:cite:`cice15`). It uses the energy conserving
+thickness distribution :cite:`cice15`. It uses the energy conserving
 thermodynamics of :cite:`turner15` or :cite:`bitz01`, has multiple
 layers in each thickness category, and accounts for the influences of
 brine pockets within the ice cover. The ice dynamics utilizes the
@@ -73,12 +73,12 @@ The major changes are:
 
 -  The default number of ice layers is now 8 (previously 4).
 
--  The default number of snow layers is now 3 (previously 3).
+-  The default number of snow layers is now 3 (previously 1).
 
 -  The freezing point at the sea ice-ocean interface is now salinity dependent following :cite:`assur58`.
 
-The CICE source code used in the CESM is based on the Los Alamos sea 
-ice model CICE model version 5. The main source code is very similar
+The CICE source code used in the CESM is based on the Los Alamos Sea 
+Ice Model CICE model version 5. The main source code is very similar
 in both versions, but the drivers are significantly different. If there 
 are topics that are not covered in this CICE documentation, users are
 encouraged to look at the CICE documentation available at:

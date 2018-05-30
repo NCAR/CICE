@@ -7,29 +7,18 @@ CICE Thickness Categories
 The number of ice thickness categories affects ice model input files in
 three places:
 
--  ``$NICECAT`` in the scripts
+-  ``$DNICECAT`` in the scripts
 
--  The source code module **ice\_model\_size.F90**
+-  The source code module **ice\_domain\_size.F90**
 
 -  The initial condition (restart) file in the input file directory
 
-One must be very careful with changing this value as it impacts a number of
+One must be very careful with changing the number of thickness categories as it impacts a number of
 places in the code. The number of ice thickness categories can be changed in
 **$CASE/env\_build.xml** using the xml variable ``CICE_CONFIG_OPTS``. 
 One changes this by adding ``-ncat 5`` to the variable ``CICE_CONFIG_OPTS``.
-The default value is 5 categories. ``$NICECAT`` is used to determine the CPP
-variable setting ``NICECAT`` in **ice\_model\_size.F90**. 
-
-.. note:: To use one ice thickness category, the following changes will need to be made in the namelist and also adding ``-ncat 1`` to ``CICE_CONFIG_OPTS``. 
-
-::
-
-      , kitd          = 0
-      , kstrength     = 0
-
-With these settings, the model will use the delta scheme instead of
-linear remapping and a strength parameterization based on open water
-area and mean ice thickness.
+The default value is 5 categories. ``$DNICECAT`` is used to determine the CPP
+variable setting ``NICECAT`` in **ice\_domain\_size.F90**. 
 
 The information in the initial restart file is dependent on the number
 of ice thickness categories and the total number of layers in the ice
@@ -59,3 +48,14 @@ layers, these steps should be followed:
 medium resolution grids, respectively. Note that the date printed inside the binary restart file will not be
 the same as 0001-01-01. For coupled runs, ``$BASEDATE`` will be the starting
 o date and the date inside the file will not be used.
+
+.. note:: To use one ice thickness category, the following changes will need to be made in the namelist and also adding ``-ncat 1`` to ``CICE_CONFIG_OPTS``. 
+
+::
+
+      , kitd          = 0
+      , kstrength     = 0
+
+With these settings, the model will use the delta scheme instead of
+linear remapping and a strength parameterization based on open water
+area and mean ice thickness.
