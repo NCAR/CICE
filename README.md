@@ -1,6 +1,4 @@
-====================================================================
-CICE in The CESM (Community Earth System Model) 
-====================================================================
+# CICE in The CESM (Community Earth System Model) 
 
 The CICE User's Guide is available at:
 
