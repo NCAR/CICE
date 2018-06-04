@@ -1,0 +1,517 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4. CICE Namelist Examples &#8212; cicedoc  documentation</title>
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. CICE Input Data" href="ice_input_data.html" />
+    <link rel="prev" title="3. CICE Namelists" href="ice_nml_var.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ice_input_data.html" title="5. CICE Input Data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. CICE Namelist Examples</a><ul>
+<li><a class="reference internal" href="#example-1-cesm-fully-coupled">4.1. Example 1: CESM Fully Coupled</a></li>
+<li><a class="reference internal" href="#example-2-history-file-namelist">4.2. Example 2: History File Namelist</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ice_nml_var.html"
+                        title="previous chapter">3. CICE Namelists</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ice_input_data.html"
+                        title="next chapter">5. CICE Input Data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/users_guide/ice_nml_example.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cice-namelist-examples">
+<span id="id1"></span><h1>4. CICE Namelist Examples<a class="headerlink" href="#cice-namelist-examples" title="Permalink to this headline">¶</a></h1>
+<p>This section shows several examples of namelists from the coupled ice
+model. These examples are taken directly from <strong>$CASE/CaseDocs/ice_in</strong> for
+the coupled model. Most of the variables in the namelist are determined
+from environment variables set elsewhere in the scripts. Since the
+namelists from the coupled model are “resolved” by the scripts, meaning
+that the values of most of the shell script variables are put directly
+into the namelist, examples are shown for the most commonly used
+configurations. Variables that are commonly changed directly in the
+namelist are the timestep dt and the number of subcycles per timestep in
+the ice dynamics ndte.</p>
+<div class="section" id="example-1-cesm-fully-coupled">
+<h2>4.1. Example 1: CESM Fully Coupled<a class="headerlink" href="#example-1-cesm-fully-coupled" title="Permalink to this headline">¶</a></h2>
+<p>The following example is the namelist used for CESM fully coupled, or
+the B configuration. A completely resolved version of the namelist will
+be written to <strong>$CASE/CaseDocs/ice_in</strong> and <strong>ice_in</strong> in the executable
+directory. While this list includes additional physics and biogeochemistry
+options, we have not tested these. More information can be found in the CICE
+Reference Guide <a class="reference internal" href="zreferences.html#cice15" id="id2">[6]</a>.
+Note that modifications to the CICE namelist go in <strong>$CASE/user_nl_cice</strong>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">setup_nml</span>
+  <span class="n">bfbflag</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">days_per_year</span> <span class="o">=</span> <span class="mi">365</span>
+  <span class="n">diagfreq</span> <span class="o">=</span> <span class="mi">24</span>
+  <span class="n">dumpfreq</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+  <span class="n">hist_avg</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">histfreq</span> <span class="o">=</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span>
+  <span class="n">histfreq_n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+  <span class="n">history_file</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+  <span class="n">history_precision</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="n">ice_ic</span> <span class="o">=</span> <span class="s2">&quot;b.e20.B1850.f09_g17.pi_control.all.297.cice.r.0130-01-01-00000.nc&quot;</span>
+  <span class="n">latpnt</span> <span class="o">=</span> <span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">65.0</span>
+  <span class="n">lcdf64</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">lonpnt</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.0</span>
+  <span class="n">ndtd</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">pointer_file</span> <span class="o">=</span> <span class="s2">&quot;./rpointer.ice&quot;</span>
+  <span class="n">print_global</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">print_points</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_ext</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_file</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+  <span class="n">restart_format</span> <span class="o">=</span> <span class="s2">&quot;pio&quot;</span>
+  <span class="n">write_ic</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">year_init</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">grid_nml</span>
+  <span class="n">grid_file</span> <span class="o">=</span> <span class="s2">&quot;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/horiz_grid_20010402.ieeer8&quot;</span>
+  <span class="n">grid_format</span> <span class="o">=</span> <span class="s2">&quot;bin&quot;</span>
+  <span class="n">grid_type</span> <span class="o">=</span> <span class="s2">&quot;displaced_pole&quot;</span>
+  <span class="n">gridcpl_file</span> <span class="o">=</span> <span class="s2">&quot;unknown_gridcpl_file&quot;</span>
+  <span class="n">kcatbound</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">kmt_file</span> <span class="o">=</span> <span class="s2">&quot;/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v7/grid/topography_20161215.ieeei4&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">tracer_nml</span>
+  <span class="n">restart_aero</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_age</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_fy</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_iso</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_pond_cesm</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_pond_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_pond_topo</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_aero</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_fy</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_iage</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_iso</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_pond_cesm</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_pond_lvl</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">tr_pond_topo</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">thermo_nml</span>
+  <span class="n">a_rapid_mode</span> <span class="o">=</span> <span class="mf">0.5e-03</span>
+  <span class="n">aspect_rapid_mode</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="n">conduct</span> <span class="o">=</span> <span class="s2">&quot;MU71&quot;</span>
+  <span class="n">dsdt_slow_mode</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5e-07</span>
+  <span class="n">kitd</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">ktherm</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="n">phi_c_slow_mode</span> <span class="o">=</span> <span class="mf">0.05</span>
+  <span class="n">phi_i_mushy</span> <span class="o">=</span> <span class="mf">0.85</span>
+  <span class="n">rac_rapid_mode</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">dynamics_nml</span>
+  <span class="n">advection</span> <span class="o">=</span> <span class="s2">&quot;remap&quot;</span>
+  <span class="n">cf</span> <span class="o">=</span> <span class="mf">17.0</span>
+  <span class="n">kdyn</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">krdg_partic</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">krdg_redist</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">kstrength</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">mu_rdg</span> <span class="o">=</span> <span class="mf">4.0</span>
+  <span class="n">ndte</span> <span class="o">=</span> <span class="mi">120</span>
+  <span class="n">revised_evp</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">shortwave_nml</span>
+  <span class="n">ahmax</span> <span class="o">=</span> <span class="mf">0.3</span>
+  <span class="n">albedo_type</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+  <span class="n">albicei</span> <span class="o">=</span> <span class="mf">0.45</span>
+  <span class="n">albicev</span> <span class="o">=</span> <span class="mf">0.75</span>
+  <span class="n">albsnowi</span> <span class="o">=</span> <span class="mf">0.73</span>
+  <span class="n">albsnowv</span> <span class="o">=</span> <span class="mf">0.98</span>
+  <span class="n">dt_mlt</span> <span class="o">=</span> <span class="mf">1.50</span>
+  <span class="n">kalg</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">r_ice</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">r_pnd</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="n">r_snw</span> <span class="o">=</span> <span class="mf">1.25</span>
+  <span class="n">rsnw_mlt</span> <span class="o">=</span> <span class="mf">1500.</span>
+  <span class="n">shortwave</span> <span class="o">=</span> <span class="s2">&quot;dEdd&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">ponds_nml</span>
+  <span class="n">dpscale</span> <span class="o">=</span> <span class="mf">1.0e-3</span>
+  <span class="n">frzpnd</span> <span class="o">=</span> <span class="s2">&quot;cesm&quot;</span>
+  <span class="n">hp1</span> <span class="o">=</span> <span class="mf">0.01</span>
+  <span class="n">hs0</span> <span class="o">=</span> <span class="mf">0.03</span>
+  <span class="n">hs1</span> <span class="o">=</span> <span class="mf">0.03</span>
+  <span class="n">pndaspect</span> <span class="o">=</span> <span class="mf">0.8</span>
+  <span class="n">rfracmax</span> <span class="o">=</span> <span class="mf">0.85</span>
+  <span class="n">rfracmin</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">forcing_nml</span>
+  <span class="n">fbot_xfer_type</span> <span class="o">=</span> <span class="s2">&quot;constant&quot;</span>
+  <span class="n">formdrag</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">highfreq</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">l_mpond_fresh</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">natmiter</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">domain_nml</span>
+  <span class="n">distribution_type</span> <span class="o">=</span> <span class="s2">&quot;spacecurve&quot;</span>
+  <span class="n">distribution_wght</span> <span class="o">=</span> <span class="s2">&quot;latitude&quot;</span>
+  <span class="n">ew_boundary_type</span> <span class="o">=</span> <span class="s2">&quot;cyclic&quot;</span>
+  <span class="n">maskhalo_bound</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">maskhalo_dyn</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">maskhalo_remap</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">ns_boundary_type</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span>
+  <span class="n">processor_shape</span> <span class="o">=</span> <span class="s2">&quot;square-ice&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">zbgc_nml</span>
+  <span class="n">bgc_data_dir</span> <span class="o">=</span> <span class="s2">&quot;unknown_bgc_data_dir&quot;</span>
+  <span class="n">bgc_flux_type</span> <span class="o">=</span> <span class="s2">&quot;Jin2006&quot;</span>
+  <span class="n">nit_data_type</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+  <span class="n">phi_snow</span> <span class="o">=</span> <span class="mf">0.5</span>
+  <span class="n">restart_bgc</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restart_hbrine</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">restore_bgc</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">sil_data_type</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+  <span class="n">skl_bgc</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_am_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_c_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_chl_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_dms_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_dmspd_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_dmspp_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_bgc_sil_sk</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">tr_brine</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-2-history-file-namelist">
+<h2>4.2. Example 2: History File Namelist<a class="headerlink" href="#example-2-history-file-namelist" title="Permalink to this headline">¶</a></h2>
+<p>The next sets of namelists control what variables are written to the history
+file. Variables that are not output are set in the namelists <code class="docutils literal"><span class="pre">icefields*_nml</span></code>.
+Some of the following fields are not written to the history file since they can be
+retrieved from the ocean history files. The melt and freeze onset fields
+are not used, since the information they contain may not be correct if
+the model is restarted mid-year. It is better to use daily data to compute these
+quantities. The ice areas and volumes for
+categories six through ten are not used, since the default thickness
+distribution consists of five ice categories.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">icefields_bgc_nml</span>
+  <span class="n">f_aero</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_aeron</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_am_ml</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_am_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_c</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_c_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_chl</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_chl_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dms</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dms_ml</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dms_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dmsp_ml</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dmspd</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dmspd_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dmspp</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_dmspp_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_n</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_n_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_nh</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_nit_ml</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_nit_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_no</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_s</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_sil</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_sil_ml</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bgc_sil_sk</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_bphi</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_btin</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_faero_atm</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_faero_ocn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fbri</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fn_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fnh</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fnh_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fno</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fno_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fsil</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fsil_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_grownet</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_hbri</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_ppnet</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">icefields_drag_nml</span>
+  <span class="n">f_cdn_atm</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_cdn_ocn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_drag</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">icefields_mechred_nml</span>
+  <span class="n">f_alvl</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_aparticn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_araftn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_ardg</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_ardgn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_aredistn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dardg1dt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dardg1ndt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dardg2dt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dardg2ndt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dvirdgdt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dvirdgndt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_krdgn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_opening</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vlvl</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vraftn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vrdg</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vrdgn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vredistn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">icefields_pond_nml</span>
+  <span class="n">f_apeff</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_apeff_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_apeffn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_apond</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_apond_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_apondn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_hpond</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_hpond_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_hpondn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_ipond</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_ipond_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">icefields_nml</span>
+  <span class="n">f_a11</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_a12</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_aice</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_aicen</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_aisnap</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_albice</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_albpnd</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_albsni</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_albsno</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_alidf</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_alidf_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_alidr</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_alidr_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_alvdf</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_alvdf_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_alvdr</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_alvdr_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_angle</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_anglet</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_blkmask</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_bounds</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_cmip</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_congel</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_coszen</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_daidtd</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_daidtt</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_divu</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_dsnow</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_dvidtd</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_dvidtt</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_dxt</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_dxu</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_dyt</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_dyu</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_e11</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_e12</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_e22</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_evap</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_evap_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fcondtop_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fcondtopn_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fhocn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fhocn_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flat</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flat_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flatn_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flwdn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flwup</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_flwup_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fmeltt_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fmelttn_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_frazil</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fresh</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fresh_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_frz_onset</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_frzmlt</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fsalt</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fsalt_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fsens</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fsens_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fsensn_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_fsurf_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fsurfn_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswabs</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswabs_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswdn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswfac</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswint_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswthru</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswthru_ai</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fswup</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_fy</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_hi</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_hisnap</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_hs</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_hte</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_htn</span> <span class="o">=</span> <span class="o">.</span><span class="n">false</span><span class="o">.</span>
+  <span class="n">f_iage</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_icepresent</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_keffn_top</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_meltb</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_meltl</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_melts</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_meltt</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_mlt_onset</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_ncat</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_qref</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_rain</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_rain_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_s11</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_s12</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_s22</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_shear</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_sice</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_sig1</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_sig2</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_sinz</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_snoice</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_snow</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_snow_ai</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_snowfrac</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_snowfracn</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_sss</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_sst</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strairx</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strairy</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strcorx</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strcory</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strength</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strintx</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strinty</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strocnx</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strocny</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strtltx</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_strtlty</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_tair</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_tarea</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_tinz</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_tmask</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_tref</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_trsig</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_tsfc</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_tsnz</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_uarea</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_uatm</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_uocn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_uvel</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_vatm</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_vgrdb</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_vgrdi</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_vgrds</span> <span class="o">=</span> <span class="o">.</span><span class="n">true</span><span class="o">.</span>
+  <span class="n">f_vicen</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_vocn</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_vsnon</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_vvel</span> <span class="o">=</span> <span class="s2">&quot;mxxxx&quot;</span>
+  <span class="n">f_yieldstress11</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_yieldstress12</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+  <span class="n">f_yieldstress22</span> <span class="o">=</span> <span class="s2">&quot;xxxxx&quot;</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ice_input_data.html" title="5. CICE Input Data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ice_nml_var.html" title="3. CICE Namelists"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

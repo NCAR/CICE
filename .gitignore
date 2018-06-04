@@ -3,3 +3,6 @@
 
 # Ignore doc/build/doctrees
 doc/build/doctrees
+
+# Ignore macOS cache files
+.DS_Store
