@@ -1,8 +1,15 @@
-# CICE
-Los Alamos Sea Ice Model
+# CICE in The CESM (Community Earth System Model) 
 
-CICE User's Guide - https://ncar.github.io/CICE/doc/build/html/index.html
+The CICE User's Guide is available at:
 
-Please see the wiki page:
+https://ncar.github.io/CICE
 
-https://github.com/NCAR/CICE/wiki/Working-with-CICE-documentation-on-github-and-sphinx
+
+The CESM web site for documentation and information:
+
+http://www.cesm.ucar.edu
+
+
+The CICE wiki page:
+
+https://github.com/NCAR/CICE/wiki/
