@@ -1,5 +1,11 @@
 # Ignore emacs backup files
 *~
 
-# Ignore doc/build/doctrees
-doc/build/doctrees
+# Ignore all html
+*.html
+
+# Ignore doc/build (both html directory and doctrees directory are under this. ignore both)
+doc/build/
+
+# Ignore macOS cache files
+.DS_Store

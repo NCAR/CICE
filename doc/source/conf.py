@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'cicedoc'
-copyright = u'2017, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm'
+copyright = u'2018, David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm'
 author = u'David Bailey, Alice DuVivier, Marika Holland, Elizabeth Hunke, Bill Lipscomb, Bruce Briegleb, Cecilia Bitz, and Julie Schramm'
 
 # The version info for the project you're documenting, acts as replacement for
