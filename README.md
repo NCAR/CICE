@@ -1,9 +1,7 @@
-# CICE
+The gh-pages orphan branch of the http://github.com/NCAR/CICE repository
+holds the sphinx built html files from the master/doc branch.
 
-This branch contains the html only for the Los Alamos Sea Ice Model
+Releases and development builds should be stored in different subdirectories
+and the top-level index.html should be updated with the link to the 
+current release subdirectory.
 
-CICE User's Guide - https://ncar.github.io/CICE/doc/build/html/index.html
-
-Please see the wiki page:
-
-https://github.com/NCAR/CICE/wiki/Working-with-CICE-documentation-on-github-and-sphinx
