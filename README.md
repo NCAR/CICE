@@ -2,7 +2,7 @@
 
 The CICE User's Guide is available at:
 
-https://ncar.github.io/CICE/doc/build/html/index.html
+https://ncar.github.io/CICE
 
 
 The CESM web site for documentation and information:
