@@ -2,6 +2,7 @@ Use the following commands to use sphinx to auto-build the html documentation fr
 CICE/doc directory:
 
   >make clean
+  
   >make html
 
 Only the doc/source files (*.rst) are stored on the master
