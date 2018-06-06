@@ -1,17 +1,17 @@
 
-
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>10. Stdout Output &#8212; cicedoc  documentation</title>
-    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <title>10. Stdout Output &#8212; cicedoc CICE 5.1.2 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '',
+        VERSION:     'CICE 5.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -22,15 +22,10 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11. Troubleshooting" href="ice_troubleshoot.html" />
-    <link rel="prev" title="9. CICE Restart Files" href="ice_restart.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
+    <link rel="prev" title="9. CICE Restart Files" href="ice_restart.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -45,10 +40,31 @@
         <li class="right" >
           <a href="ice_restart.html" title="9. CICE Restart Files"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc CICE 5.1.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">CICE User’s Guide</a> &#187;</li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="stdout-output">
+<span id="standard-output"></span><h1>10. Stdout Output<a class="headerlink" href="#stdout-output" title="Permalink to this headline">¶</a></h1>
+<p>Diagnostics from the ice model are written to an ASCII file that contains information from the compilation, a record of the input parameters, and how hemispherically averaged, maximum and minimum values are evolving with the integration.
+Certain error conditions detected within the ice setup script or the ice model will also appear in this file.
+Upon the completion of the simulation, some timing information will appear at the bottom of the file. The file name is of the form <strong>ice.log.$LID</strong>, where <code class="docutils literal"><span class="pre">$LID</span></code> is a timestamp for the file ID.
+It resides in the executable directory.
+The frequency of the diagnostics is determined by the namelist parameter <code class="docutils literal"><span class="pre">diagfreq</span></code>.
+Other diagnostic messages appear in the <strong>cesm.log.$LID</strong> or <strong>cpl.log.$LID</strong> files in the executable directory.
+See the CIME scripts documentation.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
@@ -76,27 +92,6 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="stdout-output">
-<span id="standard-output"></span><h1>10. Stdout Output<a class="headerlink" href="#stdout-output" title="Permalink to this headline">¶</a></h1>
-<p>Diagnostics from the ice model are written to an ASCII file that contains information from the compilation, a record of the input parameters, and how hemispherically averaged, maximum and minimum values are evolving with the integration.
-Certain error conditions detected within the ice setup script or the ice model will also appear in this file.
-Upon the completion of the simulation, some timing information will appear at the bottom of the file. The file name is of the form <strong>ice.log.$LID</strong>, where <code class="docutils literal"><span class="pre">$LID</span></code> is a timestamp for the file ID.
-It resides in the executable directory.
-The frequency of the diagnostics is determined by the namelist parameter <code class="docutils literal"><span class="pre">diagfreq</span></code>.
-Other diagnostic messages appear in the <strong>cesm.log.$LID</strong> or <strong>cpl.log.$LID</strong> files in the executable directory.
-See the CIME scripts documentation.</p>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -111,7 +106,7 @@ See the CIME scripts documentation.</p>
         <li class="right" >
           <a href="ice_restart.html" title="9. CICE Restart Files"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc CICE 5.1.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >CICE User’s Guide</a> &#187;</li> 
       </ul>
     </div>

@@ -36,6 +36,6 @@ $(window).resize(function(){
         $("li.nav-item-0 a").text("Top");
     }
     else {
-        $("li.nav-item-0 a").text("cicedoc  documentation");
+        $("li.nav-item-0 a").text("cicedoc CICE 5.1.2 documentation");
     }
 });
