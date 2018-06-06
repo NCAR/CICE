@@ -1,27 +1,34 @@
 .. cicedoc documentation master file, created by
-   sphinx-quickstart on Tue Feb 21 13:37:07 2017.
+   sphinx-quickstart on Fri Feb 24 19:57:57 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-====================================
- Welcome to the CICE documentation!
-====================================
+.. _users-guide:
 
-This document has one major sections.
-
-The :ref:`CICE user's guide <users-guide>` is a basic guide in utilizing the Los Alamos Sea Ice Model (CICE).
-
-Table of contents
------------------
+#####################################
+CICE User's Guide
+#####################################
 
 .. toctree::
-   :maxdepth: 1
-      
-   users_guide/index.rst
+   :maxdepth: 2
+   :numbered:
+
+   users_guide/ice_what_is_cice5.rst
+   users_guide/ice_setup.rst
+   users_guide/ice_nml_var.rst
+   users_guide/ice_nml_example.rst
+   users_guide/ice_input_data.rst
+   users_guide/ice_change_ncat.rst
+   users_guide/ice_output_files.rst
+   users_guide/ice_history.rst
+   users_guide/ice_restart.rst
+   users_guide/ice_stdout.rst
+   users_guide/ice_troubleshoot.rst
+   users_guide/zreferences.rst
 
 Indices and tables
 ==================
 
-- :ref:`genindex`
-- :ref:`modindex`
-- :ref:`search`
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
