@@ -22,6 +22,16 @@ try the following:
    source code directory, they will be overwritten by the file in
    **input\_templates**.
 
+Departure points out of bounds.
+============================================
+
+This error is written from **ice\_transport\_remap.F90** when the ice
+speed is causing parcels of ice to go beyond a grid cell. This is akin
+to a CFL violation. Generally changing the timestep in **env_run.xml**
+with ``ATM_NCPL`` will allow the model to proceed. Note this can only
+be done for hybrid or startup runs. One can try just adjusting the dynamic
+timestep as described in the next section.
+
 Negative Ice Area in Horizontal Remapping
 ============================================
 
@@ -50,6 +60,22 @@ In **user\_nl\_cice** set
 
 and restart the model. When the job completes set the
 value back to 1.
+
+Picard convergence error
+============================================
+
+This is an error from the mushy layer thermodynamics ``ktherm = 2``. One
+can try changing ``nit_max`` in the **ice_therm_mushy.F90** code, but
+this does not often help. Most likely this is an indication of a problem
+in the forcing. Sometimes reducing the overall timestep may help.
+
+Tsn init problems
+============================================
+
+Sometimes the surface temperature or snow temperature at the beginning
+of the thermodynamic iteration may become unrealistic. The lower bound
+on this error is -100C. This either indicates a problem with the CICE
+initial file or the forcing. Changing the timestep will not help.
 
 Thermodynamic Iteration Error
 ============================================

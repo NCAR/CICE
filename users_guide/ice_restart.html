@@ -116,6 +116,10 @@ written out at the end of year 1, month 12. A file containing the name
 of a restart file is called a restart pointer file. This filename
 information allows the model simulation to continue from the correct
 point in time, and hence the correct restart file.</p>
+<p>Changing the restart frequency is handled by the CESM driver in <strong>env_run.xml</strong>.
+The variables are <code class="docutils literal"><span class="pre">REST_DATE</span></code>, <code class="docutils literal"><span class="pre">REST_N</span></code> and <code class="docutils literal"><span class="pre">REST_OPTION</span></code>. See the CESM
+documentation here:</p>
+<p><a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2/component_settings/drv_input.html">http://www.cesm.ucar.edu/models/cesm2/component_settings/drv_input.html</a></p>
 <div class="section" id="restart-pointer-files">
 <h2>9.1. Restart Pointer Files<a class="headerlink" href="#restart-pointer-files" title="Permalink to this headline">¶</a></h2>
 <p>A pointer file is an ascii file named <strong>rpointer.ice</strong> that contains the

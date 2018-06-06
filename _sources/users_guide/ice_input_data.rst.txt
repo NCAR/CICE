@@ -36,3 +36,7 @@ the ``&setup_nml`` section of the namelist (see :ref:`setupnml`).
 **Restart and Branch runs**
 
 Restart or branch runs are discussed later.
+
+The input datasets are generally handled by the CESM driver.
+
+http://www.cesm.ucar.edu/models/cesm2

@@ -18,7 +18,10 @@ places in the code. The number of ice thickness categories can be changed in
 **$CASE/env\_build.xml** using the xml variable ``CICE_CONFIG_OPTS``. 
 One changes this by adding ``-ncat 5`` to the variable ``CICE_CONFIG_OPTS``.
 The default value is 5 categories. ``$DNICECAT`` is used to determine the CPP
-variable setting ``NICECAT`` in **ice\_domain\_size.F90**. 
+variable setting ``NICECAT`` in **ice\_domain\_size.F90**. More information on the CPP variables can
+be found here:
+
+http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html
 
 The information in the initial restart file is dependent on the number
 of ice thickness categories and the total number of layers in the ice

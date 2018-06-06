@@ -96,7 +96,9 @@ places in the code. The number of ice thickness categories can be changed in
 <strong>$CASE/env_build.xml</strong> using the xml variable <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.
 One changes this by adding <code class="docutils literal"><span class="pre">-ncat</span> <span class="pre">5</span></code> to the variable <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></code>.
 The default value is 5 categories. <code class="docutils literal"><span class="pre">$DNICECAT</span></code> is used to determine the CPP
-variable setting <code class="docutils literal"><span class="pre">NICECAT</span></code> in <strong>ice_domain_size.F90</strong>.</p>
+variable setting <code class="docutils literal"><span class="pre">NICECAT</span></code> in <strong>ice_domain_size.F90</strong>. More information on the CPP variables can
+be found here:</p>
+<p><a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html">http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html</a></p>
 <p>The information in the initial restart file is dependent on the number
 of ice thickness categories and the total number of layers in the ice
 distribution. An initial condition file exists only for the default case

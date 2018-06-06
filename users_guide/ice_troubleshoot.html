@@ -55,11 +55,14 @@
   <ul>
 <li><a class="reference internal" href="#">11. Troubleshooting</a><ul>
 <li><a class="reference internal" href="#code-does-not-compile-or-run">11.1. Code does not Compile or Run</a></li>
-<li><a class="reference internal" href="#negative-ice-area-in-horizontal-remapping">11.2. Negative Ice Area in Horizontal Remapping</a></li>
-<li><a class="reference internal" href="#thermodynamic-iteration-error">11.3. Thermodynamic Iteration Error</a></li>
-<li><a class="reference internal" href="#conservation-error">11.4. Conservation Error</a></li>
-<li><a class="reference internal" href="#nx-does-not-divide-evenly-into-grid">11.5. NX does not divide evenly into grid</a></li>
-<li><a class="reference internal" href="#enabling-the-debugger">11.6. Enabling the Debugger</a></li>
+<li><a class="reference internal" href="#departure-points-out-of-bounds">11.2. Departure points out of bounds.</a></li>
+<li><a class="reference internal" href="#negative-ice-area-in-horizontal-remapping">11.3. Negative Ice Area in Horizontal Remapping</a></li>
+<li><a class="reference internal" href="#picard-convergence-error">11.4. Picard convergence error</a></li>
+<li><a class="reference internal" href="#tsn-init-problems">11.5. Tsn init problems</a></li>
+<li><a class="reference internal" href="#thermodynamic-iteration-error">11.6. Thermodynamic Iteration Error</a></li>
+<li><a class="reference internal" href="#conservation-error">11.7. Conservation Error</a></li>
+<li><a class="reference internal" href="#nx-does-not-divide-evenly-into-grid">11.8. NX does not divide evenly into grid</a></li>
+<li><a class="reference internal" href="#enabling-the-debugger">11.9. Enabling the Debugger</a></li>
 </ul>
 </li>
 </ul>
@@ -112,8 +115,17 @@ source code directory, they will be overwritten by the file in
 <strong>input_templates</strong>.</li>
 </ul>
 </div>
+<div class="section" id="departure-points-out-of-bounds">
+<h2>11.2. Departure points out of bounds.<a class="headerlink" href="#departure-points-out-of-bounds" title="Permalink to this headline">¶</a></h2>
+<p>This error is written from <strong>ice_transport_remap.F90</strong> when the ice
+speed is causing parcels of ice to go beyond a grid cell. This is akin
+to a CFL violation. Generally changing the timestep in <strong>env_run.xml</strong>
+with <code class="docutils literal"><span class="pre">ATM_NCPL</span></code> will allow the model to proceed. Note this can only
+be done for hybrid or startup runs. One can try just adjusting the dynamic
+timestep as described in the next section.</p>
+</div>
 <div class="section" id="negative-ice-area-in-horizontal-remapping">
-<h2>11.2. Negative Ice Area in Horizontal Remapping<a class="headerlink" href="#negative-ice-area-in-horizontal-remapping" title="Permalink to this headline">¶</a></h2>
+<h2>11.3. Negative Ice Area in Horizontal Remapping<a class="headerlink" href="#negative-ice-area-in-horizontal-remapping" title="Permalink to this headline">¶</a></h2>
 <p>This error is written from <strong>ice_transport_remap.F90</strong> when the ice
 model is checking for negative ice areas. If it happens well into a
 model integration, it can be indicative of a CFL violation. The output
@@ -136,8 +148,22 @@ In <strong>user_nl_cice</strong> set</p>
 <p>and restart the model. When the job completes set the
 value back to 1.</p>
 </div>
+<div class="section" id="picard-convergence-error">
+<h2>11.4. Picard convergence error<a class="headerlink" href="#picard-convergence-error" title="Permalink to this headline">¶</a></h2>
+<p>This is an error from the mushy layer thermodynamics <code class="docutils literal"><span class="pre">ktherm</span> <span class="pre">=</span> <span class="pre">2</span></code>. One
+can try changing <code class="docutils literal"><span class="pre">nit_max</span></code> in the <strong>ice_therm_mushy.F90</strong> code, but
+this does not often help. Most likely this is an indication of a problem
+in the forcing. Sometimes reducing the overall timestep may help.</p>
+</div>
+<div class="section" id="tsn-init-problems">
+<h2>11.5. Tsn init problems<a class="headerlink" href="#tsn-init-problems" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes the surface temperature or snow temperature at the beginning
+of the thermodynamic iteration may become unrealistic. The lower bound
+on this error is -100C. This either indicates a problem with the CICE
+initial file or the forcing. Changing the timestep will not help.</p>
+</div>
 <div class="section" id="thermodynamic-iteration-error">
-<h2>11.3. Thermodynamic Iteration Error<a class="headerlink" href="#thermodynamic-iteration-error" title="Permalink to this headline">¶</a></h2>
+<h2>11.6. Thermodynamic Iteration Error<a class="headerlink" href="#thermodynamic-iteration-error" title="Permalink to this headline">¶</a></h2>
 <p>This error is written from <strong>ice_therm_vertical.F90</strong> when the ice
 model temperature iteration is not converging in the thermodynamics.
 This is usually a problem with the forcing from the atmosphere or ocean,
@@ -149,7 +175,7 @@ Check the forcing files at point i,j first.</p>
 </div>
 </div>
 <div class="section" id="conservation-error">
-<h2>11.4. Conservation Error<a class="headerlink" href="#conservation-error" title="Permalink to this headline">¶</a></h2>
+<h2>11.7. Conservation Error<a class="headerlink" href="#conservation-error" title="Permalink to this headline">¶</a></h2>
 <p>This error is written from <strong>ice_itd.F</strong> when the ice model is checking
 that initial and final values of a conserved field are equal to within a
 small value. The output looks like:</p>
@@ -169,7 +195,7 @@ violation in the ocean. The timestep in the ocean may be decreased to
 get around the problem.</p>
 </div>
 <div class="section" id="nx-does-not-divide-evenly-into-grid">
-<h2>11.5. NX does not divide evenly into grid<a class="headerlink" href="#nx-does-not-divide-evenly-into-grid" title="Permalink to this headline">¶</a></h2>
+<h2>11.8. NX does not divide evenly into grid<a class="headerlink" href="#nx-does-not-divide-evenly-into-grid" title="Permalink to this headline">¶</a></h2>
 <p>If you modify the number of tasks used by the ice model, the model may
 stop with this error written to the log file:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;ERROR: NX must divide evenly into grid,100,8&#39;</span>
@@ -184,7 +210,7 @@ case, a value of 4 would work, and the task geometry would also have to
 be changed.</p>
 </div>
 <div class="section" id="enabling-the-debugger">
-<h2>11.6. Enabling the Debugger<a class="headerlink" href="#enabling-the-debugger" title="Permalink to this headline">¶</a></h2>
+<h2>11.9. Enabling the Debugger<a class="headerlink" href="#enabling-the-debugger" title="Permalink to this headline">¶</a></h2>
 <p>This section explains how to set some compiler options for debugging.
 For the coupled model, set DEBUG to TRUE in the <strong>env_build.xml</strong> script.
 Before running the model, be sure to delete the object files or a clean build
