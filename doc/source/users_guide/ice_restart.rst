@@ -30,6 +30,12 @@ of a restart file is called a restart pointer file. This filename
 information allows the model simulation to continue from the correct
 point in time, and hence the correct restart file.
 
+Changing the restart frequency is handled by the CESM driver in **env_run.xml**.
+The variables are ``REST_DATE``, ``REST_N`` and ``REST_OPTION``. See the CESM
+documentation here:
+
+http://www.cesm.ucar.edu/models/cesm2/component_settings/drv_input.html
+
 Restart Pointer Files
 ----------------------------------------
 

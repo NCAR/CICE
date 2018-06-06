@@ -43,6 +43,8 @@ in the **/scripts** directory for previous versions are now generated
 automatically. See the CESM2 User’s Guide for information on how to
 use the new scripts.
 
+http://www.cesm.ucar.edu/models/cesm2
+
 The file that contains the ice model namelist is now located in
 **$CASE/CaseDocs**. The file containing the environment variables
 used for building the executable file for the ice model is in
@@ -129,3 +131,6 @@ The other tracer flags, ``-DTRAGE``, ``-DTRFY``, ``-DTRLVL``, ``-DTRPND`` are fo
 level ice, and melt pond tracers. These are either on or off using 1 or 0. By default, all are
 turned on. More information on these can be found in the CICE reference guide :cite:`cice15`.
 
+More information on the compile settings for CICE can be found here:
+
+http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html

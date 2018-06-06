@@ -10,7 +10,10 @@ platform, and “out of the box”.  It includes a quick start guide for
 downloading the CESM2 source code and input datasets, and information
 on how to configure, build and run the model. The supported
 configurations and scripts for building the fully coupled model are
-also described in the CESM2 User’s Guide: http://www.cesm.ucar.edu/models/cesm2.0/ .
+also described in the CESM2 User’s Guide: 
+
+http://www.cesm.ucar.edu/models/cesm2.0
+
 The CICE User’s Guide is intended for users interested in making
 modifications to the ice model scripts or namelists within the CESM.
 Users interested in modifying the source code or using the standalone
@@ -32,8 +35,10 @@ present-day and future climate scenarios while the low resolution
 option is used for paleoclimate simulations and debugging. 
 
 An uncoupled version of CICE5.1.2 is available separately:
-https://github.com/CICE-Consortium/CICE-svn-trunk . This 
-standalone CICE configuration provides a means of running the sea ice model
+
+https://github.com/CICE-Consortium/CICE-svn-trunk 
+
+This standalone CICE configuration provides a means of running the sea ice model
 independent of the other CESM components. It can read in atmospheric
 and ocean forcing, which eliminates the need for the flux coupler, and
 the atmosphere, land and ocean data models. It can be run on a reduced
@@ -82,5 +87,5 @@ Ice Model CICE model version 5. The main source code is very similar
 in both versions, but the drivers are significantly different. If there 
 are topics that are not covered in this CICE documentation, users are
 encouraged to look at the CICE documentation available at:
-http://oceans11.lanl.gov/trac/CICE.
 
+https://github.com/CICE-Consortium/CICE-svn-trunk 

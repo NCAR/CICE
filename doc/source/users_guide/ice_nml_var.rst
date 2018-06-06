@@ -8,7 +8,10 @@ CICE uses the same namelists for both the coupled and uncoupled models.
 This section describes the namelist variables,
 which determine time management, output frequency, model physics, and
 filenames. The ice namelists for the coupled model are now located in
-**$CASE/CaseDocs**.
+**$CASE/CaseDocs**. Some additional documentation on the CICE namelist
+is available here:
+
+http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_nml.html
 
 A script reads the input namelist at runtime, and writes the namelist
 information to the file **ice\_in** in the directory where the model
@@ -90,7 +93,10 @@ Maximum values for ``dt`` for the two standard CESM POP grids, assuming
 :math:`max(u,v) = 0.5\ m/s`, are shown in :ref:`timestep`.
 The default timestep for CICE is 30 minutes for gx1, 
 which must be equvialent to the coupling interval (``NCPL_ICE`` and ``NCPL_ATM``) 
-set in the CESM configuration files **env\_run.xml**.
+set in the CESM configuration files **env\_run.xml**. One should only change the CICE
+timestep using the ``NCPL_ATM`` variable in **env\_run.xml**. For more on this see:
+
+http://www.cesm.ucar.edu/models/cesm2/component_settings/drv_input_cesm.html
 
 .. _timestep:
 
