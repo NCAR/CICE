@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. Configuring and Building CICE &#8212; cicedoc CICE 5.1.2 documentation</title>
+    <title>2. Configuring and Building CICE &#8212; cesmcice CESM CICE5 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     'CICE 5.1.2',
+        VERSION:     'CESM CICE5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. CICE Namelists" href="ice_nml_var.html" />
-    <link rel="prev" title="1. What is CICE5" href="ice_what_is_cice5.html" /> 
+    <link rel="prev" title="1. Introduction" href="ice_what_is_cice5.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -38,9 +38,9 @@
           <a href="ice_nml_var.html" title="3. CICE Namelists"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="ice_what_is_cice5.html" title="1. What is CICE5"
+          <a href="ice_what_is_cice5.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc CICE 5.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cesmcice CESM CICE5 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -93,8 +93,9 @@ described in section <a class="reference internal" href="ice_nml_var.html#nameli
 </div>
 <div class="section" id="building-the-cice-library">
 <h2>2.2. Building the CICE library<a class="headerlink" href="#building-the-cice-library" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="the-build-environment">
-<h3>2.2.1. The Build Environment<a class="headerlink" href="#the-build-environment" title="Permalink to this headline">¶</a></h3>
+<h2>2.3. The Build Environment<a class="headerlink" href="#the-build-environment" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>cime_config/build_cpp</strong> script sets all compile time parameters, such
 as the horizontal grid, the sea ice mode (prognostic or prescribed),
 tracers, etc. However, to change the CPP variables, one needs to add these to
@@ -102,7 +103,7 @@ the <code class="docutils literal"><span class="pre">CICE_CONFIG_OPTS</span></co
 can be set here, such as the decomposition and the number of tasks.</p>
 </div>
 <div class="section" id="cice-preprocessor-flags">
-<h3>2.2.2. CICE Preprocessor Flags<a class="headerlink" href="#cice-preprocessor-flags" title="Permalink to this headline">¶</a></h3>
+<h2>2.4. CICE Preprocessor Flags<a class="headerlink" href="#cice-preprocessor-flags" title="Permalink to this headline">¶</a></h2>
 <p>Preprocessor flags are activated in the form -Doption in the
 <strong>buildcpp</strong> script. Only advanced users should change these
 options. See the CESM User’s Guide or the CICE reference guide for more
@@ -161,7 +162,6 @@ turned on. More information on these can be found in the CICE reference guide <a
 <p><a class="reference external" href="http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html">http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html</a></p>
 </div>
 </div>
-</div>
 
 
           </div>
@@ -173,18 +173,16 @@ turned on. More information on these can be found in the CICE reference guide <a
   <ul>
 <li><a class="reference internal" href="#">2. Configuring and Building CICE</a><ul>
 <li><a class="reference internal" href="#overview">2.1. Overview</a></li>
-<li><a class="reference internal" href="#building-the-cice-library">2.2. Building the CICE library</a><ul>
-<li><a class="reference internal" href="#the-build-environment">2.2.1. The Build Environment</a></li>
-<li><a class="reference internal" href="#cice-preprocessor-flags">2.2.2. CICE Preprocessor Flags</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#building-the-cice-library">2.2. Building the CICE library</a></li>
+<li><a class="reference internal" href="#the-build-environment">2.3. The Build Environment</a></li>
+<li><a class="reference internal" href="#cice-preprocessor-flags">2.4. CICE Preprocessor Flags</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="ice_what_is_cice5.html"
-                        title="previous chapter">1. What is CICE5</a></p>
+                        title="previous chapter">1. Introduction</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="ice_nml_var.html"
                         title="next chapter">3. CICE Namelists</a></p>
@@ -219,9 +217,9 @@ turned on. More information on these can be found in the CICE reference guide <a
           <a href="ice_nml_var.html" title="3. CICE Namelists"
              >next</a> |</li>
         <li class="right" >
-          <a href="ice_what_is_cice5.html" title="1. What is CICE5"
+          <a href="ice_what_is_cice5.html" title="1. Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">cicedoc CICE 5.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">cesmcice CESM CICE5 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>CICE User’s Guide &#8212; cicedoc CICE 5.1.2 documentation</title>
+    <title>CICE User’s Guide &#8212; cesmcice CESM CICE5 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     'CICE 5.1.2',
+        VERSION:     'CESM CICE5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. What is CICE5" href="users_guide/ice_what_is_cice5.html" /> 
+    <link rel="next" title="1. Introduction" href="users_guide/ice_what_is_cice5.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,9 +34,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="users_guide/ice_what_is_cice5.html" title="1. What is CICE5"
+          <a href="users_guide/ice_what_is_cice5.html" title="1. Introduction"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cicedoc CICE 5.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">cesmcice CESM CICE5 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,13 +49,16 @@
 <span id="users-guide"></span><h1>CICE User’s Guide<a class="headerlink" href="#cice-user-s-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="users_guide/ice_what_is_cice5.html">1. What is CICE5</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_what_is_cice5.html#whats-new-in-cice5">1.1. What’s new in CICE5?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users_guide/ice_what_is_cice5.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_what_is_cice5.html#what-is-cice5">1.1. What is CICE5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_what_is_cice5.html#whats-new-in-cice5">1.2. What’s new in CICE5?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="users_guide/ice_setup.html">2. Configuring and Building CICE</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_setup.html#overview">2.1. Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_setup.html#building-the-cice-library">2.2. Building the CICE library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_setup.html#the-build-environment">2.3. The Build Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_setup.html#cice-preprocessor-flags">2.4. CICE Preprocessor Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="users_guide/ice_nml_var.html">3. CICE Namelists</a><ul>
@@ -90,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="users_guide/ice_stdout.html">10. Stdout Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="users_guide/ice_troubleshoot.html">11. Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#code-does-not-compile-or-run">11.1. Code does not Compile or Run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#departure-points-out-of-bounds">11.2. Departure points out of bounds.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#departure-points-out-of-bounds">11.2. Departure points out of bounds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#negative-ice-area-in-horizontal-remapping">11.3. Negative Ice Area in Horizontal Remapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#picard-convergence-error">11.4. Picard convergence error</a></li>
 <li class="toctree-l2"><a class="reference internal" href="users_guide/ice_troubleshoot.html#tsn-init-problems">11.5. Tsn init problems</a></li>
@@ -129,7 +132,7 @@
 
   <h4>Next topic</h4>
   <p class="topless"><a href="users_guide/ice_what_is_cice5.html"
-                        title="next chapter">1. What is CICE5</a></p>
+                        title="next chapter">1. Introduction</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -158,9 +161,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="users_guide/ice_what_is_cice5.html" title="1. What is CICE5"
+          <a href="users_guide/ice_what_is_cice5.html" title="1. Introduction"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">cicedoc CICE 5.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">cesmcice CESM CICE5 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -1,9 +1,8 @@
 .. _cice_namelist_examples:
 
 
-**************************
- CICE Namelist Examples
-**************************
+CICE Namelist Examples
+======================
 
 This section shows several examples of namelists from the coupled ice
 model. These examples are taken directly from **$CASE/CaseDocs/ice\_in** for

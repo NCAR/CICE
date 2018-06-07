@@ -1,8 +1,7 @@
 .. _output_files:
 
-*****************************
- CICE Output
-*****************************
+CICE Output
+===========
 
 The ice model produces three types of output data. 
 

@@ -1,8 +1,10 @@
 .. _overview:
 
-*******************
- What is CICE5
-*******************
+Introduction
+============
+
+What is CICE5?
+--------------
 
 This CICE User’s Guide accompanies the CESM2.0 User’s Guide, and is
 intended for those who would like to run CICE coupled, on a supported
@@ -63,9 +65,8 @@ Variable names used in the code are ``typewritten``.
 Subroutine are given in *italic*.
 File and directory names are in **boldface**.
 
-======================
- What’s new in CICE5?
-======================
+What’s new in CICE5?
+--------------------
 
 CICE5 is very similar in code structure to the previous version CICE4
 and was released in March of 2015. CICE4 was an upgraded version of 

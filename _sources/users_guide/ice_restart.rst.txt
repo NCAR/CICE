@@ -1,8 +1,7 @@
 .. _restart-files:
 
-****************************
- CICE Restart Files
-****************************
+CICE Restart Files
+==================
 
 Restart files contain all of the initial condition information
 necessary to restart from a previous simulation. These files are in a
@@ -37,7 +36,7 @@ documentation here:
 http://www.cesm.ucar.edu/models/cesm2/component_settings/drv_input.html
 
 Restart Pointer Files
-----------------------------------------
+---------------------
 
 A pointer file is an ascii file named **rpointer.ice** that contains the
 path and filename of the latest restart file. The model uses this
