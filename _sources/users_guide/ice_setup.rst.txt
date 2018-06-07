@@ -17,7 +17,7 @@ The directory structure of CICE5 within CESM is shown below.
 				         |
 		      components --------+--------- scripts
 			 |                        |
-			 |               * * * * *|* * * * * 
+			 |               * * * * * * * * * * 
 		        cice             *build scripts for*
 		         |               *  coupled model  *
 	                 |               * * * * * * * * * *

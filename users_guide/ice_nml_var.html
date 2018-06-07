@@ -434,7 +434,7 @@ scheme is only first order accurate.</p>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">advection</span></code></td>
 <td>Character</td>
-<td>remap</td>
+<td>‘remap’</td>
 <td>Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">kstrength</span></code></td>
@@ -504,7 +504,7 @@ There are several additional thermodynamic options not listed that go with
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">conduct</span></code></td>
 <td>Character</td>
-<td>MU71</td>
+<td>‘MU71’</td>
 <td>Determines conductivity formulation used with ktherm = 1, MU71, bubbly</td>
 </tr>
 </tbody>
@@ -544,9 +544,9 @@ radiation scheme is still available through <code class="docutils literal"><span
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">shortwave</span></code></td>
 <td>Character</td>
-<td>dEdd</td>
-<td>dEdd</td>
-<td>dEdd</td>
+<td>‘dEdd’</td>
+<td>‘dEdd’</td>
+<td>‘dEdd’</td>
 <td>Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">albicev</span></code></td>
@@ -770,17 +770,17 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">stream_domfilename</span></code></td>
 <td>Character</td>
-<td>none’</td>
+<td>‘none’</td>
 <td>Prescribed ice stream data file</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">stream_fldfilename</span></code></td>
 <td>Character</td>
-<td>none</td>
+<td>‘none’</td>
 <td>Prescribed ice stream data file</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">stream_fldvarname</span></code></td>
 <td>Character</td>
-<td>ice_cov</td>
+<td>‘ice_cov’</td>
 <td>Ice fraction field name</td>
 </tr>
 </tbody>
@@ -798,10 +798,10 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 <span id="grid"></span><table border="1" class="colwidths-given docutils" id="id14">
 <caption><span class="caption-text">Table 8: Grid Namelist Options</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="20%" />
-<col width="12%" />
-<col width="18%" />
-<col width="50%" />
+<col width="19%" />
+<col width="11%" />
+<col width="26%" />
+<col width="44%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Variable Name</th>
@@ -818,13 +818,13 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">grid_type</span></code></td>
 <td>Character</td>
-<td>displaced_pole</td>
+<td>‘displaced_pole’</td>
 <td>Determines grid type.</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>displaced_pole</td>
+<td>‘displaced_pole’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
@@ -838,22 +838,22 @@ default filenames shown in <a class="reference internal" href="#grid"><span clas
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">grid_format</span></code></td>
 <td>Character</td>
-<td>binary</td>
+<td>‘binary’</td>
 <td>Grid file format (binary or netCDF)</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">grid_file</span></code></td>
 <td>Character</td>
-<td>data.domain.grid</td>
+<td>‘data.domain.grid’</td>
 <td>Input filename containing grid information.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">gridcpl_file</span></code></td>
 <td>Character</td>
-<td>data.domain.grid</td>
+<td>‘data.domain.grid’</td>
 <td>Input filename containing grid information if coupling grid is different than computational grid.</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">kmt_file</span></code></td>
 <td>Character</td>
-<td>data.domain.kmt</td>
+<td>‘data.domain.kmt’</td>
 <td>Input filename containing land mask information.</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">kcatbound</span></code></td>
@@ -878,8 +878,8 @@ See the CESM scripts documentation.</p>
 <colgroup>
 <col width="36%" />
 <col width="12%" />
-<col width="12%" />
-<col width="40%" />
+<col width="16%" />
+<col width="36%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Variable Name</th>
@@ -896,120 +896,115 @@ See the CESM scripts documentation.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">processor_shape</span></code></td>
 <td>Character</td>
-<td>square-ice</td>
+<td>‘square-ice’</td>
 <td>Approximate block shapes</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>slenderX1</td>
+<td>‘slenderX1’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>slenderX2</td>
+<td>‘slenderX2’</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>square-ice</td>
+<td>‘square-ice’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>square-pop</td>
+<td>‘square-pop’</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
-<td>&#160;</td>
-<td>&#160;</td>
-<td>blocks</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_type</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_type</span></code></td>
 <td>Character</td>
-<td>spacecurve</td>
+<td>‘spacecurve’</td>
 <td>How domain is split into blocks and distributed onto processors</td>
 </tr>
-<tr class="row-even"><td>&#160;</td>
-<td>&#160;</td>
-<td>&#160;</td>
-<td>cartesian</td>
-</tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>rake</td>
+<td>‘cartesian’</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>roundrobin</td>
+<td>‘rake’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>sectcart</td>
+<td>‘roundrobin’</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>sectrobin</td>
+<td>‘sectcart’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>spacecurve</td>
+<td>‘sectrobin’</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_wght</span></code></td>
+<tr class="row-even"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>‘spacecurve’</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_wght</span></code></td>
 <td>Character</td>
-<td>latitude</td>
+<td>‘latitude’</td>
 <td>How blocks are weighted when using space-filling curves</td>
 </tr>
-<tr class="row-odd"><td>&#160;</td>
-<td>&#160;</td>
-<td>&#160;</td>
-<td>block</td>
-</tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>latitude</td>
+<td>‘block’</td>
 </tr>
 <tr class="row-odd"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>erfc</td>
+<td>‘latitude’</td>
 </tr>
 <tr class="row-even"><td>&#160;</td>
 <td>&#160;</td>
 <td>&#160;</td>
-<td>file</td>
+<td>‘erfc’</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">distribution_wght_file</span></code></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>‘file’</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">distribution_wght_file</span></code></td>
 <td>Character</td>
-<td>none</td>
+<td>‘none’</td>
 <td>File containing space-filling curve weights when using file weighting</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ew_boundary_type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ew_boundary_type</span></code></td>
 <td>Character</td>
-<td>cyclic</td>
+<td>‘cyclic’</td>
 <td>Boundary conditions in E-W direction</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">ns_boundary_type</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">ns_boundary_type</span></code></td>
 <td>Character</td>
-<td>open</td>
+<td>‘open’</td>
 <td>Boundary conditions in N-S direction</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_dyn</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_dyn</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in dynamics.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_remap</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_remap</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in remapping.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">maskhalo_bound</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">maskhalo_bound</span></code></td>
 <td>Logical</td>
 <td>.true.</td>
 <td>Use masked halos in state bound.</td>
