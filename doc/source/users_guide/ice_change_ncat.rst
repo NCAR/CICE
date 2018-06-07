@@ -1,8 +1,7 @@
 .. _ice-thickness-categories:
 
-*******************************
 CICE Thickness Categories
-*******************************
+=========================
 
 The number of ice thickness categories affects ice model input files in
 three places:

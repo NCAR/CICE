@@ -1,11 +1,10 @@
 .. _ice_setup:
 
-********************************
 Configuring and Building CICE
-********************************
+=============================
 
 Overview
-========
+--------
 
 The setup scripts for the coupled model are located in **cesm2/scripts**. 
 
@@ -52,7 +51,7 @@ used for building the executable file for the ice model is in
 described in section :ref:`namelist`.
 
 Building the CICE library
-==========================
+-------------------------
 
 The Build Environment
 ---------------------
@@ -134,3 +133,4 @@ turned on. More information on these can be found in the CICE reference guide :c
 More information on the compile settings for CICE can be found here:
 
 http://www.cesm.ucar.edu/models/cesm2/component_settings/cice_input.html
+

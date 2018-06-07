@@ -1,8 +1,7 @@
 .. _namelist:
 
-**********************
- CICE Namelists 
-**********************
+CICE Namelists 
+==============
 
 CICE uses the same namelists for both the coupled and uncoupled models.
 This section describes the namelist variables,
@@ -42,7 +41,7 @@ CESM configuration files.
 
 .. csv-table:: Table 1: Setup Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,12,60
+   :widths: 25,12,18,35
 
    "&setup_nml","","",""
    "``ice_ic``","character","default","Filename for initial and branch runs. Set by driver scripts"
@@ -261,7 +260,7 @@ radiation scheme is still available through ``shortwave = default``.
 
 .. csv-table:: Table 5: Radiation Namelist Options
    :header: "Variable Name","Type","Default: CESM-CAM4 gx3","Default: CESM-CAM4 gx1","Default: CESM-CAM5 gx1","Description"
-   :widths: 20,12,12,12,12,60
+   :widths: 24,14,16,16,16,42
 
    "&shortwave_nml","","","","",""
    "``shortwave``","Character","dEdd","dEdd","dEdd","Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave"
@@ -286,7 +285,7 @@ driver scripts via the ``CICE_CONFIG_OPTS`` variable.
 
 .. csv-table:: Table 6: Tracer Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,12,60
+   :widths: 26,12,12,50
 
    "&tracer_nml","","",""
    "``tr_aero``","Logical",".true.","Aerosol physics and tracer"
@@ -314,7 +313,7 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].
 
 .. csv-table:: Table 7: Prescribed Ice Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,12,60
+   :widths: 28,12,12,48
 
    "``prescribed_ice``","Logical",".false.","Flag to turn on prescribed ice"
    "``prescribed_ice_fill``","Logical",".false.","Flag to turn fill option"
@@ -340,7 +339,7 @@ default filenames shown in :ref:`grid`.
 
 .. csv-table:: Table 8: Grid Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,12,60
+   :widths: 20,12,18,50
 
    "&grid_nml","","",""
    "``grid_type``","Character","displaced\_pole","Determines grid type."
@@ -369,7 +368,7 @@ See the CESM scripts documentation.
 
 .. csv-table:: Table 9: Domain Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,12,60
+   :widths: 36,12,12,40
 
    "&domain_nml","","",""
    "``processor_shape``","Character","square-ice","Approximate block shapes"

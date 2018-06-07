@@ -1,8 +1,7 @@
 .. _history-files:
 
-*******************************
- CICE History Files
-*******************************
+CICE History Files
+==================
 
 History files contain gridded data values written at specified times
 during a model run. By default, the history files will be written to

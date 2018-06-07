@@ -1,8 +1,7 @@
 .. _standard-output:
 
-*****************************
 Stdout Output
-*****************************
+=============
 
 Diagnostics from the ice model are written to an ASCII file that contains information from the compilation, a record of the input parameters, and how hemispherically averaged, maximum and minimum values are evolving with the integration. 
 Certain error conditions detected within the ice setup script or the ice model will also appear in this file. 
