@@ -223,7 +223,7 @@ scheme is only first order accurate.
    "``kdyn``","Integer","1","Determines ice dynamics, 0 = No ice dynamics, 1 = Elastic viscous plastic dynamics"
    "``revised_evp``","Logical",".false.","Revised EVP formulation"
    "``ndte``", "Integer", "1","Number of sub-cycles in EVP dynamics."
-   "``advection``","Character","remap","Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection"
+   "``advection``","Character","'remap'","Determines horizontal advection scheme. ’remap’ = incremental remapping, ’upwind’ = first order advection"
    "``kstrength``","Integer","1","Determines pressure formulation, 0 = parameterization, 1 = parameterization"
    "``krdg_partic``","Integer","1","Ridging participation function, 0 = Thorndike, 1 = Expontential"
    "``krdg_redist``","Integer","1","Ridging distribution function, 0 = Hibler , 1 = Expontential"
@@ -247,7 +247,7 @@ There are several additional thermodynamic options not listed that go with
    "&thermo_nml","","",""
    "``kitd``","Integer","1","Determines ITD conversion, 0 = delta scheme, 1=linear remapping"
    "``ktherm``","Integer","1","Determines ice thermodynamics, 1 = BL99, 2 = mushy layer"
-   "``conduct``","Character","MU71","Determines conductivity formulation used with ktherm = 1, MU71, bubbly"
+   "``conduct``","Character","'MU71'","Determines conductivity formulation used with ktherm = 1, MU71, bubbly"
 
 For the newer delta-Eddington shortwave radiative transfer scheme ``shortwave = dEdd``, the
 base albedos are computed based on the inherent optical properties of
@@ -263,7 +263,7 @@ radiation scheme is still available through ``shortwave = default``.
    :widths: 24,14,16,16,16,42
 
    "&shortwave_nml","","","","",""
-   "``shortwave``","Character","dEdd","dEdd","dEdd","Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave"
+   "``shortwave``","Character","'dEdd'","'dEdd'","'dEdd'","Shortwave Radiative Transfer Scheme, ’dEdd’ = delta-Eddington Shortwave, ’default’ = CCSM3 Shortwave"
    "``albicev``","Real",0.68,0.75,0.75,"Visible ice albedo (CCSM3)"
    "``albicei``","Real",0.30,0.45,0.45,"Near-infrared ice albedo (CCSM3)"
    "``albsnowv``","Real",0.91,0.98,0.98,"Visible snow albedo (CCSM3)"
@@ -320,9 +320,9 @@ option as used in AMIP and F compset (standalone CAM) runs [prescribed].
    "``stream_year_first``","Integer","1","First year of prescribed ice data"
    "``stream_year_last``","Integer","1","Last year of prescribed ice data"
    "``model_year_align``","Integer","1","Year in model run that aligns with stream\_year\_first"
-   "``stream_domfilename``","Character","none'","Prescribed ice stream data file"
-   "``stream_fldfilename``","Character","none","Prescribed ice stream data file"
-   "``stream_fldvarname``","Character","ice\_cov","Ice fraction field name"
+   "``stream_domfilename``","Character","'none'","Prescribed ice stream data file"
+   "``stream_fldfilename``","Character","'none'","Prescribed ice stream data file"
+   "``stream_fldvarname``","Character","'ice\_cov'","Ice fraction field name"
 
 Grid Namelist
 -------------
@@ -339,17 +339,17 @@ default filenames shown in :ref:`grid`.
 
 .. csv-table:: Table 8: Grid Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 20,12,18,50
+   :widths: 20,12,28,48
 
    "&grid_nml","","",""
-   "``grid_type``","Character","displaced\_pole","Determines grid type."
-   " "," "," ","displaced\_pole"
+   "``grid_type``","Character","'displaced\_pole'","Determines grid type."
+   " "," "," ","'displaced\_pole'"
    " "," "," ","tripole"
    " "," "," ","rectangular"
-   "``grid_format``","Character","binary","Grid file format (binary or netCDF)"
-   "``grid_file``","Character","data.domain.grid","Input filename containing grid information."
-   "``gridcpl_file``","Character","data.domain.grid","Input filename containing grid information if coupling grid is different than computational grid."
-   "``kmt_file``","Character","data.domain.kmt","Input filename containing land mask information."
+   "``grid_format``","Character","'binary'","Grid file format (binary or netCDF)"
+   "``grid_file``","Character","'data.domain.grid'","Input filename containing grid information."
+   "``gridcpl_file``","Character","'data.domain.grid'","Input filename containing grid information if coupling grid is different than computational grid."
+   "``kmt_file``","Character","'data.domain.kmt'","Input filename containing land mask information."
    "``kcatbound``","Integer","0","How category boundaries are set (0 or 1)"
 
 For coupled runs, supported grids include the ’displaced\_pole’ grids
@@ -368,30 +368,29 @@ See the CESM scripts documentation.
 
 .. csv-table:: Table 9: Domain Namelist Options
    :header: "Variable Name","Type","Default","Description"
-   :widths: 36,12,12,40
+   :widths: 36,12,16,36
 
    "&domain_nml","","",""
-   "``processor_shape``","Character","square-ice","Approximate block shapes"
-   "","","","slenderX1"
-   "","","","slenderX2"
-   "","","","square-ice"
-   "","","","square-pop"
-   "","","","blocks"
-   "``distribution_type``","Character","spacecurve","How domain is split into blocks and distributed onto processors"
-   "","","","cartesian"
-   "","","","rake"
-   "","","","roundrobin"
-   "","","","sectcart"
-   "","","","sectrobin"
-   "","","","spacecurve"
-   "``distribution_wght``","Character","latitude","How blocks are weighted when using space-filling curves"
-   "","","","block"
-   "","","","latitude"
-   "","","","erfc"
-   "","","","file"
-   "``distribution_wght_file``","Character","none","File containing space-filling curve weights when using file weighting"
-   "``ew_boundary_type``","Character","cyclic","Boundary conditions in E-W direction"
-   "``ns_boundary_type``","Character","open","Boundary conditions in N-S direction"
+   "``processor_shape``","Character","'square-ice'","Approximate block shapes"
+   "","","","'slenderX1'"
+   "","","","'slenderX2'"
+   "","","","'square-ice'"
+   "","","","'square-pop'"
+   "``distribution_type``","Character","'spacecurve'","How domain is split into blocks and distributed onto processors"
+   "","","","'cartesian'"
+   "","","","'rake'"
+   "","","","'roundrobin'"
+   "","","","'sectcart'"
+   "","","","'sectrobin'"
+   "","","","'spacecurve'"
+   "``distribution_wght``","Character","'latitude'","How blocks are weighted when using space-filling curves"
+   "","","","'block'"
+   "","","","'latitude'"
+   "","","","'erfc'"
+   "","","","'file'"
+   "``distribution_wght_file``","Character","'none'","File containing space-filling curve weights when using file weighting"
+   "``ew_boundary_type``","Character","'cyclic'","Boundary conditions in E-W direction"
+   "``ns_boundary_type``","Character","'open'","Boundary conditions in N-S direction"
    "``maskhalo_dyn``","Logical",".true.","Use masked halos in dynamics."
    "``maskhalo_remap``","Logical",".true.","Use masked halos in remapping."
    "``maskhalo_bound``","Logical",".true.","Use masked halos in state bound."
